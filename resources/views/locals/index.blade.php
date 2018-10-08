@@ -1,3 +1,10 @@
+@extends('layouts.main')
+
+@section('pageTitle')
+    Lista de Locais
+@endsection
+
+@section('content')
 <html>
     <table>
         <thead>
@@ -22,3 +29,4 @@
         </thead>
     </table>
 </html>
+@endsection
