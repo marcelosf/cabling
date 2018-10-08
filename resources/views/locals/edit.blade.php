@@ -1,4 +1,4 @@
-<form action="{{ route('locals.store') }}" method="POST">
+<form action="{{ route('locals.update', ['id' => $local->id]) }}" method="POST">
     
     @csrf
     @method('PUT')
