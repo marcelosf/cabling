@@ -26,4 +26,6 @@ class Local extends Model implements Transformable
       'local'
     ];
 
+    protected $table = 'locals';
+
 }
