@@ -62,6 +62,16 @@ class LocalsController extends Controller
     }
 
     /**
+     * Show the create local form.
+     *
+     * @return void
+     */
+    public function create()
+    {
+        return view('locals.create');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  LocalCreateRequest $request
