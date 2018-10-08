@@ -209,6 +209,6 @@ class LocalsController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message', 'Local deleted.');
+        return redirect()->route('locals.index')->with('message', 'Local deleted.');
     }
 }
