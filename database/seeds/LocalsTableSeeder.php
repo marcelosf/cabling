@@ -11,6 +11,6 @@ class LocalsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Entities\Local::class, 10)->create();
     }
 }
