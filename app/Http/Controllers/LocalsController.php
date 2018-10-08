@@ -9,7 +9,7 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\LocalCreateRequest;
 use App\Http\Requests\LocalUpdateRequest;
-use App\Repositories\LocalRepository;
+use App\Repositories\LocalRepositoryEloquent;
 use App\Validators\LocalValidator;
 
 /**
@@ -35,7 +35,7 @@ class LocalsController extends Controller
      * @param LocalRepository $repository
      * @param LocalValidator $validator
      */
-    public function __construct(LocalRepository $repository, LocalValidator $validator)
+    public function __construct(LocalRepositoryEloquent $repository, LocalValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
