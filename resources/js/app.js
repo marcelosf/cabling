@@ -7,6 +7,10 @@
 
 require('./bootstrap');
 
+require('materialize-css');
+
+require('./materialize-components');
+
 window.Vue = require('vue');
 
 /**
