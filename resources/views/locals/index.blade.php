@@ -13,8 +13,6 @@
                 
                 <div class="collapsible-body">
 
-                    
-
                         <div class="row">
                             <div class="input-field col s3">
                                 <input type="text" placeholder="Bloco" id="search-local-bloco" class="validate">
