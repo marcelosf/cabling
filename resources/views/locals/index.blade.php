@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<html>
+
     <table>
         <thead>
             <tr>
@@ -33,5 +33,5 @@
         {{ $locals->links('pagination.materialize') }}
     </div>
 
-</html>
+
 @endsection
