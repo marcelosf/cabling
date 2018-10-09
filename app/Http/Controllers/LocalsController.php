@@ -49,7 +49,9 @@ class LocalsController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $locals = $this->repository->all();
+        $locals = $this->repository->paginate(10);
+
+        // dd($locals);
 
         if (request()->wantsJson()) {
 

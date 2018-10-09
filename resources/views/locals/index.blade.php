@@ -28,5 +28,10 @@
             </tbody>
         </thead>
     </table>
+
+    <div class="center-align">
+        {{ $locals->links('pagination.materialize') }}
+    </div>
+
 </html>
 @endsection
