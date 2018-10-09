@@ -28,5 +28,8 @@
             </tbody>
         </thead>
     </table>
+
+    {{ $locals->links() }}
+
 </html>
 @endsection
