@@ -29,7 +29,7 @@
         </thead>
     </table>
 
-    {{ $locals->links() }}
+    {{ $locals->links('pagination.materialize') }}
 
 </html>
 @endsection
