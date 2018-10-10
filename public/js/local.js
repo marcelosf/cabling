@@ -74,6 +74,7 @@ module.exports = __webpack_require__(47);
 /***/ }),
 
 /***/ 47:
+<<<<<<< Updated upstream
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -158,6 +159,12 @@ var TableFilter = function () {
 
     return TableFilter;
 }();
+=======
+/***/ (function(module, __webpack_exports__) {
+
+"use strict";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/var/www/resources/js/locals/local.js'");
+>>>>>>> Stashed changes
 
 /***/ })
 
