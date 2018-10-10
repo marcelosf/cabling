@@ -45,7 +45,7 @@
         </ul>
     </div>
 
-    <table>
+    <table class="highlight">
         <thead>
             <tr>
                 <th>Bloco</th>
