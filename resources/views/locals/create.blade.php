@@ -1,19 +1,48 @@
-<form action="{{ route('locals.store') }}" method="POST">
-    
-    @csrf
+@extends('layouts.main')
 
-    <p>
-        <label for="local-build">Bloco:</label>
-        <input type="text" name="build" id="local-build">
-    </p>
-    <p>
-        <label for="local-floor">Andar:</label>
-        <input type="text" name="floor" id="local-floor">
-    </p>    
-    <p>
-        <label for="local-local">Local:</label>
-        <input type="text" name="local" id="local-local">
-    </p>
+@section('pageTitle')
+    Criar Novo Local
+@endsection
 
-    <button type="submit">Enviar</button>
-</form>
+@section('content')
+
+    <div class="card">
+
+        <form action="{{ route('locals.store') }}" method="POST">   
+        
+            <div class="card-content">
+
+                @csrf
+
+                <p>
+                    <label for="local-build">Bloco:</label>
+                    <input type="text" name="build" id="local-build">
+                </p>
+                <p>
+                    <label for="local-floor">Andar:</label>
+                    <input type="text" name="floor" id="local-floor">
+                </p>    
+                <p>
+                    <label for="local-local">Local:</label>
+                    <input type="text" name="local" id="local-local">
+                </p>
+
+            </div>
+
+            <div class="card-action">
+
+                <div class="btn-flat waves-effect" onclick="window.history.back()">
+                    <i class="material-icons right">close</i>Cancelar
+                </div>
+
+                <button class="btn-flat waves-effect waves-light" type="submit">
+                    <i class="material-icons right">send</i> Salvar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+@endsection
