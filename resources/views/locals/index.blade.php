@@ -61,11 +61,15 @@
                     <td>{{ $local->floor }}</td>
                     <td>{{ $local->local }}</td>
                     <td>
-                        <a class="btn-flat orange-text waves-effect" href="{{ route('locals.show', ['id' => $local->id]) }}">
-                            Mais<i class="material-icons right">subject</i>
+                        <a class="orange-text waves-effect" href="{{ route('locals.show', ['id' => $local->id]) }}">
+                            <i class="material-icons right">subject</i>
                         </a>
                     </td>
-                    <td><a href="{{ route('locals.edit', ['id' => $local->id]) }}">Editar</a></td>
+                    <td>
+                        <a class="waves-effect" href="{{ route('locals.edit', ['id' => $local->id]) }}">
+                            <i class="material-icons right">edit</i>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
