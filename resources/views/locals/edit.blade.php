@@ -37,7 +37,7 @@
                     <i class="material-icons right">send</i>Enviar
                 </button>
 
-                <div class="btn-flat waves-effect waves-primary">
+                <div class="btn-flat waves-effect waves-primary" onclick="window.history.back()">
                     <i class="material-icons right">close</i> Cancelar
                 </div>
 
