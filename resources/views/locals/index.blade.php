@@ -45,6 +45,14 @@
         </ul>
     </div>
 
+    <div class="card">
+        <div class="card-content">
+            <a class="btn-flat" href="{{ route('locals.create') }}">
+                <i class="material-icons right">add</i>Adicionar local
+            </a>
+        </div>
+    </div>
+
     <table class="highlight">
         <thead>
             <tr>
