@@ -45,7 +45,7 @@
         </ul>
     </div>
 
-    <table>
+    <table class="highlight">
         <thead>
             <tr>
                 <th>Bloco</th>
@@ -60,8 +60,16 @@
                     <td>{{ $local->build }}</td>
                     <td>{{ $local->floor }}</td>
                     <td>{{ $local->local }}</td>
-                    <td><a href="{{ route('locals.show', ['id' => $local->id]) }}">Ver</a>
-                    <td><a href="{{ route('locals.edit', ['id' => $local->id]) }}">Editar</a>
+                    <td>
+                        <a class="orange-text waves-effect" href="{{ route('locals.show', ['id' => $local->id]) }}">
+                            <i class="material-icons right">subject</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="waves-effect" href="{{ route('locals.edit', ['id' => $local->id]) }}">
+                            <i class="material-icons right">edit</i>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
