@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('pageTitle')
+    Editar Local
+@endsection
+
 @section('content')
 
 <div class="row">
