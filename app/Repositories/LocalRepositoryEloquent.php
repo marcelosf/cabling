@@ -15,6 +15,13 @@ use App\Validators\LocalValidator;
  */
 class LocalRepositoryEloquent extends BaseRepository implements LocalRepository
 {
+    
+    protected $fieldSearchable = [
+        'build',
+        'floor',
+        'local'
+    ];
+    
     /**
      * Specify Model class name
      *
