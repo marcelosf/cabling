@@ -4,7 +4,7 @@ export class TableFilter
 
         if (formId) {
 
-            return $(formId).serialize();
+            return $(formId).serializeArray();
 
         }
         
@@ -16,11 +16,7 @@ export class TableFilter
 
         if (serializedValues) {
 
-            let url = path + '?search=';
-            
-            url = url . this._extractUrlFrom(serializedValues);
-
-            return url;
+            return this._extractQueriesFrom(serializedValues);
 
         }
 
@@ -28,9 +24,25 @@ export class TableFilter
 
     }
 
-    _extractUrlFrom(serializedValues) {
+    _extractQueriesFrom (serializedValues) {
 
-        return serializedValues.replace('=', ':').replace('&', ';');
+        let query = '?search=';
+
+        if (serializedValues) {
+
+            serializedValues.forEach(element => {
+                
+                if (element.value) {
+
+                    query = query + element.name + ':' + element.value + ';' 
+
+                }
+
+            });
+
+        }
+
+        return query;
 
     }
 
