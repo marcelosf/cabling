@@ -1,4 +1,4 @@
-class tableFilter
+export class tableFilter
 {
     serializeFormValuesFrom(formId) {
 
