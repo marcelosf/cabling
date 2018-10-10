@@ -1,6 +1,6 @@
 class tableFilter
 {
-    serializeFormValues(formId) {
+    serializeFormValuesFrom(formId) {
 
         if (formId) {
 
@@ -12,7 +12,7 @@ class tableFilter
 
     }
 
-    getSearchUrl(serializedValues, path) {
+    getSearchUrlFrom(serializedValues, path) {
 
         if (serializedValues) {
 
