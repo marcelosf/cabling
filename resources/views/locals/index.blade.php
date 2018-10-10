@@ -1,5 +1,10 @@
 @extends('layouts.main')
 
+@section('scripts')
+        <!-- Scripts -->
+        <script src="{{ asset('js/local.js') }}" defer></script>
+@endsection
+
 @section('pageTitle')
     Lista de Locais
 @endsection
@@ -12,30 +17,32 @@
                 <div class="collapsible-header"><i class="material-icons">search</i>Busca</div>
                 
                 <div class="collapsible-body">
-
+                    <form id="search-form"> 
                         <div class="row">
+                        
                             <div class="input-field col s3">
-                                <input type="text" placeholder="Bloco" id="search-local-bloco" class="validate">
+                                <input type="text" name="build" class="validate" id="build">
+                                <label for="build">Bloco</label>
                             </div>
                             <div class="input-field col s3">
-                                <input type="text" placeholder="Andar" id="search-local-floor" class="validate">
+                                <input type="text" name="floor" class="validate" id="floor">
+                                <label for="floor">Andar</label>
                             </div>
                             <div class="input-field col s3">
-                                <input type="text" placeholder="Local" id="search-local-local" class="validate">
-                            </div>
+                                <input type="text" name="local" class="validate" id="local">
+                                <label for="local">Local</label>
+                            </div>    
                         </div>
-
+                            
                         <div class="row">
                             <button class="btn waves-effect waves-light" type="submit">
                                 Buscar<i class="material-icons left">search</i>
                             </button>
                         </div>
-                    
+                    </form>
                 </div>
             </li>
         </ul>
-
-
     </div>
 
     <table>
