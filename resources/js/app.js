@@ -1,4 +1,4 @@
-
+import LocalTableComponent from './components/Locals/LocalTableComponent';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -19,7 +19,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+/**
+ * Locals Components
+ */
+Vue.component('localtable-component', LocalTableComponent);
 
 const app = new Vue({
     el: '#app'
