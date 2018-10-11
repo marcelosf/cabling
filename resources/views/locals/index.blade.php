@@ -53,6 +53,8 @@
         </div>
     </div>
 
+    <localtable-component></localtable-component>
+
     <table class="highlight">
         <thead>
             <tr>
