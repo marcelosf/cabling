@@ -26,9 +26,9 @@ export class Api {
             return true;
         }
 
-        if (process.env.API_URL) {
+        if (process.env.MIX_API_BASEURL) {
 
-            this.baseUrl = process.env.API_URL;
+            this.baseUrl = process.env.MIX_API_BASEURL;
 
             return true;
 
