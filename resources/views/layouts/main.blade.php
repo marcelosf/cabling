@@ -28,70 +28,73 @@
 
 <body>
 
-    @auth
-        <ul id="dropdown-login" class="dropdown-content">
-            <li>{{ Auth::user()->name }}</li>
-            <li class="divider"></li>
-            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
-        </ul>
-    @endauth
+    <div id="app">
 
-    <nav>
-
-        <div class="nav-wrapper container">
-
-            <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
-
-            <ul class="right">
-
-                @guest
-
-                    <li>
-
-                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
-
-                    </li>
-
-                    <li>
-
-                        @if (Route::has('register'))
-
-                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
-
-                        @endif
-
-                    </li>
-
-                @else
-
-                    <li>
-                        <a class="dropdown-trigger" href="#!" data-target="dropdown-login">
-                            Login<i class="material-icons right">arrow_drop_down</i>
-                        </a>
-                    </li>
-
-                @endguest
+        @auth
+            <ul id="dropdown-login" class="dropdown-content">
+                <li>{{ Auth::user()->name }}</li>
+                <li class="divider"></li>
+                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
             </ul>
-            
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
+        @endauth
+
+        <nav>
+
+            <div class="nav-wrapper container">
+
+                <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
+
+                <ul class="right">
+
+                    @guest
+
+                        <li>
+
+                            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+
+                        </li>
+
+                        <li>
+
+                            @if (Route::has('register'))
+
+                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+
+                            @endif
+
+                        </li>
+
+                    @else
+
+                        <li>
+                            <a class="dropdown-trigger" href="#!" data-target="dropdown-login">
+                                Login<i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                        </li>
+
+                    @endguest
+                </ul>
+                
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+            </div>
+        </nav>
+
+
+        <div class="container">
+
+        <div class="section">
+
+            <h5>@yield('pageTitle')</h5>
 
         </div>
-    </nav>
+            
+        @yield('content')
 
-
-    <div class="container">
-
-      <div class="section">
-
-         <h5>@yield('pageTitle')</h5>
-
-      </div>
-        
-      @yield('content')
-
-    </div>
+        </div>
     
+    </div>
 
 </body>
