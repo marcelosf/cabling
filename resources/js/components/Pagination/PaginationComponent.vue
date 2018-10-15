@@ -1,0 +1,146 @@
+<template>
+    
+    <ul v-if="hasPage" class="pagination">
+        
+        <li :class="arrowLeftStatus"><a @click="previousPage()"><i class="material-icons">chevron_left</i></a></li>
+        <li v-for="(element, index) in paginator" :key="index" :class="isActive(currentPage, index +1)">
+            <span v-if="typeof element === 'string'">{{ element }}</span>
+            
+            <a @click="paginate(index + 1)">{{ index +1 }}</a>
+        </li>
+        <li :class="arrowRightStatus"><a @click="nextPage()"><i class="material-icons">chevron_right</i></a></li>
+
+    </ul>
+
+</template>
+
+<script>
+    import {LocalResource} from '../resources/LocalResource';
+    export default {
+
+        props: ['value'],
+
+        data () {
+
+            return {
+                pagination: []
+            }
+
+        },
+
+        watch: {
+
+            value (value) {
+                this.pagination = value;
+            },
+
+            pagination (value) {
+                this.$emit('input', value);
+            }
+
+        },
+
+        computed: {
+
+            paginator () {
+
+                return Array(this.pagination.last_page).fill(null);
+
+            },
+
+            hasPage () {
+
+                return this.pagination.last_page > this.value.per_page;
+
+            },
+
+            arrowLeftStatus () {
+
+                if (this.pagination.current_page === 1) {
+                    return 'disabled';
+                }
+
+                return 'waves-effect';
+
+            },
+
+            arrowRightStatus () {
+
+                if (this.pagination.current_page === this.value.last_page ) {
+                    return 'disabled';
+                }
+
+                return 'waves-effect';
+
+            },
+            
+            currentPage () {
+
+                return this.pagination.current_page;
+
+            },
+
+            elements () {
+
+                console.log(this.value);
+                return this.pagination.data;
+
+            }
+
+        },
+        
+        methods: {
+
+            isActive (currentPage, key) {
+
+                if (currentPage === key) {
+
+                    return 'active';
+
+                }
+
+                return 'waves-effect';
+
+            },
+
+            nextPage () {
+
+                let page = this.pagination.current_page + 1;
+
+                if (page > this.pagination.last_page) {
+                    page = this.pagination.last_page;
+                } 
+
+                this.paginate(page);
+
+            },
+
+            previousPage () {
+
+                let page = this.pagination.current_page - 1;
+
+                if (page < 1) {
+                    page = 1;
+                }
+
+                this.paginate(page);
+
+            },
+
+            paginate (page) {
+
+                if (!page) {
+                    page = 1;
+                }
+
+                LocalResource.index(response => {
+                    this.pagination = response.data;
+                    console.log(this.pagination);
+                }, page);
+
+            }
+
+        }
+
+    }
+</script>
