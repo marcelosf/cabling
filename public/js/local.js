@@ -60,46 +60,12 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 46);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 46:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(47);
-
-
-/***/ }),
-
-/***/ 47:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TableFilter__ = __webpack_require__(48);
-
-
-$(document).ready(function () {
-
-    $('#search-form').on('submit', function (event) {
-
-        var tableFilter = new __WEBPACK_IMPORTED_MODULE_0__TableFilter__["a" /* TableFilter */]();
-
-        var serializedForm = tableFilter.serializeFormValuesFrom(this);
-
-        var searchUrl = tableFilter.getSearchUrlFrom(serializedForm);
-
-        window.location.href = searchUrl;
-
-        event.preventDefault();
-    });
-});
-
-/***/ }),
-
-/***/ 48:
+/***/ "./resources/js/TableFilter.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -158,6 +124,40 @@ var TableFilter = function () {
 
     return TableFilter;
 }();
+
+/***/ }),
+
+/***/ "./resources/js/locals/local.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TableFilter__ = __webpack_require__("./resources/js/TableFilter.js");
+
+
+$(document).ready(function () {
+
+    $('#search-form').on('submit', function (event) {
+
+        var tableFilter = new __WEBPACK_IMPORTED_MODULE_0__TableFilter__["a" /* TableFilter */]();
+
+        var serializedForm = tableFilter.serializeFormValuesFrom(this);
+
+        var searchUrl = tableFilter.getSearchUrlFrom(serializedForm);
+
+        window.location.href = searchUrl;
+
+        event.preventDefault();
+    });
+});
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/js/locals/local.js");
+
 
 /***/ })
 

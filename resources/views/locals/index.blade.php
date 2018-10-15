@@ -2,7 +2,7 @@
 
 @section('scripts')
         <!-- Scripts -->
-        <script src="{{ asset('js/local.js') }}" defer></script>
+        <script src="{{ mix('js/local.js') }}" defer></script>
 @endsection
 
 @section('pageTitle')
@@ -53,40 +53,6 @@
         </div>
     </div>
 
-    <table class="highlight">
-        <thead>
-            <tr>
-                <th>Bloco</th>
-                <th>Andar</th>
-                <th>Local</th>
-                <th>Detalhes</th>
-                <th>Editar</th>
-            </tr>
-            <tbody>
-            @foreach($locals as $local)
-                <tr>
-                    <td>{{ $local->build }}</td>
-                    <td>{{ $local->floor }}</td>
-                    <td>{{ $local->local }}</td>
-                    <td>
-                        <a class="orange-text waves-effect" href="{{ route('locals.show', ['id' => $local->id]) }}">
-                            <i class="material-icons right">subject</i>
-                        </a>
-                    </td>
-                    <td>
-                        <a class="waves-effect" href="{{ route('locals.edit', ['id' => $local->id]) }}">
-                            <i class="material-icons right">edit</i>
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </thead>
-    </table>
-
-    <div class="center-align">
-        {{ $locals->links('pagination.materialize') }}
-    </div>
-
+    <localtable-component></localtable-component>
 
 @endsection
