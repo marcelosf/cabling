@@ -3,10 +3,8 @@
     <ul v-if="hasPage" class="pagination">
         
         <li :class="arrowLeftStatus"><a @click="previousPage()"><i class="material-icons">chevron_left</i></a></li>
-        <li v-for="(element, index) in paginator" :key="index" :class="isActive(currentPage, index +1)">
-            <span v-if="typeof element === 'string'">{{ element }}</span>
-            
-            <a @click="paginate(index + 1)">{{ index +1 }}</a>
+        <li v-for="(element, index) in paginator" :key="index" :class="isActive(currentPage, element)">
+            <a @click="paginate(element)">{{ element }}</a>
         </li>
         <li :class="arrowRightStatus"><a @click="nextPage()"><i class="material-icons">chevron_right</i></a></li>
 
@@ -44,7 +42,10 @@
 
             paginator () {
 
-                return Array(this.pagination.last_page).fill(null);
+                let pages = Array(this.pagination.last_page).fill(null);
+                let compressed = this.compress(pages, 8);
+
+                return compressed;
 
             },
 
@@ -82,7 +83,6 @@
 
             elements () {
 
-                console.log(this.value);
                 return this.pagination.data;
 
             }
@@ -135,9 +135,56 @@
 
                 LocalResource.index(response => {
                     this.pagination = response.data;
-                    console.log(this.pagination);
                 }, page);
 
+            },
+
+            compress (paginator, length) {
+
+                let total = paginator.length;
+                
+                if (total > length + 2) {
+                    
+                    if (this.currentPage > length - 1) {
+
+                        return this._threePointsLeft(total, length);
+
+                    }
+
+                    return this._threePointsRight(total, length);
+
+                }
+
+                return paginator;
+
+            },
+
+            _threePointsRight (total, length) {
+
+                let compressed = [];
+
+                for (let i = 1; i <= length; i++) {
+                        compressed.push(i);
+                }
+
+                compressed.push('...');
+                compressed.push(total -1);
+                compressed.push(total);
+
+                return compressed;
+
+            },
+
+            _threePointsLeft (total, length) {
+
+                let compressed = [1, 2, '...'];
+                let hidden = total - length;
+                
+                for (let i = hidden + 1; i <= total; i++) {
+                    compressed.push(i);
+                }
+
+                return compressed;
             }
 
         }

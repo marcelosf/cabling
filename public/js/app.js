@@ -1748,8 +1748,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1776,7 +1774,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         paginator: function paginator() {
 
-            return Array(this.pagination.last_page).fill(null);
+            var pages = Array(this.pagination.last_page).fill(null);
+            var compressed = this.compress(pages, 8);
+
+            return compressed;
         },
         hasPage: function hasPage() {
 
@@ -1804,7 +1805,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         elements: function elements() {
 
-            console.log(this.value);
             return this.pagination.data;
         }
     },
@@ -1848,8 +1848,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_0__resources_LocalResource__["a" /* LocalResource */].index(function (response) {
                 _this.pagination = response.data;
-                console.log(_this.pagination);
             }, page);
+        },
+        compress: function compress(paginator, length) {
+
+            var total = paginator.length;
+
+            if (total > length + 2) {
+
+                if (this.currentPage > length - 1) {
+
+                    return this._threePointsLeft(total, length);
+                }
+
+                return this._threePointsRight(total, length);
+            }
+
+            return paginator;
+        },
+        _threePointsRight: function _threePointsRight(total, length) {
+
+            var compressed = [];
+
+            for (var i = 1; i <= length; i++) {
+                compressed.push(i);
+            }
+
+            compressed.push('...');
+            compressed.push(total - 1);
+            compressed.push(total);
+
+            return compressed;
+        },
+        _threePointsLeft: function _threePointsLeft(total, length) {
+
+            var compressed = [1, 2, '...'];
+            var hidden = total - length;
+
+            for (var i = hidden + 1; i <= total; i++) {
+                compressed.push(i);
+            }
+
+            return compressed;
         }
     }
 
@@ -48919,22 +48959,18 @@ var render = function() {
           _vm._l(_vm.paginator, function(element, index) {
             return _c(
               "li",
-              { key: index, class: _vm.isActive(_vm.currentPage, index + 1) },
+              { key: index, class: _vm.isActive(_vm.currentPage, element) },
               [
-                typeof element === "string"
-                  ? _c("span", [_vm._v(_vm._s(element))])
-                  : _vm._e(),
-                _vm._v(" "),
                 _c(
                   "a",
                   {
                     on: {
                       click: function($event) {
-                        _vm.paginate(index + 1)
+                        _vm.paginate(element)
                       }
                     }
                   },
-                  [_vm._v(_vm._s(index + 1))]
+                  [_vm._v(_vm._s(element))]
                 )
               ]
             )
