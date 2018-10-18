@@ -20,5 +20,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('locals', 'LocalsController');
+Route::resource('locals', 'LocalsController')->middleware('cors');
 
