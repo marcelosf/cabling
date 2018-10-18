@@ -14,6 +14,16 @@ export const dataTable = {
 
         }
 
+    },
+
+    getters: {
+
+        tableData (state) {
+
+            return state.data.data;
+
+        }
+
     }
 
 }
