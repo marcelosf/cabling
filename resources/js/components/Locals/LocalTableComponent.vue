@@ -84,6 +84,12 @@
 
                 }, page);
 
+            },
+
+            commitTableData (data) {
+
+                this.$store.commit('tableData', data);
+
             }
 
         },
