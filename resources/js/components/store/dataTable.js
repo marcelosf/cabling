@@ -1,5 +1,7 @@
 export const dataTable = {
 
+    namespaced: true,   
+    
     state: {
 
         data: []
@@ -21,6 +23,12 @@ export const dataTable = {
         tableData (state) {
 
             return state.data.data;
+
+        },
+
+        all (state) {
+
+            return state.data;
 
         }
 
