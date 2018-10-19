@@ -31,7 +31,7 @@
             </tbody>
         </table>
 
-        <pagination v-model="data"></pagination>
+        <pagination></pagination>
 
     </div>
 
@@ -48,7 +48,7 @@
 
             this.list(response => {
 
-                this.data = response.data;
+                this.commitTableData(response.data);
 
             }, 1);
 
@@ -68,7 +68,7 @@
 
             locals () {
 
-                return this.data.data;
+                return this.$store.getters['table/tableData'];
 
             }
 
@@ -83,6 +83,12 @@
                     action(response);
 
                 }, page);
+
+            },
+
+            commitTableData (data) {
+
+                this.$store.commit('table/tableData', data);
 
             }
 
