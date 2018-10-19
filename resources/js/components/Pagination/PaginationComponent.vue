@@ -16,29 +16,13 @@
     import {LocalResource} from '../resources/LocalResource';
     export default {
 
-        props: ['value'],
-
-        data () {
-
-            return {
-                pagination: []
-            }
-
-        },
-
-        watch: {
-
-            value (value) {
-                this.pagination = value;
-            },
-
-            pagination (value) {
-                this.$emit('input', value);
-            }
-
-        },
-
         computed: {
+
+            pagination () {
+
+                return this.$store.getters['table/all'];
+
+            },
 
             paginator () {
 
@@ -51,7 +35,7 @@
 
             hasPage () {
 
-                return this.pagination.last_page > this.value.per_page;
+                return this.pagination.last_page > this.pagination.per_page;
 
             },
 
@@ -67,7 +51,7 @@
 
             arrowRightStatus () {
 
-                if (this.pagination.current_page === this.value.last_page ) {
+                if (this.pagination.current_page === this.pagination.last_page ) {
                     return 'disabled';
                 }
 
@@ -134,7 +118,7 @@
                 }
 
                 LocalResource.index(response => {
-                    this.pagination = response.data;
+                    this.$store.commit('table/tableData', response.data);
                 }, page);
 
             },
