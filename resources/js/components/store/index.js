@@ -4,7 +4,7 @@ export const Store = {
 
     modules: {
 
-        dataTable: dataTable
+        table: dataTable
 
     }
 
