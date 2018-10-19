@@ -31,7 +31,7 @@
             </tbody>
         </table>
 
-        <pagination v-model="data"></pagination>
+        <pagination></pagination>
 
     </div>
 
@@ -68,7 +68,7 @@
 
             locals () {
 
-                return this.$store.getters.tableData;
+                return this.$store.getters['table/tableData'];
 
             }
 
@@ -88,7 +88,7 @@
 
             commitTableData (data) {
 
-                this.$store.commit('tableData', data);
+                this.$store.commit('table/tableData', data);
 
             }
 
