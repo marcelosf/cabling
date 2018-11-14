@@ -14,21 +14,21 @@
                     <div class="input-field col s4">
 
                         <label for="search-build">Bloco</label>
-                        <input type="text" name="build" id="search-build">
+                        <input type="text" v-model="localDataSerch.build" name="build" id="search-build">
 
                    </div>
                     
                     <div class="input-field col s4">
 
                         <label for="search-floor">Andar</label>
-                        <input type="text" name="floor" id="search-floor">
+                        <input type="text" v-model="localDataSerch.floor" name="floor" id="search-floor">
 
                     </div>
 
                     <div class="input-field col s4">
 
                         <label for="search-local">Local</label>
-                        <input type="text" name="search-local" id="search-local">
+                        <input type="text" v-model="localDataSerch.local" name="search-local" id="search-local">
 
                     </div>
                     
