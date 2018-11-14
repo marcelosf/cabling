@@ -36,11 +36,11 @@
 
                 <div class="row">
 
-                    <div class="btn waves-effect col s3 left">
+                    <button class="btn waves-effect col s3 left" @click="searchFor()">
 
                        Buscar <i class="material-icons right">search</i>
 
-                    </div>
+                    </button>
 
                 </div>
 
@@ -92,11 +92,11 @@
 
             },
 
-            searchFor (local) {
+            searchFor () {
 
                 this.list(response => {
-                    this.commit(local);
-                }, local);
+                    this.commit(response.data);
+                }, this.localDataSerch);
 
             },
 
