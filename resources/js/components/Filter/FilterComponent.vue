@@ -34,6 +34,16 @@
                     
                 </div>
 
+                <div class="row">
+
+                    <div class="btn waves-effect col s3 left">
+
+                       Buscar <i class="material-icons right">search</i>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
