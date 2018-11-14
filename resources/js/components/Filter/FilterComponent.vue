@@ -63,6 +63,22 @@
 
         },
 
+        data () {
+
+            return {
+
+                localDataSerch: {
+
+                    build: '',
+                    floor: '',
+                    local: ''
+
+                }
+
+            }
+
+        },
+
         methods: {
 
             initialize () {
