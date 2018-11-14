@@ -1638,6 +1638,7 @@ module.exports = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resources_LocalResource__ = __webpack_require__("./resources/js/components/resources/LocalResource.js");
 //
 //
 //
@@ -1683,11 +1684,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
 
         this.initialize();
+    },
+    data: function data() {
+
+        return {
+
+            localDataSerch: {
+
+                build: '',
+                floor: '',
+                local: ''
+
+            }
+
+        };
     },
 
 
@@ -1700,6 +1726,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 constrainWidth: false
 
             });
+        },
+        searchFor: function searchFor() {
+            var _this = this;
+
+            this.list(function (response) {
+                _this.commit(response.data);
+            }, this.localDataSerch);
+        },
+        commit: function commit(locals) {
+
+            this.$store.commit('table/tableData', locals);
+        },
+        list: function list(action, search) {
+
+            __WEBPACK_IMPORTED_MODULE_0__resources_LocalResource__["a" /* LocalResource */].index(action, 1, search);
         }
     }
 
@@ -1765,7 +1806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.list(function (response) {
 
-            _this.data = response.data;
+            _this.commitTableData(response.data);
         }, 1);
     },
     data: function data() {
@@ -1781,7 +1822,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         locals: function locals() {
 
-            return this.data.data;
+            return this.$store.getters['table/tableData'];
         }
     },
 
@@ -1792,6 +1833,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 action(response);
             }, page);
+        },
+        commitTableData: function commitTableData(data) {
+
+            this.$store.commit('table/tableData', data);
         }
     },
 
@@ -1826,26 +1871,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['value'],
-
-    data: function data() {
-
-        return {
-            pagination: []
-        };
-    },
-
-
-    watch: {
-        value: function value(_value) {
-            this.pagination = _value;
-        },
-        pagination: function pagination(value) {
-            this.$emit('input', value);
-        }
-    },
-
     computed: {
+        pagination: function pagination() {
+
+            return this.$store.getters['table/all'];
+        },
         paginator: function paginator() {
 
             var pages = Array(this.pagination.last_page).fill(null);
@@ -1855,7 +1885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         hasPage: function hasPage() {
 
-            return this.pagination.last_page > this.value.per_page;
+            return this.pagination.total > this.pagination.per_page;
         },
         arrowLeftStatus: function arrowLeftStatus() {
 
@@ -1867,7 +1897,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         arrowRightStatus: function arrowRightStatus() {
 
-            if (this.pagination.current_page === this.value.last_page) {
+            if (this.pagination.current_page === this.pagination.last_page) {
                 return 'disabled';
             }
 
@@ -1921,14 +1951,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             __WEBPACK_IMPORTED_MODULE_0__resources_LocalResource__["a" /* LocalResource */].index(function (response) {
-                _this.pagination = response.data;
+                _this.$store.commit('table/tableData', response.data);
             }, page);
         },
         compress: function compress(paginator, length) {
 
-            var total = paginator.length;
+            var total = paginator.length;console.log(total);
 
-            if (total > length + 2) {
+            if (total > length) {
 
                 if (this.currentPage > length - 1) {
 
@@ -48956,15 +48986,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("pagination", {
-        model: {
-          value: _vm.data,
-          callback: function($$v) {
-            _vm.data = $$v
-          },
-          expression: "data"
-        }
-      })
+      _c("pagination")
     ],
     1
   )
@@ -49007,70 +49029,141 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "dropdown-content", attrs: { id: "dropdown-search" } },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "input-field col s4" }, [
+              _c("label", { attrs: { for: "search-build" } }, [
+                _vm._v("Bloco")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.localDataSerch.build,
+                    expression: "localDataSerch.build"
+                  }
+                ],
+                attrs: { type: "text", name: "build", id: "search-build" },
+                domProps: { value: _vm.localDataSerch.build },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.localDataSerch, "build", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-field col s4" }, [
+              _c("label", { attrs: { for: "search-floor" } }, [
+                _vm._v("Andar")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.localDataSerch.floor,
+                    expression: "localDataSerch.floor"
+                  }
+                ],
+                attrs: { type: "text", name: "floor", id: "search-floor" },
+                domProps: { value: _vm.localDataSerch.floor },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.localDataSerch, "floor", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-field col s4" }, [
+              _c("label", { attrs: { for: "search-local" } }, [
+                _vm._v("Local")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.localDataSerch.local,
+                    expression: "localDataSerch.local"
+                  }
+                ],
+                attrs: {
+                  type: "text",
+                  name: "search-local",
+                  id: "search-local"
+                },
+                domProps: { value: _vm.localDataSerch.local },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.localDataSerch, "local", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn waves-effect col s3 left",
+                on: {
+                  click: function($event) {
+                    _vm.searchFor()
+                  }
+                }
+              },
+              [
+                _vm._v("\n\n                   Buscar "),
+                _c("i", { staticClass: "material-icons right" }, [
+                  _vm._v("search")
+                ])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "a",
-        {
-          staticClass: "dropdown-trigger btn-flat",
-          attrs: { href: "#", "data-target": "dropdown-search" }
-        },
-        [
-          _vm._v("\n        Busca "),
-          _c("i", { staticClass: "material-icons left" }, [_vm._v("search")])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "dropdown-content", attrs: { id: "dropdown-search" } },
-        [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "input-field col s4" }, [
-                _c("label", { attrs: { for: "search-local" } }, [
-                  _vm._v("Local")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "text",
-                    name: "search-local",
-                    id: "search-local"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-field col s4" }, [
-                _c("label", { attrs: { for: "search-floor" } }, [
-                  _vm._v("Andar")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "text", name: "floor", id: "search-floor" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-field col s4" }, [
-                _c("label", { attrs: { for: "search-build" } }, [
-                  _vm._v("Bloco")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "text", name: "build", id: "search-build" }
-                })
-              ])
-            ])
-          ])
-        ]
-      )
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown-trigger btn-flat",
+        attrs: { href: "#", "data-target": "dropdown-search" }
+      },
+      [
+        _vm._v("\n        Busca "),
+        _c("i", { staticClass: "material-icons left" }, [_vm._v("search")])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -61499,6 +61592,8 @@ var LocalResource = function (_Resource) {
 
             var query = this.generateQuery(search);
 
+            console.log(ELEMENT + '?page=' + page + query);
+
             this._getApi().get(ELEMENT + '?page=' + page + query).then(function (response) {
 
                 action(response.data);
@@ -61536,9 +61631,20 @@ var Resource = function () {
     }
   }, {
     key: 'generateQuery',
-    value: function generateQuery(search) {
+    value: function generateQuery(parameters) {
 
-      return search ? '&search=' + search.parameter + ':' + search.value : '';
+      if (parameters) {
+
+        var search = '&search=';
+
+        for (var property in parameters) {
+          search = search + property + ':' + parameters[property] + ';';
+        }
+
+        return search;
+      }
+
+      return '';
     }
   }]);
 
@@ -61554,6 +61660,8 @@ var Resource = function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dataTable; });
 var dataTable = {
 
+    namespaced: true,
+
     state: {
 
         data: []
@@ -61564,6 +61672,17 @@ var dataTable = {
         tableData: function tableData(state, data) {
 
             state.data = data;
+        }
+    },
+
+    getters: {
+        tableData: function tableData(state) {
+
+            return state.data.data;
+        },
+        all: function all(state) {
+
+            return state.data;
         }
     }
 
@@ -61583,7 +61702,7 @@ var Store = {
 
     modules: {
 
-        dataTable: __WEBPACK_IMPORTED_MODULE_0__dataTable__["a" /* dataTable */]
+        table: __WEBPACK_IMPORTED_MODULE_0__dataTable__["a" /* dataTable */]
 
     }
 
