@@ -13,26 +13,35 @@
 
                     <div class="input-field col s4">
 
-                        <label for="search-local">Local</label>
-                        <input type="text" name="search-local" id="search-local">
+                        <label for="search-build">Bloco</label>
+                        <input type="text" v-model="localDataSerch.build" name="build" id="search-build">
 
-                    </div>
+                   </div>
                     
                     <div class="input-field col s4">
 
                         <label for="search-floor">Andar</label>
-                        <input type="text" name="floor" id="search-floor">
+                        <input type="text" v-model="localDataSerch.floor" name="floor" id="search-floor">
 
                     </div>
 
-                   <div class="input-field col s4">
+                    <div class="input-field col s4">
 
-                        <label for="search-build">Bloco</label>
-                        <input type="text" name="build" id="search-build">
+                        <label for="search-local">Local</label>
+                        <input type="text" v-model="localDataSerch.local" name="search-local" id="search-local">
 
-                   </div>
-
+                    </div>
                     
+                </div>
+
+                <div class="row">
+
+                    <button class="btn waves-effect col s3 left" @click="searchFor()">
+
+                       Buscar <i class="material-icons right">search</i>
+
+                    </button>
+
                 </div>
 
             </div>
@@ -44,11 +53,29 @@
 </template>
 
 <script>
+
+    import {LocalResource} from '../resources/LocalResource';
     export default {
 
         mounted () {
 
             this.initialize();
+
+        },
+
+        data () {
+
+            return {
+
+                localDataSerch: {
+
+                    build: '',
+                    floor: '',
+                    local: ''
+
+                }
+
+            }
 
         },
 
@@ -62,6 +89,26 @@
                     constrainWidth: false
 
                 });
+
+            },
+
+            searchFor () {
+
+                this.list(response => {
+                    this.commit(response.data);
+                }, this.localDataSerch);
+
+            },
+
+            commit (locals) {
+
+                this.$store.commit('table/tableData', locals);
+
+            },
+
+            list (action, search) {
+
+                LocalResource.index(action, 1, search);
 
             }
 

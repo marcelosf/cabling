@@ -8,9 +8,21 @@ export class Resource {
 
   }
 
-  static generateQuery (search) {
+  static generateQuery (parameters) {
 
-    return search ? '&search=' + search.parameter + ':' + search.value : '';
+    if (parameters) {
+
+      let search = '&search=';
+
+      for (let property in parameters) {
+        search = search + property + ':' + parameters[property] + ';';
+      }
+
+      return search;
+
+    }
+
+    return '';
 
   }
 
