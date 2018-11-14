@@ -76,6 +76,20 @@
 
             },
 
+            searchFor (local) {
+
+                this.list(response => {
+                    this.commit(local);
+                }, local);
+
+            },
+
+            commit (locals) {
+
+                this.$store.commit('table/tableData', locals);
+
+            },
+
             list (action, search) {
 
                 LocalResource.index(action, 1, search);
