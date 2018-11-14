@@ -13,10 +13,10 @@
 
                     <div class="input-field col s4">
 
-                        <label for="search-local">Local</label>
-                        <input type="text" name="search-local" id="search-local">
+                        <label for="search-build">Bloco</label>
+                        <input type="text" name="build" id="search-build">
 
-                    </div>
+                   </div>
                     
                     <div class="input-field col s4">
 
@@ -25,13 +25,12 @@
 
                     </div>
 
-                   <div class="input-field col s4">
+                    <div class="input-field col s4">
 
-                        <label for="search-build">Bloco</label>
-                        <input type="text" name="build" id="search-build">
+                        <label for="search-local">Local</label>
+                        <input type="text" name="search-local" id="search-local">
 
-                   </div>
-
+                    </div>
                     
                 </div>
 
