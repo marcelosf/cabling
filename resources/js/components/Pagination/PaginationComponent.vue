@@ -35,7 +35,7 @@
 
             hasPage () {
 
-                return this.pagination.last_page > this.pagination.per_page;
+                return this.pagination.total > this.pagination.per_page;
 
             },
 
@@ -125,9 +125,9 @@
 
             compress (paginator, length) {
 
-                let total = paginator.length;
-                
-                if (total > length + 2) {
+                let total = paginator.length; console.log(total);
+
+                if (total > length) {
                     
                     if (this.currentPage > length - 1) {
 
