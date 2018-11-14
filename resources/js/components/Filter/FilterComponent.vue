@@ -53,6 +53,8 @@
 </template>
 
 <script>
+
+    import {LocalResource} from '../resources/LocalResource';
     export default {
 
         mounted () {
@@ -71,6 +73,12 @@
                     constrainWidth: false
 
                 });
+
+            },
+
+            list (action, search) {
+
+                LocalResource.index(action, 1, search);
 
             }
 
