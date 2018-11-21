@@ -11,10 +11,24 @@
 
 @section('content')
 
-    <filter-component></filter-component>
+    <div class="z-depth-1">
+            
+        <div class="row">
 
-    <div class="divider"></div>
+            <filter-component class="col s3"></filter-component>
 
-    <localtable-component></localtable-component>
+            <a href="{{ route('locals.create') }}" class="col s2 btn btn-large btn-flat">
+                Novo <i class="material-icons right">add</i>
+            </a>
+
+        </div>
+        
+    </div>   
+
+    <div class="card">
+        <div class="card-content">
+            <localtable-component></localtable-component>
+        </div>
+    </div>
 
 @endsection

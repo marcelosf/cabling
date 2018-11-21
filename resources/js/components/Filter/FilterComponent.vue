@@ -1,8 +1,8 @@
 <template>
     
     <div>
-        <a href="#" class="dropdown-trigger btn-flat" data-target="dropdown-search">
-            Busca <i class="material-icons left" >search</i>
+        <a href="#" class="dropdown-trigger btn-flat btn-large" data-target="dropdown-search">
+            Busca <i class="material-icons right" >search</i>
         </a>
 
         <div class="dropdown-content" id="dropdown-search">

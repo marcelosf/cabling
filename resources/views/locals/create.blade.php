@@ -6,6 +6,14 @@
 
 @section('content')
 
+    <div class="z-depth-1">
+            
+        <a href="{{ route('locals.index') }}" class="btn btn-flat waves-effect btn-large">
+            Lista  <i class="material-icons right">list</i>    
+        </a>
+        
+    </div>   
+
     <div class="card">
 
         <form action="{{ route('locals.store') }}" method="POST">   
@@ -30,10 +38,6 @@
             </div>
 
             <div class="card-action">
-
-                <div class="btn-flat waves-effect" onclick="window.history.back()">
-                    <i class="material-icons right">close</i>Cancelar
-                </div>
 
                 <button class="btn-flat waves-effect waves-light" type="submit">
                     <i class="material-icons right">send</i> Salvar
