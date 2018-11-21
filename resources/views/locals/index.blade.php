@@ -11,10 +11,16 @@
 
 @section('content')
 
-    <filter-component></filter-component>
+    <div class="z-depth-1">
+            
+        <filter-component></filter-component>
+        
+    </div>   
 
-    <div class="divider"></div>
-
-    <localtable-component></localtable-component>
+    <div class="card">
+        <div class="card-content">
+            <localtable-component></localtable-component>
+        </div>
+    </div>
 
 @endsection
