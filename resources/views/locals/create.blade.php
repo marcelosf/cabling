@@ -39,10 +39,6 @@
 
             <div class="card-action">
 
-                <div class="btn-flat waves-effect" onclick="window.history.back()">
-                    <i class="material-icons right">close</i>Cancelar
-                </div>
-
                 <button class="btn-flat waves-effect waves-light" type="submit">
                     <i class="material-icons right">send</i> Salvar
                 </button>
