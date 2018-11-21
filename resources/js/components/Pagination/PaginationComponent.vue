@@ -69,6 +69,12 @@
 
                 return this.pagination.data;
 
+            },
+
+            filter () {
+
+                return this.$store.getters['filter/searchParams'];
+
             }
 
         },
@@ -119,13 +125,13 @@
 
                 LocalResource.index(response => {
                     this.$store.commit('table/tableData', response.data);
-                }, page);
+                }, page, this.filter);
 
             },
 
             compress (paginator, length) {
 
-                let total = paginator.length; console.log(total);
+                let total = paginator.length;
 
                 if (total > length) {
                     
