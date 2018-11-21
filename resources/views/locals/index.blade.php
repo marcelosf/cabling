@@ -13,7 +13,15 @@
 
     <div class="z-depth-1">
             
-        <filter-component></filter-component>
+        <div class="row">
+
+            <filter-component class="col s3"></filter-component>
+
+            <a href="{{ route('locals.create') }}" class="col s2 btn btn-large btn-flat">
+                Novo <i class="material-icons right">add</i>
+            </a>
+
+        </div>
         
     </div>   
 
