@@ -145,7 +145,7 @@
 
                 }
 
-                return paginator;
+                return this._fillPagination(total);
 
             },
 
@@ -175,6 +175,18 @@
                 }
 
                 return compressed;
+            },
+
+            _fillPagination (numberOfPages) {
+
+                let pages = [];
+
+                for (let i = 1; i <= numberOfPages; i++) {
+                    pages.push(i);
+                }
+
+                return pages;
+
             }
 
         }
