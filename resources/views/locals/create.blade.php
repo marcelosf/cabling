@@ -6,6 +6,14 @@
 
 @section('content')
 
+    <div class="z-depth-1">
+            
+        <a href="{{ route('locals.index') }}" class="btn btn-flat waves-effect btn-large">
+            Lista  <i class="material-icons right">list</i>    
+        </a>
+        
+    </div>   
+
     <div class="card">
 
         <form action="{{ route('locals.store') }}" method="POST">   
