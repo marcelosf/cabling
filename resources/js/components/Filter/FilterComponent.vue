@@ -96,6 +96,7 @@
 
                 this.list(response => {
                     this.commit(response.data);
+                    this.commitFilter(this.localDataSerch);
                 }, this.localDataSerch);
 
             },
@@ -103,6 +104,12 @@
             commit (locals) {
 
                 this.$store.commit('table/tableData', locals);
+
+            },
+
+            commitFilter (filter) {
+
+                this.$store.commit('filter/searchParams', filter);
 
             },
 

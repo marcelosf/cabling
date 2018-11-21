@@ -14,9 +14,9 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js');
 mix.js('resources/js/locals/local.js', 'public/js');
 mix.sass('resources/sass/app.scss', 'public/css');
+mix.version();
 mix.browserSync({
     proxy: 'nginx',
     port: '3000',
     open: false
 });
-mix.version();
