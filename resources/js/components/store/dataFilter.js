@@ -1,6 +1,6 @@
 export const dataFilter = {
 
-    namespced: true,
+    namespaced: true,
 
     state :{
 
