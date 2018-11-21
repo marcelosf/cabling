@@ -42,6 +42,12 @@
 
                     </button>
 
+                    <button class="btn waves-effect col s3 right white black-text">
+
+                       Limpar
+
+                    </button>
+
                 </div>
 
             </div>
