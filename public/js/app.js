@@ -1732,11 +1732,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.list(function (response) {
                 _this.commit(response.data);
+                _this.commitFilter(_this.localDataSerch);
             }, this.localDataSerch);
         },
         commit: function commit(locals) {
 
             this.$store.commit('table/tableData', locals);
+        },
+        commitFilter: function commitFilter(filter) {
+
+            this.$store.commit('filter/searchParams', filter);
         },
         list: function list(action, search) {
 
@@ -1910,6 +1915,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         elements: function elements() {
 
             return this.pagination.data;
+        },
+        filter: function filter() {
+
+            return this.$store.getters['filter/searchParams'];
         }
     },
 
@@ -1952,11 +1961,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_0__resources_LocalResource__["a" /* LocalResource */].index(function (response) {
                 _this.$store.commit('table/tableData', response.data);
-            }, page);
+            }, page, this.filter);
         },
         compress: function compress(paginator, length) {
 
-            var total = paginator.length;console.log(total);
+            var total = paginator.length;
 
             if (total > length) {
 
@@ -61653,6 +61662,39 @@ var Resource = function () {
 
 /***/ }),
 
+/***/ "./resources/js/components/store/dataFilter.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dataFilter; });
+var dataFilter = {
+
+    namespaced: true,
+
+    state: {
+
+        search: {}
+
+    },
+
+    mutations: {
+        searchParams: function searchParams(state, search) {
+
+            state.search = search;
+        }
+    },
+
+    getters: {
+        searchParams: function searchParams(state) {
+
+            return state.search;
+        }
+    }
+
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/store/dataTable.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -61696,13 +61738,16 @@ var dataTable = {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Store; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dataTable__ = __webpack_require__("./resources/js/components/store/dataTable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dataFilter__ = __webpack_require__("./resources/js/components/store/dataFilter.js");
+
 
 
 var Store = {
 
     modules: {
 
-        table: __WEBPACK_IMPORTED_MODULE_0__dataTable__["a" /* dataTable */]
+        table: __WEBPACK_IMPORTED_MODULE_0__dataTable__["a" /* dataTable */],
+        filter: __WEBPACK_IMPORTED_MODULE_1__dataFilter__["a" /* dataFilter */]
 
     }
 
