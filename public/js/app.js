@@ -1998,7 +1998,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this._threePointsRight(total, length);
             }
 
-            return paginator;
+            return this._fillPagination(total);
         },
         _threePointsRight: function _threePointsRight(total, length) {
 
@@ -2024,6 +2024,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             return compressed;
+        },
+        _fillPagination: function _fillPagination(numberOfPages) {
+
+            var pages = [];
+
+            for (var i = 1; i <= numberOfPages; i++) {
+                pages.push(i);
+            }
+
+            return pages;
         }
     }
 
