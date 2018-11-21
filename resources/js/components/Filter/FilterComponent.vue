@@ -42,9 +42,9 @@
 
                     </button>
 
-                    <button class="btn waves-effect col s3 right white black-text">
+                    <button class="btn waves-effect col s3 white black-text right" @click="clear">
 
-                       Limpar
+                       Limpar <i class="material-icons right">clear</i>
 
                     </button>
 
@@ -122,6 +122,24 @@
             list (action, search) {
 
                 LocalResource.index(action, 1, search);
+
+            },
+
+            clear () {
+
+                this.clearLocalDataSearch();
+                this.list(response => {
+                    this.commit(response.data);
+                    this.commitFilter(this.localDataSerch);
+                });
+
+            },
+
+            clearLocalDataSearch () {
+
+                this.localDataSerch.build = '';
+                this.localDataSerch.floor = '';
+                this.localDataSerch.local = '';
 
             }
 
