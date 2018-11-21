@@ -6,6 +6,20 @@
 
 @section('content')
 
+
+<div class="z-depth-1">
+            
+    <a href="{{ route('locals.index') }}" class="btn btn-flat waves-effect btn-large">
+        Lista  <i class="material-icons right">list</i>    
+    </a>
+
+    <a href="{{ route('locals.create') }}" class="btn btn-flat waves-effect btn-large">
+        Novo <i class="material-icons right">add</i>    
+    </a>
+
+</div>        
+    
+
 <div class="row">
 
     <div class="card">
@@ -21,12 +35,9 @@
                 <p>Criado em: {{ $local->created_at->format('d/m/Y') }}</p>
             </blockquote>
             
-
         </div>
 
         <div class="card-action">
-
-            <div class="btn-flat waves-effect" onclick="window.history.back()">Cancelar</div>
 
             <a href="{{ route('locals.edit', ['id' => $local->id]) }}" class="btn-flat waves-effect">
                 <i class="material-icons right">edit</i>Editar
