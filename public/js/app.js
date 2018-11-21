@@ -1693,6 +1693,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1746,6 +1752,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         list: function list(action, search) {
 
             __WEBPACK_IMPORTED_MODULE_0__resources_LocalResource__["a" /* LocalResource */].index(action, 1, search);
+        },
+        clear: function clear() {
+            var _this2 = this;
+
+            this.clearLocalDataSearch();
+            this.list(function (response) {
+                _this2.commit(response.data);
+                _this2.commitFilter(_this2.localDataSerch);
+            });
+        },
+        clearLocalDataSearch: function clearLocalDataSearch() {
+
+            this.localDataSerch.build = '';
+            this.localDataSerch.floor = '';
+            this.localDataSerch.local = '';
         }
     }
 
@@ -49148,6 +49169,20 @@ var render = function() {
                 _vm._v("\n\n                   Buscar "),
                 _c("i", { staticClass: "material-icons right" }, [
                   _vm._v("search")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn waves-effect col s3 white black-text right",
+                on: { click: _vm.clear }
+              },
+              [
+                _vm._v("\n\n                   Limpar "),
+                _c("i", { staticClass: "material-icons right" }, [
+                  _vm._v("clear")
                 ])
               ]
             )
