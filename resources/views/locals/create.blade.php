@@ -51,6 +51,6 @@
 
     </div>
 
-    <localform-component></localform-component>
+    <localform-component resource="create"></localform-component>
 
 @endsection
