@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 import {Store} from './components/store/index';
 import LocalTableComponent from './components/Locals/LocalTableComponent';
 import FilterComponent from './components/Filter/FilterComponent';
+import LocalFormComponent from './components/Forms/LocalFormComponent';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -30,6 +31,7 @@ let store = new Vuex.Store(Store);
  */
 Vue.component('localtable-component', LocalTableComponent);
 Vue.component('filter-component', FilterComponent);
+Vue.component('localform-component', LocalFormComponent);
 
 const app = new Vue({
     el: '#app',
