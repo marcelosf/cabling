@@ -1,24 +1,24 @@
 @extends('layouts.main')
 
 @section('pageTitle')
-    Detalhes do Local
+    
+    <div class="z-depth-1">
+            
+        <span class="btn-large">Detalhes do local</span>
+
+        <a href="{{ route('locals.index') }}" class="btn-flat waves-effect btn-large right">
+            Lista  <i class="material-icons right">list</i>    
+        </a>
+        
+        <a href="{{ route('locals.create') }}" class="btn-flat waves-effect btn-large right">
+            Novo <i class="material-icons right">add</i>    
+        </a>
+        
+    </div>        
+
 @endsection
 
-@section('content')
-
-
-<div class="z-depth-1">
-            
-    <a href="{{ route('locals.index') }}" class="btn btn-flat waves-effect btn-large">
-        Lista  <i class="material-icons right">list</i>    
-    </a>
-
-    <a href="{{ route('locals.create') }}" class="btn btn-flat waves-effect btn-large">
-        Novo <i class="material-icons right">add</i>    
-    </a>
-
-</div>        
-    
+@section('content')  
 
 <div class="row">
 

@@ -1,7 +1,21 @@
 @extends('layouts.main')
 
 @section('pageTitle')
-    Editar Local
+
+    <div class="z-depth-1">
+            
+        <span class="btn-large">Editar Local</span>
+
+        <a href="{{ route('locals.index') }}" class="btn-flat waves-effect btn-large right">
+            Lista  <i class="material-icons right">list</i>    
+        </a>
+        
+        <a href="{{ route('locals.create') }}" class="btn-flat waves-effect btn-large right">
+            Novo <i class="material-icons right">add</i>    
+        </a>
+        
+    </div>        
+
 @endsection
 
 @section('content')
@@ -36,10 +50,6 @@
                 <button class="btn-flat blue-text waves-effect waves-light" type="submit">
                     <i class="material-icons right">send</i>Enviar
                 </button>
-
-                <div class="btn-flat waves-effect waves-primary" onclick="window.history.back()">
-                    <i class="material-icons right">close</i> Cancelar
-                </div>
 
             </div>
 
