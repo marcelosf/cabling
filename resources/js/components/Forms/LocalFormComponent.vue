@@ -37,7 +37,7 @@
 
        <div class="card-action">
 
-           <button class="btn-flat blue-text waves waves-effect">
+           <button class="btn-flat blue-text waves waves-effect" @click="store">
                Enviar <i class="material-icons right">send</i>
            </button>
 
