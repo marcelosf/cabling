@@ -22,7 +22,7 @@ export class LocalResource extends Resource {
 
         this._getApi().post('locals', form).then(response => {
 
-            action(response);
+            action(response.data);
 
         }).catch(errors);
 
