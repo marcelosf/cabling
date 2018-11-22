@@ -51,4 +51,6 @@
 
     </div>
 
+    <localform-component></localform-component>
+
 @endsection
