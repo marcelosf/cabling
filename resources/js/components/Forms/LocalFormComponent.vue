@@ -71,7 +71,7 @@
 
         methods: {
 
-            sendRequest () {
+            store () {
 
                 this.getResource()[this.resource](response => {
 
