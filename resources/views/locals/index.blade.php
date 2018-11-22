@@ -6,24 +6,24 @@
 @endsection
 
 @section('pageTitle')
-    Lista de Locais
+<div class="z-depth-1">
+            
+            <div class="row">
+
+                <span class="btn-large">Lista de Locais</span>
+
+                <filter-component class="right"></filter-component>
+    
+                <a href="{{ route('locals.create') }}" class="btn btn-large btn-flat right">
+                    Novo <i class="material-icons right">add</i>
+                </a>
+    
+            </div>
+            
+        </div>   
 @endsection
 
 @section('content')
-
-    <div class="z-depth-1">
-            
-        <div class="row">
-
-            <filter-component class="col s3"></filter-component>
-
-            <a href="{{ route('locals.create') }}" class="col s2 btn btn-large btn-flat">
-                Novo <i class="material-icons right">add</i>
-            </a>
-
-        </div>
-        
-    </div>   
 
     <div class="card">
         <div class="card-content">
