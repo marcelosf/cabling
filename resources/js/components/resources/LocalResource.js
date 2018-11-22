@@ -28,4 +28,14 @@ export class LocalResource extends Resource {
 
     }
 
+    static update (actions, form, errors) {
+
+        this._getApi().put('locals', form).then(response => {
+
+            actions(response.data);
+
+        }).catch(errors);
+
+    }
+
 }
