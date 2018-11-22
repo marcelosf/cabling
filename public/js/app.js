@@ -49210,12 +49210,12 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "dropdown-trigger btn-flat",
+        staticClass: "dropdown-trigger btn-flat btn-large",
         attrs: { href: "#", "data-target": "dropdown-search" }
       },
       [
         _vm._v("\n        Busca "),
-        _c("i", { staticClass: "material-icons left" }, [_vm._v("search")])
+        _c("i", { staticClass: "material-icons right" }, [_vm._v("search")])
       ]
     )
   }

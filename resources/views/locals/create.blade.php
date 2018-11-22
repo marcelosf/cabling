@@ -1,18 +1,20 @@
 @extends('layouts.main')
 
 @section('pageTitle')
-    Criar Novo Local
-@endsection
-
-@section('content')
-
+    
     <div class="z-depth-1">
-            
-        <a href="{{ route('locals.index') }}" class="btn btn-flat waves-effect btn-large">
+        
+        <span class="btn-large">Criar novo local</span>
+
+        <a href="{{ route('locals.index') }}" class="btn-flat waves-effect btn-large right">
             Lista  <i class="material-icons right">list</i>    
         </a>
         
-    </div>   
+    </div>        
+
+@endsection
+
+@section('content')
 
     <div class="card">
 
@@ -39,7 +41,7 @@
 
             <div class="card-action">
 
-                <button class="btn-flat waves-effect waves-light" type="submit">
+                <button class="btn-flat waves-effect waves-light blue-text" type="submit">
                     <i class="material-icons right">send</i> Salvar
                 </button>
 

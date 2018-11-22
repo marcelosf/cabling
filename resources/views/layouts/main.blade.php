@@ -85,7 +85,7 @@
 
         <div class="container">
 
-        <div class="section">
+        <div>
 
             <h5>@yield('pageTitle')</h5>
 
