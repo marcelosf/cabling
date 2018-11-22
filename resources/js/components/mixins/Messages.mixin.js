@@ -6,8 +6,8 @@ export const Messages = {
 
             toast: {
                 html: '',
-                inDuration: 7,
-                outDuration: 7,
+                inDuration: 300,
+                outDuration: 375,
             }
 
         }
@@ -18,7 +18,7 @@ export const Messages = {
 
         showMessage (message) {
 
-            this.toast.message = message;
+            this.toast.html = message;
             this.triggerMessage();
 
         },
