@@ -1774,6 +1774,111 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/LocalFormComponent.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resources_LocalResource__ = __webpack_require__("./resources/js/components/resources/LocalResource.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_Messages_mixin__ = __webpack_require__("./resources/js/components/mixins/Messages.mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['resource'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_Messages_mixin__["a" /* Messages */]],
+
+    data: function data() {
+
+        return {
+
+            form: {
+                build: '',
+                floor: '',
+                local: ''
+            }
+
+        };
+    },
+
+
+    methods: {
+        store: function store() {
+            var _this = this;
+
+            this.getResource().create(function (response) {
+
+                _this.showMessage(response.message);
+            }, this.form);
+        },
+        update: function update(id) {
+            var _this2 = this;
+
+            this.getResource().update(function (response) {
+
+                _this2.showMessage(response.message);
+            }, this.form, id);
+        },
+        getResource: function getResource() {
+
+            return __WEBPACK_IMPORTED_MODULE_0__resources_LocalResource__["a" /* LocalResource */];
+        }
+    }
+
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Locals/LocalTableComponent.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -49315,6 +49420,125 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4fa42959\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Forms/LocalFormComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-content" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("form", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "input-field col s12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.build,
+                  expression: "form.build"
+                }
+              ],
+              staticClass: "col s12",
+              attrs: { id: "build", type: "text" },
+              domProps: { value: _vm.form.build },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "build", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "build" } }, [_vm._v("Bloco")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-field col s12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.floor,
+                  expression: "form.floor"
+                }
+              ],
+              staticClass: "col s12",
+              attrs: { type: "text", id: "floor" },
+              domProps: { value: _vm.form.floor },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "floor", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "floor" } }, [_vm._v("Andar")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-field col s12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.local,
+                  expression: "form.local"
+                }
+              ],
+              staticClass: "col s12",
+              attrs: { type: "text", id: "local" },
+              domProps: { value: _vm.form.local },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "local", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "local" } }, [_vm._v("Local")])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-action" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn-flat blue-text waves waves-effect",
+          on: { click: _vm.store }
+        },
+        [
+          _vm._v("\n            Enviar "),
+          _c("i", { staticClass: "material-icons right" }, [_vm._v("send")])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4fa42959", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue/dist/vue.common.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61296,6 +61520,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Locals_LocalTableComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Locals_LocalTableComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Filter_FilterComponent__ = __webpack_require__("./resources/js/components/Filter/FilterComponent.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Filter_FilterComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Filter_FilterComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Forms_LocalFormComponent__ = __webpack_require__("./resources/js/components/Forms/LocalFormComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Forms_LocalFormComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Forms_LocalFormComponent__);
+
 
 
 
@@ -61328,6 +61555,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store(__WE
  */
 Vue.component('localtable-component', __WEBPACK_IMPORTED_MODULE_2__components_Locals_LocalTableComponent___default.a);
 Vue.component('filter-component', __WEBPACK_IMPORTED_MODULE_3__components_Filter_FilterComponent___default.a);
+Vue.component('localform-component', __WEBPACK_IMPORTED_MODULE_4__components_Forms_LocalFormComponent___default.a);
 
 var app = new Vue({
   el: '#app',
@@ -61446,6 +61674,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/js/components/Forms/LocalFormComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/LocalFormComponent.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4fa42959\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Forms/LocalFormComponent.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Forms/LocalFormComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4fa42959", Component.options)
+  } else {
+    hotAPI.reload("data-v-4fa42959", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Locals/LocalTableComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61542,6 +61818,50 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/js/components/mixins/Messages.mixin.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Messages; });
+var Messages = {
+    data: function data() {
+
+        return {
+
+            toast: {
+                html: '',
+                inDuration: 300,
+                outDuration: 375
+            }
+
+        };
+    },
+
+
+    methods: {
+        showMessage: function showMessage(message) {
+
+            this.toast.html = message;
+            this.triggerMessage();
+        },
+        setInDuration: function setInDuration(duration) {
+
+            this.toast.inDuration = duration;
+        },
+        setOutDuration: function setOutDuration(duration) {
+
+            this.toast.outDuration = duration;
+        },
+        triggerMessage: function triggerMessage() {
+
+            M.toast(this.toast);
+        }
+    }
+
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/resources/Api.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -61587,7 +61907,7 @@ var Api = function () {
 
             if (true) {
 
-                this.baseUrl = "http://localhost";
+                this.baseUrl = "http://localhost:3000";
 
                 return true;
             }
@@ -61651,6 +61971,24 @@ var LocalResource = function (_Resource) {
             this._getApi().get(ELEMENT + '?page=' + page + query).then(function (response) {
 
                 action(response.data);
+            }).catch(errors);
+        }
+    }, {
+        key: 'create',
+        value: function create(action, form, errors) {
+
+            this._getApi().post('locals', form).then(function (response) {
+
+                action(response.data);
+            }).catch(errors);
+        }
+    }, {
+        key: 'update',
+        value: function update(actions, form, id, errors) {
+
+            this._getApi().put('locals/' + id, form).then(function (response) {
+
+                actions(response.data);
             }).catch(errors);
         }
     }]);
