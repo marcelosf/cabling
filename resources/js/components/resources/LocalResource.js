@@ -28,9 +28,9 @@ export class LocalResource extends Resource {
 
     }
 
-    static update (actions, form, errors) {
+    static update (actions, form, id, errors) {
 
-        this._getApi().put('locals', form).then(response => {
+        this._getApi().put('locals/' + id, form).then(response => {
 
             actions(response.data);
 
