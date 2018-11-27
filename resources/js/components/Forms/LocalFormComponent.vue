@@ -73,11 +73,21 @@
 
             store () {
 
-                this.getResource()[this.resource](response => {
+                this.getResource().create(response => {
 
                     this.showMessage(response.message);
 
                 }, this.form);
+
+            },
+
+            update (id) {
+
+                this.getResource().update(response => {
+
+                    this.showMessage(response.message);
+
+                }, this.form, id);
 
             },
 
