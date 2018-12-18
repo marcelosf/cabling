@@ -50,7 +50,7 @@
 
                         <li>
 
-                            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a href="{{ route('login.senhaunica') }}">{{ __('Login') }}</a>
 
                         </li>
 
