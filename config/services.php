@@ -35,4 +35,22 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'senhaunica' => [
+        'client_id' => env('SENHAUNICA_KEY'),
+        'client_secret' => env('SENHAUNICA_SECRET'),
+        'redirect' => '/',
+    ], 
+
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),         // Your GitHub Client ID
+        'client_secret' => env('GITHUB_CLIENT_SECRET'), // Your GitHub Client Secret
+        'redirect' => 'http://localhost/login/github/callback',
+    ],
+
+    'gitlab' => [
+        'client_id' => env('GITLAB_KEY'),
+        'client_secret' => env('GITLAB_SECRET'),
+        'redirect' => env('GITLAB_REDIRECT_URI')
+    ],
+
 ];
