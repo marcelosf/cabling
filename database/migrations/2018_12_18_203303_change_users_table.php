@@ -13,7 +13,14 @@ class ChangeUsersTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('users', function(Blueprint $table) {
+            $table->string('token_secret')->nullable();
+            $table->string('codpes');
+            $table->string('email_usp')->nullable();
+            $table->string('email_alternatvo')->nullable();
+            $table->string('telefone')->nullable();
+            $table->json('vinculo');
+        });
     }
 
     /**
@@ -23,13 +30,6 @@ class ChangeUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function(Blueprint $table) {
-            $table->string('token_secret')->nullable();
-            $table->string('codpes');
-            $table->string('email_usp')->nullable();
-            $table->string('email_alternatvo')->nullable();
-            $table->string('telefone')->nullable();
-            $table->json('vinculo');
-        });
+        // 
     }
 }
