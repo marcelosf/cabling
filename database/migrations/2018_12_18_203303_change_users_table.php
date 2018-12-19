@@ -17,7 +17,7 @@ class ChangeUsersTable extends Migration
             $table->string('token_secret')->nullable();
             $table->string('codpes');
             $table->string('email_usp')->nullable();
-            $table->string('email_alternatvo')->nullable();
+            $table->string('email_alternativo')->nullable();
             $table->string('telefone')->nullable();
             $table->json('vinculo');
         });
