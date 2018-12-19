@@ -22,5 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('locals', 'LocalsController')->middleware('cors');
 
-Route::get('login/senhaunica', 'Auth\LoginController@redirectToProvider');
+Route::get('login/senhaunica', 'Auth\LoginController@redirectToProvider')->name('login.senhaunica');
 Route::get('login/senhaunica/callback', 'Auth\LoginController@handleProviderCallback');
