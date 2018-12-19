@@ -14,6 +14,6 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        return route('login.senhauunica');
+        return route('login.senhaunica');
     }
 }
