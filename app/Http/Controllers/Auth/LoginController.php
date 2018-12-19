@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /*
@@ -46,9 +48,35 @@ class LoginController extends Controller
 
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('senhaunica')->user();
-        
-        dd($user);
+        $userSenhaUnica = Socialite::driver('senhaunica')->user();
+        $user = User::updateOrCreate(['codpes' => $userSenhaUnica->codpes], $this->handleUserData($userSenhaUnica));
 
+        Auth::login($user, true);
+
+        return redirect($this->redirectTo);
+
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('home');
+    }
+
+    protected function handleUserData($userData)
+    {
+        $user = [
+            'token_secret' => $userData->tokenSecret,
+            'codpes' => $userData->codpes,
+            'name' => $userData->nompes,
+            'email' => $userData->email,
+            'email_usp' => $userData->emailUsp,
+            'email_alternativo' => $userData->emailAlternativo,
+            'telefone' => $userData->telefone,
+            'vinculo' => json_encode($userData->vinculo[0]),
+        ];
+
+        return $user;
     }
 }
