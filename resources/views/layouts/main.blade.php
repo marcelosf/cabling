@@ -27,7 +27,6 @@
 </head>
 
 <body>
-
     <div id="app">
 
         @auth
@@ -38,53 +37,31 @@
             </ul>
         @endauth
 
-        <nav>
-
-            <div class="nav-wrapper container">
-
-                <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
-
-                <ul class="right">
-
-                    @guest
-
-                        <li>
-
-                            <a href="{{ route('login.senhaunica') }}">{{ __('Login') }}</a>
-
-                        </li>
-
-                    @else
-
-                        <li>
-                            <a class="dropdown-trigger" href="#!" data-target="dropdown-login">
-                                Login<i class="material-icons right">arrow_drop_down</i>
-                            </a>
-                        </li>
-
-                    @endguest
-                </ul>
-                
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-
-            </div>
-        </nav>
-
-
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper container">
+                    <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
+                    <ul class="right">
+                        @auth
+                            <li>
+                                <a class="dropdown-trigger" href="#!" data-target="dropdown-login">
+                                    Login<i class="material-icons right">arrow_drop_down</i>
+                                </a>
+                            </li>
+                        @endauth
+                    </ul>        
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </nav>
+        </div>
+        @yield('welcome')
         <div class="container">
-
-        <div>
-
-            <h5>@yield('pageTitle')</h5>
-
+            <div>
+                <h5>@yield('pageTitle')</h5>
+            </div>
+            @yield('content')
         </div>
-            
-        @yield('content')
-
-        </div>
-    
     </div>
-
 </body>

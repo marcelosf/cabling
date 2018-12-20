@@ -62156,11 +62156,19 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/sass/welcome.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/js/app.js");
-module.exports = __webpack_require__("./resources/sass/app.scss");
+__webpack_require__("./resources/sass/app.scss");
+module.exports = __webpack_require__("./resources/sass/welcome.scss");
 
 
 /***/ })
