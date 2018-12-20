@@ -15,12 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('locals', 'LocalsController')->middleware('cors');
+
+});
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('locals', 'LocalsController')->middleware('cors');
 
 Route::get('login/senhaunica', 'Auth\LoginController@redirectToProvider')->name('login.senhaunica');
 Route::get('login/senhaunica/callback', 'Auth\LoginController@handleProviderCallback');

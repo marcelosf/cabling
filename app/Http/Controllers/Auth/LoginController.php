@@ -49,11 +49,15 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $userSenhaUnica = Socialite::driver('senhaunica')->user();
-        $user = User::updateOrCreate(['codpes' => $userSenhaUnica->codpes], $this->handleUserData($userSenhaUnica));
-
-        Auth::login($user, true);
-
-        return redirect($this->redirectTo);
+        
+        if ($this->unidadeCanAccess($userSenhaUnica)) {
+            $user = User::updateOrCreate(['codpes' => $userSenhaUnica->codpes], $this->handleUserData($userSenhaUnica));
+            Auth::login($user, true);
+            return redirect($this->redirectTo);
+        }
+        
+        // TODO: Retornar para página de acesso não permitido.
+        return redirect('/');
 
     }
 
@@ -61,7 +65,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('home');
+        return redirect('/');
     }
 
     protected function handleUserData($userData)
@@ -78,5 +82,10 @@ class LoginController extends Controller
         ];
 
         return $user;
+    }
+
+    protected function unidadeCanAccess ($userData) 
+    {
+        return $userData->vinculo[0]['codigoUnidade'] === (integer) env('CODIGO_UNIDADE');
     }
 }
