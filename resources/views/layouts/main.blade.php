@@ -33,7 +33,8 @@
             <ul id="dropdown-user" class="dropdown-content">
                 <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        <i class="material-icons left">exit_to_app</i>
+                        {{ __('Sair') }}
                     </a>
                 </li>
             </ul>
