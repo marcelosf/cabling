@@ -30,10 +30,12 @@
     <div id="app">
 
         @auth
-            <ul id="dropdown-login" class="dropdown-content">
-                <li>{{ Auth::user()->name }}</li>
-                <li class="divider"></li>
-                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+            <ul id="dropdown-user" class="dropdown-content">
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                </li>
             </ul>
         @endauth
 
@@ -44,8 +46,10 @@
                     <ul class="right">
                         @auth
                             <li>
-                                <a class="dropdown-trigger" href="#!" data-target="dropdown-login">
-                                    Login<i class="material-icons right">arrow_drop_down</i>
+                                <a class="dropdown-trigger" href="#!" data-target="dropdown-user">
+                                    {{ Auth::user()->name }}
+                                    <i class="material-icons right">arrow_drop_down</i>
+                                    <i class="material-icons left">account_circle</i>
                                 </a>
                             </li>
                         @endauth
