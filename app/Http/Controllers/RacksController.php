@@ -9,7 +9,7 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\RackCreateRequest;
 use App\Http\Requests\RackUpdateRequest;
-use App\Repositories\RackRepository;
+use App\Repositories\RackRepositoryEloquent;
 use App\Validators\RackValidator;
 
 /**
@@ -35,7 +35,7 @@ class RacksController extends Controller
      * @param RackRepository $repository
      * @param RackValidator $validator
      */
-    public function __construct(RackRepository $repository, RackValidator $validator)
+    public function __construct(RackRepositoryEloquent $repository, RackValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
