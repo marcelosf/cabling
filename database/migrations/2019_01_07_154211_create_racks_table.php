@@ -19,7 +19,8 @@ class CreateRacksTable extends Migration
             $table->increments('id');
 			$table->string('name');
 			$table->string('size');
-			$table->foreign('local')->references('id')->on('locals')->onDelete('cascade');
+			$table->unsignedInteger('local_id');
+			$table->foreign('local_id')->references('id')->on('locals')->onDelete('cascade');
             $table->timestamps();
 		});
 	}
