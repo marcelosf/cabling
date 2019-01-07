@@ -17,7 +17,9 @@ class CreateRacksTable extends Migration
 	{
 		Schema::create('racks', function(Blueprint $table) {
             $table->increments('id');
-
+			$table->string('name');
+			$table->string('size');
+			$table->foreign('local')->references('id')->on('locals')->onDelete('cascade');
             $table->timestamps();
 		});
 	}
