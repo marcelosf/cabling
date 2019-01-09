@@ -1,12 +1,14 @@
 import {Resource} from './Resource';
 
-const ELEMENT = 'locals';
+const ELEMENT = 'racks';
 
-export class LocalResource extends Resource {
+export class RackResource extends Resource {
 
     static index (action, page, search, errors) {
 
         let query = this.generateQuery(search);
+
+        console.log(ELEMENT + '?page=' + page + query);
 
         this._getApi().get(ELEMENT + '?page=' + page + query).then((response) => {
 
@@ -18,7 +20,9 @@ export class LocalResource extends Resource {
 
     static create (action, form, errors) {
 
-        this._getApi().post('locals', form).then(response => {
+        this._getApi().post('racks', form).then(response => {
+
+            console.log(form);
 
             action(response.data);
 
@@ -28,7 +32,7 @@ export class LocalResource extends Resource {
 
     static update (actions, form, id, errors) {
 
-        this._getApi().put('locals/' + id, form).then(response => {
+        this._getApi().put('racks/' + id, form).then(response => {
 
             actions(response.data);
 

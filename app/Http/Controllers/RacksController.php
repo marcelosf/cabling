@@ -61,6 +61,11 @@ class RacksController extends Controller
         return view('racks.index', compact('racks'));
     }
 
+    public function create()
+    {
+        return view('racks.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

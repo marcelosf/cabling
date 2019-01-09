@@ -50,13 +50,13 @@ class LocalsController extends Controller
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $locals = $this->repository->paginate(10);
-
-        // dd($locals);
+        $allLocals = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
                 'data' => $locals,
+                'all' => $allLocals,
             ]);
         }
 
