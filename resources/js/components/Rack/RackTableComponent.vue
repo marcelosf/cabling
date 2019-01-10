@@ -13,17 +13,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="local in locals" :key="local.id">
-                    <td>{{ local.build }}</td>
-                    <td>{{ local.floor }}</td>
-                    <td>{{ local.local }}</td>
+                <tr v-for="rack in racks" :key="rack.id">
+                    <td>{{ rack.name }}</td>
+                    <td>{{ rack.build }}</td>
+                    <td>{{ rack.local }}</td>
                     <td>
-                        <a :href="'/locals/' + local.id">
+                        <a :href="'/racks/' + racks.id">
                             <i class="material-icons">subject</i>
                         </a>
                     </td>
                     <td>
-                        <a :href="'/locals/' + local.id + '/edit'">
+                        <a :href="'/racks/' + racks.id + '/edit'">
                             <i class="material-icons">edit</i>
                         </a>
                     </td>
@@ -48,7 +48,7 @@
 
             this.list(response => {
 
-                this.commitTableData(response.data);
+                this.commitTableData(response);
 
             }, 1);
 
@@ -66,8 +66,8 @@
 
         computed: {
 
-            locals () {
-
+            racks () {
+                console.log(this.$store.getters['table/tableData']);
                 return this.$store.getters['table/tableData'];
 
             }
@@ -79,8 +79,8 @@
             list (action, page) {
 
                 RackResource.index(response => {
-
-                    action(response);
+                    
+                    action(response.data);
 
                 }, page);
 
