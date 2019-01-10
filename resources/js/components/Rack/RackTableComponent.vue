@@ -18,12 +18,12 @@
                     <td>{{ rack.build }}</td>
                     <td>{{ rack.local }}</td>
                     <td>
-                        <a :href="'/racks/' + racks.id">
+                        <a :href="'/racks/' + rack.id">
                             <i class="material-icons">subject</i>
                         </a>
                     </td>
                     <td>
-                        <a :href="'/racks/' + racks.id + '/edit'">
+                        <a :href="'/racks/' + rack.id + '/edit'">
                             <i class="material-icons">edit</i>
                         </a>
                     </td>
@@ -67,7 +67,7 @@
         computed: {
 
             racks () {
-                console.log(this.$store.getters['table/tableData']);
+                
                 return this.$store.getters['table/tableData'];
 
             }
