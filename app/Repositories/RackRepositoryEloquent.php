@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\RackRepository;
 use App\Entities\Rack;
 use App\Validators\RackValidator;
+use App\Presenters\RackPresenter;
 
 /**
  * Class RackRepositoryEloquent.
@@ -25,6 +26,10 @@ class RackRepositoryEloquent extends BaseRepository implements RackRepository
         return Rack::class;
     }
 
+    public function presenter()
+    {
+        return RackPresenter::class;
+    }
     
 
     /**
