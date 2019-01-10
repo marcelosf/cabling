@@ -26,4 +26,9 @@ class Rack extends Model implements Transformable
         'local_id',
     ];
 
+    public function local()
+    {
+        return $this->belongsTo('App\Entities\Local');
+    }
+
 }
