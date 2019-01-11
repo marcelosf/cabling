@@ -32,7 +32,7 @@
                 <div class="chip">Local: {{ $rack['data']['local'] }}</div>
                 <div class="section"></div>
 
-                <p>Criado em: {{ $rack['data']['created_at'] }}</p>
+                <p>Criado em: {{ $rack['data']['created_at']->format('d/m/Y') }}</p>
             </blockquote>
             
         </div>
