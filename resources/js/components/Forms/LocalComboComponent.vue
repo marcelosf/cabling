@@ -29,7 +29,7 @@ export default {
     mounted () {
 
         this.loadSelectOptions (options => {
-            this.localList = options;
+            this.initialize(options);
         });
 
     },
@@ -39,7 +39,8 @@ export default {
         return {
             localList: [],
             build: '',
-            local: ''
+            local: '',
+            localElement: null
         }
 
     },
@@ -48,17 +49,20 @@ export default {
 
         localOptions () {
             let filtered = this.getLocalByBuild(this.build, this.localList);
-            
             setTimeout(() => {
                 this.selectInit();
             }, 500);
-
+            
             return filtered;
-        },
+        }
 
     },
 
     watch: {
+
+        value (value) {
+            this.local_id = value;
+        },
 
         local () {
             this.localOnChange();
@@ -68,11 +72,19 @@ export default {
     
     methods: {
 
+        initialize(options) {
+
+            this.localList = options;
+            this.setLocalElement();
+            this.setDefaultFormValues(this.localElement);
+
+        },
+
         loadSelectOptions (actions) {
             
             this.getResource().index((response) => {
                 actions(response.all);
-            });
+            }, 1);
 
         },
 
@@ -92,6 +104,15 @@ export default {
 
         },
 
+        getLocalById (id) {
+
+            let filtered = _.filter(this.localList, l => {
+                return l.id === id;
+            });
+
+            return filtered[0];
+        },
+
         selectInit () {
 
             let element = $('#localSelect');
@@ -103,8 +124,22 @@ export default {
 
             this.$emit('input', this.local);
 
-        }
+        },
 
+        setLocalElement () {
+
+            this.localElement = this.getLocalById(this.value);
+
+        },
+
+        setDefaultFormValues (values) {
+
+            if (typeof values !== 'undefined') {
+                this.build = values.build;
+                this.local = values.id;
+            }
+            
+        }
     }
 
 }
