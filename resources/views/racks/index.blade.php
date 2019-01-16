@@ -14,7 +14,7 @@
 
                 <filter-component class="right"></filter-component>
     
-                <a href="{{ route('locals.create') }}" class="btn btn-large btn-flat right">
+                <a href="{{ route('racks.create') }}" class="btn btn-large btn-flat right">
                     Novo <i class="material-icons right">add</i>
                 </a>
     
