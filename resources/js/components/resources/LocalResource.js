@@ -8,8 +8,10 @@ export class LocalResource extends Resource {
 
         let query = this.generateQuery(search);
 
-        this._getApi().get(ELEMENT + '?page=' + page + query).then((response) => {
+        let url = this.generateUrl(ELEMENT, page, query);
 
+        this._getApi().get(url).then((response) => {
+console.log(url);
             action(response.data);
 
         }).catch(errors);
