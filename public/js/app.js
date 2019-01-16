@@ -1812,7 +1812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         this.loadSelectOptions(function (options) {
-            _this.localList = options;
+            _this.initialize(options);
         });
     },
     data: function data() {
@@ -1820,7 +1820,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             localList: [],
             build: '',
-            local: ''
+            local: '',
+            localElement: null
         };
     },
 
@@ -1830,7 +1831,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             var filtered = this.getLocalByBuild(this.build, this.localList);
-
             setTimeout(function () {
                 _this2.selectInit();
             }, 500);
@@ -1840,17 +1840,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     watch: {
+        value: function value(_value) {
+            this.local_id = _value;
+        },
         local: function local() {
             this.localOnChange();
         }
     },
 
     methods: {
+        initialize: function initialize(options) {
+
+            this.localList = options;
+            this.setLocalElement();
+            this.setDefaultFormValues(this.localElement);
+        },
         loadSelectOptions: function loadSelectOptions(actions) {
 
             this.getResource().index(function (response) {
                 actions(response.all);
-            });
+            }, 1);
         },
         getResource: function getResource() {
 
@@ -1864,6 +1873,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return filtered;
         },
+        getLocalById: function getLocalById(id) {
+
+            var filtered = _.filter(this.localList, function (l) {
+                return l.id === id;
+            });
+
+            return filtered[0];
+        },
         selectInit: function selectInit() {
 
             var element = $('#localSelect');
@@ -1872,6 +1889,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         localOnChange: function localOnChange() {
 
             this.$emit('input', this.local);
+        },
+        setLocalElement: function setLocalElement() {
+
+            this.localElement = this.getLocalById(this.value);
+        },
+        setDefaultFormValues: function setDefaultFormValues(values) {
+
+            if (typeof values !== 'undefined') {
+                this.build = values.build;
+                this.local = values.id;
+            }
         }
     }
 
@@ -2048,9 +2076,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['resource'],
+    props: ['resource', 'id'],
     mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_Messages_mixin__["a" /* Messages */]],
 
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.resource === 'update') {
+
+            this.getRack(function (response) {
+
+                _this.form.name = response.name;
+                _this.form.size = response.size;
+                _this.form.local_id = response.id;
+            }, this.id);
+        }
+    },
     data: function data() {
 
         return {
@@ -2065,23 +2106,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    methods: {
-        store: function store() {
-            var _this = this;
+    computed: {
+        activated: function activated() {
 
-            console.log(this.form);
+            if (this.resource === 'update') {
+                return 'active';
+            }
+
+            return '';
+        }
+    },
+
+    methods: {
+        processData: function processData() {
+
+            if (this.resource === 'update') {
+                this.update(this.id);
+                return 'updated';
+            }
+
+            this.store();
+        },
+        store: function store() {
+            var _this2 = this;
+
             this.getResource().create(function (response) {
 
-                _this.showMessage(response.message);
+                _this2.showMessage(response.message);
             }, this.form);
         },
         update: function update(id) {
-            var _this2 = this;
+            var _this3 = this;
 
             this.getResource().update(function (response) {
 
-                _this2.showMessage(response.message);
+                _this3.showMessage(response.message);
             }, this.form, id);
+        },
+        getRack: function getRack(actions, id) {
+
+            this.getResource().show(function (response) {
+                actions(response.data.data);
+            }, id);
         },
         getResource: function getResource() {
 
@@ -49890,7 +49956,9 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("label", { attrs: { for: "name" } }, [_vm._v("Nome")])
+            _c("label", { class: _vm.activated, attrs: { for: "name" } }, [
+              _vm._v("Nome")
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-field col s12" }, [
@@ -49916,7 +49984,9 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("label", { attrs: { for: "size" } }, [_vm._v("Tamanho")])
+            _c("label", { class: _vm.activated, attrs: { for: "size" } }, [
+              _vm._v("Tamanho")
+            ])
           ]),
           _vm._v(" "),
           _c(
@@ -49944,7 +50014,7 @@ var render = function() {
         "button",
         {
           staticClass: "btn-flat blue-text waves waves-effect",
-          on: { click: _vm.store }
+          on: { click: _vm.processData }
         },
         [
           _vm._v("\n            Enviar "),
@@ -62728,8 +62798,10 @@ var LocalResource = function (_Resource) {
 
             var query = this.generateQuery(search);
 
-            this._getApi().get(ELEMENT + '?page=' + page + query).then(function (response) {
+            var url = this.generateUrl(ELEMENT, page, query);
 
+            this._getApi().get(url).then(function (response) {
+                console.log(url);
                 action(response.data);
             }).catch(errors);
         }
@@ -62791,8 +62863,6 @@ var RackResource = function (_Resource) {
 
             var query = this.generateQuery(search);
 
-            console.log(ELEMENT + '?page=' + page + query);
-
             this._getApi().get(ELEMENT + '?page=' + page + query).then(function (response) {
 
                 action(response.data);
@@ -62814,6 +62884,15 @@ var RackResource = function (_Resource) {
         value: function update(actions, form, id, errors) {
 
             this._getApi().put('racks/' + id, form).then(function (response) {
+
+                actions(response.data);
+            }).catch(errors);
+        }
+    }, {
+        key: 'show',
+        value: function show(actions, id, errors) {
+
+            this._getApi().get('racks/' + id).then(function (response) {
 
                 actions(response.data);
             }).catch(errors);
@@ -62864,6 +62943,16 @@ var Resource = function () {
       }
 
       return '';
+    }
+  }, {
+    key: 'generateUrl',
+    value: function generateUrl(element, page, query) {
+
+      if (page) {
+        return element + '?page=' + page + query;
+      }
+
+      return element;
     }
   }]);
 
