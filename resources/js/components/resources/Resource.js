@@ -26,4 +26,13 @@ export class Resource {
 
   }
 
+  static generateUrl (element, page, query) {
+    
+    if (page) {
+      return element + '?page=' + page + query;
+    }
+
+    return element;
+  }
+
 }
