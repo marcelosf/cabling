@@ -206,6 +206,6 @@ class RacksController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message', 'Rack deleted.');
+        return redirect()->route('racks.index')->with('message', 'Rack deleted.');
     }
 }
