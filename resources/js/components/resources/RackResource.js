@@ -8,8 +8,6 @@ export class RackResource extends Resource {
 
         let query = this.generateQuery(search);
 
-        console.log(ELEMENT + '?page=' + page + query);
-
         this._getApi().get(ELEMENT + '?page=' + page + query).then((response) => {
 
             action(response.data);
@@ -33,6 +31,16 @@ export class RackResource extends Resource {
     static update (actions, form, id, errors) {
 
         this._getApi().put('racks/' + id, form).then(response => {
+
+            actions(response.data);
+
+        }).catch(errors);
+
+    }
+
+    static show (actions, id, errors) {
+
+        this._getApi().get('racks/' + id).then(response => {
 
             actions(response.data);
 
