@@ -11,14 +11,14 @@
                    <div class="input-field col s12">
 
                        <input id="name" class="col s12" type="text" v-model="form.name">
-                       <label for="name">Nome</label>
+                       <label :class="activated" for="name">Nome</label>
 
                    </div>
 
                    <div class="input-field col s12">
 
                        <input type="text" id="size" class="col s12" v-model="form.size">
-                       <label for="size">Tamanho</label>
+                       <label :class="activated" for="size">Tamanho</label>
 
                    </div>
 
@@ -36,7 +36,7 @@
 
        <div class="card-action">
 
-           <button class="btn-flat blue-text waves waves-effect" @click="store">
+           <button class="btn-flat blue-text waves waves-effect" @click="processData">
                Enviar <i class="material-icons right">send</i>
            </button>
 
@@ -53,8 +53,23 @@
 
     export default {
 
-        props:  ['resource'],
+        props:  ['resource', 'id'],
         mixins: [Messages],
+
+        mounted () {
+            
+            if (this.resource === 'update') {
+
+                this.getRack(response => {
+
+                    this.form.name = response.name;
+                    this.form.size = response.size;
+                    this.form.local_id = response.id;
+
+                }, this.id);
+            }
+
+        },
 
         data () {
 
@@ -70,10 +85,35 @@
 
         },
 
+        computed: {
+
+            activated () {
+
+                if (this.resource === 'update') {
+                    return 'active'
+                }
+
+                return '';
+
+            }
+
+        },
+
         methods: {
 
+            processData () {
+
+                if (this.resource === 'update') {
+                    this.update(this.id);
+                    return 'updated';
+                }
+
+                this.store();
+
+            },
+
             store () {
-                console.log(this.form);
+                
                 this.getResource().create(response => {
 
                     this.showMessage(response.message);
@@ -92,11 +132,19 @@
 
             },
 
+            getRack (actions, id) {
+
+                this.getResource().show(response => {
+                    actions(response.data.data);
+                }, id)
+
+            },
+
             getResource () {
 
                 return RackResource;
 
-            },
+            }
 
         },
 
