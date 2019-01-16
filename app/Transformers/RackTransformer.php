@@ -26,6 +26,8 @@ class RackTransformer extends TransformerAbstract
             'name' => $model->name,
             'build' => $model->local->build,
             'local' => $model->local->local,
+            'local_id' => $model->local_id,
+            'size' => $model->size,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
