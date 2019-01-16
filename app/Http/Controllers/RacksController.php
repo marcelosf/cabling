@@ -49,12 +49,14 @@ class RacksController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $racks = $this->repository->all();
+        $racks = $this->repository->paginate(10);
+        $allRacks = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
                 'data' => $racks,
+                'all' => $allRacks,
             ]);
         }
 
@@ -85,7 +87,7 @@ class RacksController extends Controller
 
             $response = [
                 'message' => 'Rack created.',
-                'data'    => $rack->toArray(),
+                'data'    => $rack,
             ];
 
             if ($request->wantsJson()) {
@@ -161,7 +163,7 @@ class RacksController extends Controller
 
             $response = [
                 'message' => 'Rack updated.',
-                'data'    => $rack->toArray(),
+                'data'    => $rack,
             ];
 
             if ($request->wantsJson()) {
