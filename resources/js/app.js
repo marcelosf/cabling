@@ -3,6 +3,8 @@ import {Store} from './components/store/index';
 import LocalTableComponent from './components/Locals/LocalTableComponent';
 import FilterComponent from './components/Filter/FilterComponent';
 import LocalFormComponent from './components/Forms/LocalFormComponent';
+import RackFormComponent from './components/Forms/RackFormComponent';
+import RackTableComponent from './components/Rack/RackTableComponent';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -32,6 +34,8 @@ let store = new Vuex.Store(Store);
 Vue.component('localtable-component', LocalTableComponent);
 Vue.component('filter-component', FilterComponent);
 Vue.component('localform-component', LocalFormComponent);
+Vue.component('rackform-component', RackFormComponent);
+Vue.component('racktable-component', RackTableComponent);
 
 const app = new Vue({
     el: '#app',

@@ -7,4 +7,7 @@ $(document).ready(function() {
     $('.dropdown-trigger').dropdown({
         coverTrigger: false,
     });
+
+    // Select
+    $('select').formSelect();
 });

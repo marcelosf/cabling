@@ -7,35 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\LocalCreateRequest;
-use App\Http\Requests\LocalUpdateRequest;
-use App\Repositories\LocalRepositoryEloquent;
-use App\Validators\LocalValidator;
+use App\Http\Requests\RackCreateRequest;
+use App\Http\Requests\RackUpdateRequest;
+use App\Repositories\RackRepositoryEloquent;
+use App\Validators\RackValidator;
 
 /**
- * Class LocalsController.
+ * Class RacksController.
  *
  * @package namespace App\Http\Controllers;
  */
-class LocalsController extends Controller
+class RacksController extends Controller
 {
     /**
-     * @var LocalRepository
+     * @var RackRepository
      */
     protected $repository;
 
     /**
-     * @var LocalValidator
+     * @var RackValidator
      */
     protected $validator;
 
     /**
-     * LocalsController constructor.
+     * RacksController constructor.
      *
-     * @param LocalRepository $repository
-     * @param LocalValidator $validator
+     * @param RackRepository $repository
+     * @param RackValidator $validator
      */
-    public function __construct(LocalRepositoryEloquent $repository, LocalValidator $validator)
+    public function __construct(RackRepositoryEloquent $repository, RackValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -49,50 +49,45 @@ class LocalsController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $locals = $this->repository->paginate(10);
-        $allLocals = $this->repository->all();
+        $racks = $this->repository->paginate(10);
+        $allRacks = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $locals,
-                'all' => $allLocals,
+                'data' => $racks,
+                'all' => $allRacks,
             ]);
         }
 
-        return view('locals.index', compact('locals'));
+        return view('racks.index', compact('racks'));
     }
 
-    /**
-     * Show the create local form.
-     *
-     * @return void
-     */
     public function create()
     {
-        return view('locals.create');
+        return view('racks.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  LocalCreateRequest $request
+     * @param  RackCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(LocalCreateRequest $request)
+    public function store(RackCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $local = $this->repository->create($request->all());
+            $rack = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Local created.',
-                'data'    => $local->toArray(),
+                'message' => 'Rack created.',
+                'data'    => $rack,
             ];
 
             if ($request->wantsJson()) {
@@ -122,16 +117,16 @@ class LocalsController extends Controller
      */
     public function show($id)
     {
-        $local = $this->repository->find($id);
+        $rack = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $local,
+                'data' => $rack,
             ]);
         }
 
-        return view('locals.show', compact('local'));
+        return view('racks.show', compact('rack'));
     }
 
     /**
@@ -143,32 +138,32 @@ class LocalsController extends Controller
      */
     public function edit($id)
     {
-        $local = $this->repository->find($id);
+        $rack = $this->repository->find($id);
 
-        return view('locals.edit', compact('local'));
+        return view('racks.edit', compact('rack'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  LocalUpdateRequest $request
+     * @param  RackUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(LocalUpdateRequest $request, $id)
+    public function update(RackUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $local = $this->repository->update($request->all(), $id);
+            $rack = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Local updated.',
-                'data'    => $local->toArray(),
+                'message' => 'Rack updated.',
+                'data'    => $rack,
             ];
 
             if ($request->wantsJson()) {
@@ -206,11 +201,11 @@ class LocalsController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Local deleted.',
+                'message' => 'Rack deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->route('locals.index')->with('message', 'Local deleted.');
+        return redirect()->route('racks.index')->with('message', 'Rack deleted.');
     }
 }
