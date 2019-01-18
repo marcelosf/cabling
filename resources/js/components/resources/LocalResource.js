@@ -11,7 +11,7 @@ export class LocalResource extends Resource {
         let url = this.generateUrl(ELEMENT, page, query);
 
         this._getApi().get(url).then((response) => {
-console.log(url);
+
             action(response.data);
 
         }).catch(errors);
