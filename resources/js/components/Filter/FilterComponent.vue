@@ -1,7 +1,7 @@
 <template>
     
     <div>
-        <a href="#" class="dropdown-trigger btn-flat btn-large" data-target="dropdown-search">
+        <a href="#" class="dropdown-trigger btn-flat btn-large" data-target="dropdown-search" id="dropdown-search-button">
             Busca <i class="material-icons right" >search</i>
         </a>
 
@@ -61,7 +61,10 @@
 <script>
 
     import {LocalResource} from '../resources/LocalResource';
+    import {SearchFilter} from '../mixins/SearchFilter.mixin';
     export default {
+
+        mixins: [SearchFilter],
 
         mounted () {
 
@@ -87,35 +90,12 @@
 
         methods: {
 
-            initialize () {
-
-                $('.dropdown-trigger').dropdown({
-
-                    closeOnClick: false,
-                    constrainWidth: false
-
-                });
-
-            },
-
             searchFor () {
 
                 this.list(response => {
                     this.commit(response.data);
                     this.commitFilter(this.localDataSerch);
                 }, this.localDataSerch);
-
-            },
-
-            commit (locals) {
-
-                this.$store.commit('table/tableData', locals);
-
-            },
-
-            commitFilter (filter) {
-
-                this.$store.commit('filter/searchParams', filter);
 
             },
 
