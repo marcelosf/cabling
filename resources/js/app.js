@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 import {Store} from './components/store/index';
 import LocalTableComponent from './components/Locals/LocalTableComponent';
 import FilterComponent from './components/Filter/FilterComponent';
+import RackFilterComponent from './components/Filter/RackFilterComponent';
 import LocalFormComponent from './components/Forms/LocalFormComponent';
 import RackFormComponent from './components/Forms/RackFormComponent';
 import RackTableComponent from './components/Rack/RackTableComponent';
@@ -33,6 +34,7 @@ let store = new Vuex.Store(Store);
  */
 Vue.component('localtable-component', LocalTableComponent);
 Vue.component('filter-component', FilterComponent);
+Vue.component('rackfilter-component', RackFilterComponent);
 Vue.component('localform-component', LocalFormComponent);
 Vue.component('rackform-component', RackFormComponent);
 Vue.component('racktable-component', RackTableComponent);

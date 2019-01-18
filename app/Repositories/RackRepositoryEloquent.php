@@ -16,6 +16,12 @@ use App\Presenters\RackPresenter;
  */
 class RackRepositoryEloquent extends BaseRepository implements RackRepository
 {
+    
+    protected $fieldSearchable = [
+        'name',
+        'local_id'
+    ];
+    
     /**
      * Specify Model class name
      *

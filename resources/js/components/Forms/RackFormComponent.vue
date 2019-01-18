@@ -64,7 +64,7 @@
 
                     this.form.name = response.name;
                     this.form.size = response.size;
-                    this.form.local_id = response.id;
+                    this.form.local_id = response.id;   
 
                 }, this.id);
             }

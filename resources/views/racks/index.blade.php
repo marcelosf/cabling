@@ -12,7 +12,7 @@
 
                 <span class="btn-large">Lista de Racks</span>
 
-                <filter-component class="right"></filter-component>
+                <rackfilter-component class="right"></rackfilter-component>
     
                 <a href="{{ route('racks.create') }}" class="btn btn-large btn-flat right">
                     Novo <i class="material-icons right">add</i>

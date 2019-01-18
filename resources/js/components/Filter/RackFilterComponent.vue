@@ -13,22 +13,15 @@
 
                     <div class="input-field col s4">
 
-                        <label for="search-build">Bloco</label>
-                        <input type="text" v-model="localDataSerch.build" name="build" id="search-build">
+                        <label for="search-build">Nome</label>
+                        <input type="text" v-model="rackDataSearch.name" name="build" id="search-build">
 
                    </div>
-                    
-                    <div class="input-field col s4">
-
-                        <label for="search-floor">Andar</label>
-                        <input type="text" v-model="localDataSerch.floor" name="floor" id="search-floor">
-
-                    </div>
 
                     <div class="input-field col s4">
 
-                        <label for="search-local">Local</label>
-                        <input type="text" v-model="localDataSerch.local" name="search-local" id="search-local">
+                        <label for="search-local">Bloco</label>
+                        <input type="text" v-model="local" name="search-local" id="search-local">
 
                     </div>
                     
@@ -60,8 +53,9 @@
 
 <script>
 
-    import {LocalResource} from '../resources/LocalResource';
+    import {RackResource} from '../resources/RackResource';
     import {SearchFilter} from '../mixins/SearchFilter.mixin';
+
     export default {
 
         mixins: [SearchFilter],
@@ -76,14 +70,27 @@
 
             return {
 
-                localDataSerch: {
+                rackDataSearch: {
 
-                    build: '',
-                    floor: '',
-                    local: ''
+                    name: '',
+                    local_id: ''
 
-                }
+                },
 
+                local: ''
+
+            }
+
+        },
+
+        watch: {
+
+            local (value) {
+                this.getLocal(response => {
+                    if(response.data.length > 0) {
+                        this.rackDataSearch.local_id = response.data[0].id;
+                    }
+                }, value);
             }
 
         },
@@ -94,32 +101,31 @@
 
                 this.list(response => {
                     this.commit(response.data);
-                    this.commitFilter(this.localDataSerch);
-                }, this.localDataSerch);
+                    this.commitFilter(this.rackDataSearch);
+                }, this.rackDataSearch);
 
             },
 
             list (action, search) {
 
-                LocalResource.index(action, 1, search);
+                RackResource.index(action, 1, search);
 
             },
 
             clear () {
 
-                this.clearLocalDataSearch();
+                this.clearRackDataSearch();
                 this.list(response => {
                     this.commit(response.data);
-                    this.commitFilter(this.localDataSerch);
+                    this.commitFilter(this.rackDataSearch);
                 });
 
             },
 
-            clearLocalDataSearch () {
+            clearRackDataSearch () {
 
-                this.localDataSerch.build = '';
-                this.localDataSerch.floor = '';
-                this.localDataSerch.local = '';
+                this.rackDataSearch.name = '';
+                this.local = '';
 
             }
 

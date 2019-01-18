@@ -8,7 +8,9 @@ export class RackResource extends Resource {
 
         let query = this.generateQuery(search);
 
-        this._getApi().get(ELEMENT + '?page=' + page + query).then((response) => {
+        let url = this.generateUrl(ELEMENT, page, query);
+
+        this._getApi().get(url).then((response) => {
 
             action(response.data);
 
@@ -19,8 +21,6 @@ export class RackResource extends Resource {
     static create (action, form, errors) {
 
         this._getApi().post('racks', form).then(response => {
-
-            console.log(form);
 
             action(response.data);
 
