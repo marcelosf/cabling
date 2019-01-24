@@ -17,7 +17,13 @@ class CreatePatchesTable extends Migration
 	{
 		Schema::create('patches', function(Blueprint $table) {
             $table->increments('id');
-
+			$table->string('label');
+			$table->integer('number');
+			$table->unsignedInteger('switch_port')->nullable();
+			$table->unsignedInteger('rack_id');
+			$table->foreign('rack_id')->references('id')->on('racks');
+			$table->unsignedInteger('local_id');
+			$table->foreign('local_id')->references('id')->on('locals');
             $table->timestamps();
 		});
 	}
