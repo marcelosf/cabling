@@ -29,7 +29,7 @@
             <blockquote>
                 <div class="chip">Referência: {{ $patch->label }}</div>
                 <div class="chip">Número: {{ $patch->number }}</div>
-                <div class="chip">Local: {{ $patch->local_id }}</div>
+                <div class="chip">Local: {{ $patch->local->build }}-{{ $patch->local->local }}</div>
                 <div class="section"></div>
 
                 <p>Criado em: {{ $patch->created_at->format('d/m/Y') }}</p>
