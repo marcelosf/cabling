@@ -23,4 +23,13 @@ class PatchTest extends TestCase
         $response->assertViewHas('patches');
     }
 
+    public function testShow()
+    {
+        $user = \App\User::find(1);
+
+        $response = $this-actingAs($user)->get('/patches/1');
+        $response->assertStatus(200);
+        $response->assertViewHas('patches');
+    }
+
 }
