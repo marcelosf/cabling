@@ -15,7 +15,9 @@ class PatchTest extends TestCase
      */
     public function testIndex()
     {
-        $response = $this->get('/patches');
+        $user = \App\User::find(1);
+
+        $response = $this->actingAs($user)->get('/patches');
 
         $response->assertStatus(200);
         $response->assertViewHas('patches');
