@@ -20,6 +20,21 @@ class Patch extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'label',
+        'number',
+        'switch_port',
+        'rack_id',
+        'local_id',
+    ];
 
+    public function local()
+    {
+        return $this->belongsTo('App\Entities\Local');
+    }
+
+    public function rack()
+    {
+        return $this->belongsTo('App\Entities\Rack');
+    }
 }
