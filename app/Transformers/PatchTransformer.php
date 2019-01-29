@@ -22,10 +22,12 @@ class PatchTransformer extends TransformerAbstract
     public function transform(Patch $model)
     {
         return [
-            'id'         => (int) $model->id,
-
-            /* place your other model properties here */
-
+            'id' => (int) $model->id,
+            'label' => $model->label,
+            'number' => $model->number,
+            'switch_port' => $model->switch_port,
+            'rack' => $model->rack,
+            'local' => $model->local,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
