@@ -9,8 +9,8 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\PatchCreateRequest;
 use App\Http\Requests\PatchUpdateRequest;
-use App\Repositories\PatchRepository;
 use App\Validators\PatchValidator;
+use App\Repositories\PatchRepositoryEloquent;
 
 /**
  * Class PatchesController.
@@ -35,7 +35,7 @@ class PatchesController extends Controller
      * @param PatchRepository $repository
      * @param PatchValidator $validator
      */
-    public function __construct(PatchRepository $repository, PatchValidator $validator)
+    public function __construct(PatchRepositoryEloquent $repository, PatchValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -49,12 +49,14 @@ class PatchesController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $patches = $this->repository->all();
+        $patches = $this->repository->paginate(10);
+        $allPatches = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
                 'data' => $patches,
+                'all' => $allPatches,
             ]);
         }
 
