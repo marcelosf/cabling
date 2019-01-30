@@ -7,6 +7,7 @@ import LocalFormComponent from './components/Forms/LocalFormComponent';
 import RackFormComponent from './components/Forms/RackFormComponent';
 import RackTableComponent from './components/Rack/RackTableComponent';
 import PatchTableComponent from './components/Patches/PatchTableComponent';
+import PatchFormComponent from './components/Forms/PatchFormComponent';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -40,7 +41,8 @@ Vue.component('localform-component', LocalFormComponent);
 Vue.component('rackform-component', RackFormComponent);
 Vue.component('racktable-component', RackTableComponent);
 Vue.component('patchtable-component', PatchTableComponent);
-
+Vue.component('patchform-component', PatchFormComponent);
+    
 const app = new Vue({
     el: '#app',
     store
