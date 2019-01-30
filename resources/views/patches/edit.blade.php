@@ -20,5 +20,6 @@
 
 @section('content')
 
+    <patchform-component resource='update' id="{{ $patch->id }}"></patchform-component>
 
 @endsection
