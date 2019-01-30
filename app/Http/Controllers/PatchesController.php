@@ -63,6 +63,11 @@ class PatchesController extends Controller
         return view('patches.index', compact('patches'));
     }
 
+    public function create()
+    {
+        return view('patches.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
