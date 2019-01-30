@@ -206,6 +206,6 @@ class PatchesController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message', 'Patch deleted.');
+        return redirect()->route('patches.index')->with('message', 'Patch deleted.');
     }
 }
