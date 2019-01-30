@@ -20,7 +20,7 @@ export class PatchResource extends Resource {
 
     static create (action, form, errors) {
 
-        this._getApi().post('racks', form).then(response => {
+        this._getApi().post('patches', form).then(response => {
 
             action(response.data);
 
@@ -30,7 +30,7 @@ export class PatchResource extends Resource {
 
     static update (actions, form, id, errors) {
 
-        this._getApi().put('racks/' + id, form).then(response => {
+        this._getApi().put('patches/' + id, form).then(response => {
 
             actions(response.data);
 
@@ -40,7 +40,7 @@ export class PatchResource extends Resource {
 
     static show (actions, id, errors) {
 
-        this._getApi().get('racks/' + id).then(response => {
+        this._getApi().get('patches/' + id).then(response => {
 
             actions(response.data);
 
