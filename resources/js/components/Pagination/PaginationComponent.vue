@@ -13,14 +13,21 @@
 </template>
 
 <script>
-    import {LocalResource} from '../resources/LocalResource';
     export default {
+
+        props: ['resource'],
 
         computed: {
 
             pagination () {
 
                 return this.$store.getters['table/all'];
+
+            },
+
+            dataResource () {
+
+                return this.resource;
 
             },
 
@@ -123,7 +130,7 @@
                     page = 1;
                 }
 
-                LocalResource.index(response => {
+                this.dataResource().index(response => {
                     this.$store.commit('table/tableData', response.data);
                 }, page, this.filter);
 
