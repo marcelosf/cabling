@@ -2135,6 +2135,249 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/PatchFormComponent.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resources_PatchResource__ = __webpack_require__("./resources/js/components/resources/PatchResource.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_Messages_mixin__ = __webpack_require__("./resources/js/components/mixins/Messages.mixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocalComboComponent__ = __webpack_require__("./resources/js/components/Forms/LocalComboComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocalComboComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LocalComboComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RackComboComponent__ = __webpack_require__("./resources/js/components/Forms/RackComboComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RackComboComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RackComboComponent__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['resource', 'id'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_Messages_mixin__["a" /* Messages */]],
+
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.resource === 'update') {
+
+            this.getPatch(function (response) {
+
+                _this.form.label = response.label;
+                _this.form.number = response.number;
+                _this.form.switch_port = response.switch_port;
+                _this.form.rack_id = response.rack_id;
+                _this.form.local_id = response.local_id;
+            }, this.id);
+        }
+    },
+    data: function data() {
+
+        return {
+
+            form: {
+                label: '',
+                number: '',
+                switch_port: '',
+                rack_id: '',
+                local_id: null
+            }
+
+        };
+    },
+
+
+    computed: {
+        activated: function activated() {
+
+            if (this.resource === 'update') {
+                return 'active';
+            }
+
+            return '';
+        }
+    },
+
+    methods: {
+        processData: function processData() {
+
+            if (this.resource === 'update') {
+                this.update(this.id);
+                return 'updated';
+            }
+
+            this.store();
+        },
+        store: function store() {
+            var _this2 = this;
+
+            this.getResource().create(function (response) {
+
+                _this2.showMessage(response.message);
+            }, this.form);
+        },
+        update: function update(id) {
+            var _this3 = this;
+
+            this.getResource().update(function (response) {
+
+                _this3.showMessage(response.message);console.log(_this3.form);
+            }, this.form, id);
+        },
+        getPatch: function getPatch(actions, id) {
+
+            this.getResource().show(function (response) {
+                console.log(response);actions(response.data);
+            }, id);
+        },
+        getResource: function getResource() {
+
+            return __WEBPACK_IMPORTED_MODULE_0__resources_PatchResource__["a" /* PatchResource */];
+        }
+    },
+
+    components: {
+        'localcombo-component': __WEBPACK_IMPORTED_MODULE_2__LocalComboComponent___default.a,
+        'rackcombo-component': __WEBPACK_IMPORTED_MODULE_3__RackComboComponent___default.a
+    }
+
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/RackComboComponent.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resources_RackResource__ = __webpack_require__("./resources/js/components/resources/RackResource.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['value'],
+
+    mounted: function mounted() {
+        var _this = this;
+
+        this.getRackList(function (response) {
+            _this.initialize(response);
+        });
+    },
+
+
+    watch: {
+        value: function value(_value) {
+            this.rack_id = _value;
+        }
+    },
+
+    data: function data() {
+        return {
+            rackList: [],
+            rack_id: null
+        };
+    },
+
+
+    methods: {
+        initialize: function initialize(rackList) {
+            this.rackList = rackList;
+        },
+        getRackList: function getRackList(actions) {
+            this.getResource().index(function (response) {
+                actions(response.all.data);
+            });
+        },
+        getResource: function getResource() {
+            return __WEBPACK_IMPORTED_MODULE_0__resources_RackResource__["a" /* RackResource */];
+        },
+        rackOnChange: function rackOnChange() {
+            this.$emit('input', this.rack_id);
+        }
+    }
+
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/RackFormComponent.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -50347,6 +50590,229 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-b7abc3c8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Forms/PatchFormComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-content" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("form", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "input-field col s12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.label,
+                  expression: "form.label"
+                }
+              ],
+              staticClass: "col s12",
+              attrs: { id: "label", type: "text" },
+              domProps: { value: _vm.form.label },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "label", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { class: _vm.activated, attrs: { for: "label" } }, [
+              _vm._v("Referencia")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-field col s12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.number,
+                  expression: "form.number"
+                }
+              ],
+              staticClass: "col s12",
+              attrs: { type: "text", id: "number" },
+              domProps: { value: _vm.form.number },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "number", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { class: _vm.activated, attrs: { for: "number" } }, [
+              _vm._v("Número")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-field col s12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.switch_port,
+                  expression: "form.switch_port"
+                }
+              ],
+              staticClass: "col s12",
+              attrs: { type: "text", id: "switch_port" },
+              domProps: { value: _vm.form.switch_port },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "switch_port", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { class: _vm.activated, attrs: { for: "switch_port" } },
+              [_vm._v("Porta do Switch")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "input-field col s12" },
+            [
+              _c("rackcombo-component", {
+                model: {
+                  value: _vm.form.rack_id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "rack_id", $$v)
+                  },
+                  expression: "form.rack_id"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "input-field col s12" },
+            [
+              _c("localcombo-component", {
+                model: {
+                  value: _vm.form.local_id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "local_id", $$v)
+                  },
+                  expression: "form.local_id"
+                }
+              })
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-action" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn-flat blue-text waves waves-effect",
+          on: { click: _vm.processData }
+        },
+        [
+          _vm._v("\n            Enviar "),
+          _c("i", { staticClass: "material-icons right" }, [_vm._v("send")])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b7abc3c8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-bc6d0f9e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Forms/RackComboComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "input-field col s12" }, [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.rack_id,
+              expression: "rack_id"
+            }
+          ],
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.rack_id = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.rackOnChange
+            ]
+          }
+        },
+        _vm._l(_vm.rackList, function(rack) {
+          return _c("option", { key: rack.id, domProps: { value: rack.id } }, [
+            _vm._v("\n                " + _vm._s(rack.name) + "\n            ")
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c("label", [_vm._v("Rack")])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-bc6d0f9e", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d26b8b7a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Rack/RackTableComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62665,6 +63131,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Rack_RackTableComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_Rack_RackTableComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Patches_PatchTableComponent__ = __webpack_require__("./resources/js/components/Patches/PatchTableComponent.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Patches_PatchTableComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_Patches_PatchTableComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Forms_PatchFormComponent__ = __webpack_require__("./resources/js/components/Forms/PatchFormComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Forms_PatchFormComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_Forms_PatchFormComponent__);
+
 
 
 
@@ -62707,6 +63176,7 @@ Vue.component('localform-component', __WEBPACK_IMPORTED_MODULE_5__components_For
 Vue.component('rackform-component', __WEBPACK_IMPORTED_MODULE_6__components_Forms_RackFormComponent___default.a);
 Vue.component('racktable-component', __WEBPACK_IMPORTED_MODULE_7__components_Rack_RackTableComponent___default.a);
 Vue.component('patchtable-component', __WEBPACK_IMPORTED_MODULE_8__components_Patches_PatchTableComponent___default.a);
+Vue.component('patchform-component', __WEBPACK_IMPORTED_MODULE_9__components_Forms_PatchFormComponent___default.a);
 
 var app = new Vue({
   el: '#app',
@@ -62958,6 +63428,102 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-4fa42959", Component.options)
   } else {
     hotAPI.reload("data-v-4fa42959", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/PatchFormComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/PatchFormComponent.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-b7abc3c8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Forms/PatchFormComponent.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Forms/PatchFormComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b7abc3c8", Component.options)
+  } else {
+    hotAPI.reload("data-v-b7abc3c8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/RackComboComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/RackComboComponent.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-bc6d0f9e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Forms/RackComboComponent.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Forms/RackComboComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-bc6d0f9e", Component.options)
+  } else {
+    hotAPI.reload("data-v-bc6d0f9e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -63478,7 +64044,7 @@ var PatchResource = function (_Resource) {
         key: 'create',
         value: function create(action, form, errors) {
 
-            this._getApi().post('racks', form).then(function (response) {
+            this._getApi().post('patches', form).then(function (response) {
 
                 action(response.data);
             }).catch(errors);
@@ -63487,7 +64053,7 @@ var PatchResource = function (_Resource) {
         key: 'update',
         value: function update(actions, form, id, errors) {
 
-            this._getApi().put('racks/' + id, form).then(function (response) {
+            this._getApi().put('patches/' + id, form).then(function (response) {
 
                 actions(response.data);
             }).catch(errors);
@@ -63496,7 +64062,7 @@ var PatchResource = function (_Resource) {
         key: 'show',
         value: function show(actions, id, errors) {
 
-            this._getApi().get('racks/' + id).then(function (response) {
+            this._getApi().get('patches/' + id).then(function (response) {
 
                 actions(response.data);
             }).catch(errors);
