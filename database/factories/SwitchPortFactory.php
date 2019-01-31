@@ -2,10 +2,11 @@
 
 use Faker\Generator as Faker;
 use App\Entities\SwitchPort as Model;
+use App\Entities\Rack;
 
 $factory->define(Model::class, function (Faker $faker) {
     return [
-        'port_number' => $faker->unique()->randomDigit(),
+        'port_number' => $faker->randomDigit(),
         'poe' => $faker->boolean(),
         'poe_status' => $faker->boolean(),
         'vlan' => $faker->randomNumber(2),
