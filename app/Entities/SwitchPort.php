@@ -33,4 +33,9 @@ class SwitchPort extends Model implements Transformable
         'rack_id',
     ];
 
+    public function rack()
+    {
+        return $this->belongsTo('App\Entities\Rack');
+    }
+
 }
