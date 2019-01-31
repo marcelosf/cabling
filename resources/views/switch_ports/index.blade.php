@@ -14,7 +14,7 @@
 
                 <rackfilter-component class="right"></rackfilter-component>
     
-                <a href="{{ route('switch_port.create') }}" class="btn btn-large btn-flat right">
+                <a href="{{ route('switch-port.create') }}" class="btn btn-large btn-flat right">
                     Novo <i class="material-icons right">add</i>
                 </a>
     
