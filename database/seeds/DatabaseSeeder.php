@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Entities\SwitchPort;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +15,7 @@ class DatabaseSeeder extends Seeder
             LocalsTableSeeder::class,
             RacksTableSeeder::class,
             PatchesTableSeeder::class,
-            SwitchPort::class,
+            SwitchPortTableSeeder::class,
         ]);
     }
 }
