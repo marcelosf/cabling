@@ -2,7 +2,6 @@
 
 @section('scripts')
         <!-- Scripts -->
-        <script src="{{ mix('js/local.js') }}" defer></script>
 @endsection
 
 @section('pageTitle')
@@ -27,7 +26,7 @@
 
     <div class="card">
         <div class="card-content">
-            
+            <switchporttable-component></switchporttable-component>
         </div>
     </div>
 
