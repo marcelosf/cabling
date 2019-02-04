@@ -61,6 +61,12 @@ class SwitchPortsController extends Controller
         return view('switch_ports.index', compact('switchPorts'));
     }
 
+    public function create()
+    {
+        return view('switch_ports.create');
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
