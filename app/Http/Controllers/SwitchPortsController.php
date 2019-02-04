@@ -49,16 +49,16 @@ class SwitchPortsController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $switchPorts = $this->repository->all();
+        $switch_ports = $this->repository->paginate(10);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $switchPorts,
+                'data' => $switch_ports,
             ]);
         }
 
-        return view('switchPorts.index', compact('switchPorts'));
+        return view('switch_ports.index', compact('switchPorts'));
     }
 
     /**
