@@ -37,4 +37,10 @@ class SwitchPortTest extends TestCase
         $response->assertOk();
     }
 
+    public function user_can_access_switch_port_creation()
+    {
+        $response = $this->actingAs($this->user)->get('/switch-port/create');
+        $response->assertOk();
+    }
+
 }   
