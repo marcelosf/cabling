@@ -5,26 +5,25 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
 
 class SwitchPortTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    
+    
+   protected $user;
+
+   protected function setUp()
+   {
+       parent::setUp();
+       $this->user = factory(User::class)->create();
+   }
+
+    /** @test */
+    public function user_can_access_switch_port_list()
     {
-        $this->assertTrue(true);
+        $response = $this->actingAs($this->user)->get('/switch-port');
+        $response->assertOk();
     }
 
-    public function testIndex()
-    {
-        $user = \App\User::find(1);
-
-        $response = $this->actingAs($user)->get('/switch-port');
-
-        $response->assertStatus(200);
-        $response->assertViewHas('switch_port');
-    }
-}
+}   
