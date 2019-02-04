@@ -20,7 +20,7 @@ export class SwitchPortResource extends Resource {
 
     static create (action, form, errors) {
 
-        this._getApi().post('patches', form).then(response => {
+        this._getApi().post(ELEMENT, form).then(response => {
 
             action(response.data);
 
@@ -30,7 +30,7 @@ export class SwitchPortResource extends Resource {
 
     static update (actions, form, id, errors) {
 
-        this._getApi().put('patches/' + id, form).then(response => {
+        this._getApi().put(ELEMENT + '/' + id, form).then(response => {
 
             actions(response.data);
 
@@ -40,7 +40,7 @@ export class SwitchPortResource extends Resource {
 
     static show (actions, id, errors) {
 
-        this._getApi().get('patches/' + id).then(response => {
+        this._getApi().get(ELEMENT + '/' + id).then(response => {
 
             actions(response.data);
 
