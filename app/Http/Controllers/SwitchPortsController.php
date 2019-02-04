@@ -131,9 +131,9 @@ class SwitchPortsController extends Controller
      */
     public function edit($id)
     {
-        $switchPort = $this->repository->find($id);
+        $port = $this->repository->find($id);
 
-        return view('switchPorts.edit', compact('switchPort'));
+        return view('switch_ports.edit', compact('port'));
     }
 
     /**
@@ -155,8 +155,8 @@ class SwitchPortsController extends Controller
             $switchPort = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'SwitchPort updated.',
-                'data'    => $switchPort->toArray(),
+                'message' => 'Porta do Switch Atualizada',
+                'data'    => $switchPort,
             ];
 
             if ($request->wantsJson()) {
