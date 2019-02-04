@@ -56,4 +56,29 @@ class SwitchPortTest extends TestCase
 
     }
 
+    /** @test */
+    public function create_switch_port()
+    {
+
+        $switchPort = [
+            'port_number' => '1',
+            'poe' => 0,
+            'poe_status' => 0,
+            'vlan' => '20',
+            'switch_name' => 'cacilds',
+            'switch_brand' => 'cacilds',
+            'switch_code' => 'cacilds',
+            'stack_name' => 'cacilds',
+            'stack_ip' => '1.0.0.10',
+            'rack_id' => 1,
+        ];
+
+        $uri = '/switch-port';
+
+        $response = $this->actingAs($this->user)->json('POST', $uri, $switchPort);
+        $response->assertOk();
+        $response->assertJson(['message' => 'Porta do switch criada com sucesso']);
+
+    }
+
 }
