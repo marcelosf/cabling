@@ -28,7 +28,7 @@ class SwitchPortTransformer extends TransformerAbstract
             'poe_status' => $model->poe_status,
             'vlan' => $model->vlan,
             'switch_name' => $model->switch_name,
-            'switch_brand' => $model->parent,
+            'switch_brand' => $model->switch_brand,
             'switch_code' => $model->switch_code,
             'stack_name' => $model->stack_name,
             'stack_ip' => $model->stack_ip,
