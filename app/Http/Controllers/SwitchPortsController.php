@@ -79,8 +79,8 @@ class SwitchPortsController extends Controller
             $switchPort = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'SwitchPort created.',
-                'data'    => $switchPort->toArray(),
+                'message' => 'Porta do switch criada com sucesso',
+                'data'    => $switchPort,
             ];
 
             if ($request->wantsJson()) {
