@@ -116,16 +116,16 @@ class SwitchPortsController extends Controller
      */
     public function show($id)
     {
-        $switchPort = $this->repository->find($id);
+        $port = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $switchPort,
+                'data' => $port,
             ]);
         }
 
-        return view('switchPorts.show', compact('switchPort'));
+        return view('switch_ports.show', compact('port'));
     }
 
     /**
