@@ -12,7 +12,9 @@ export class SwitchPortResource extends Resource {
 
         this._getApi().get(url).then((response) => {
 
-            action(response.data);
+            let extracted = this.extractMetaPagination(response.data);
+
+            action(extracted);
 
         }).catch(errors);
 
