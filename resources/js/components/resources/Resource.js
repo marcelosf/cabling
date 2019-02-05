@@ -35,4 +35,18 @@ export class Resource {
     return element;
   }
 
+  static extractMetaPagination (data)
+  {   
+      return {
+        data: {
+          data: data.data.data,
+          count: data.data.meta.pagination.count,
+          current_page: data.data.meta.pagination.current_page,
+          per_page: data.data.meta.pagination.per_page,
+          total: data.data.meta.pagination.total,
+          last_page: data.data.meta.pagination.total_pages -1
+        }
+      }
+  }
+
 }
