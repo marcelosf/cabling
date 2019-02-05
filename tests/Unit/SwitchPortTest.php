@@ -32,18 +32,7 @@ class SwitchPortTest extends TestCase
     /** @test */
     public function update_switch_port_data()
     {
-        $switchPort = [
-            'port_number' => '1',
-            'poe' => 0,
-            'poe_status' => 0,
-            'vlan' => '20',
-            'switch_name' => 'cacilds',
-            'switch_brand' => 'cacilds',
-            'switch_code' => 'cacilds',
-            'stack_name' => 'cacilds',
-            'stack_ip' => '1.0.0.10',
-            'rack_id' => 1,
-        ];
+        $switchPort = $this->getSwitchPortData();
         
         $switchPortUpdated = $switchPort;
         $switchPortUpdated['switch_name'] = 'cacilds_1';
@@ -60,7 +49,30 @@ class SwitchPortTest extends TestCase
     public function create_switch_port()
     {
 
-        $switchPort = [
+        $switchPort = $this->getSwitchPortData();
+
+        $uri = '/switch-port';
+
+        $response = $this->actingAs($this->user)->json('POST', $uri, $switchPort);
+        $response->assertOk();
+        $response->assertJson(['message' => 'Porta do switch criada com sucesso']);
+
+    }
+
+    /** @test */
+    public function show_switch_port()
+    {
+        $s = factory(SwitchPort::class)->create($this->getSwitchPortData());
+        $uri = '/switch-port/' . $s->id;
+
+        $response = $this->actingAs($this->user)->get($uri);
+        $response->assertOk();
+        $response->assertSeeText('cacilds');
+    }
+
+    protected function getSwitchPortData()
+    {
+        return [
             'port_number' => '1',
             'poe' => 0,
             'poe_status' => 0,
@@ -72,13 +84,6 @@ class SwitchPortTest extends TestCase
             'stack_ip' => '1.0.0.10',
             'rack_id' => 1,
         ];
-
-        $uri = '/switch-port';
-
-        $response = $this->actingAs($this->user)->json('POST', $uri, $switchPort);
-        $response->assertOk();
-        $response->assertJson(['message' => 'Porta do switch criada com sucesso']);
-
     }
 
 }
