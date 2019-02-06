@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('racks', 'RacksController')->middleware('cors');
     Route::resource('patches', 'PatchesController')->middleware('cors');
     Route::resource('switch-port', 'SwitchPortsController')->middleware('cors');
+    Route::resource('voice-port', 'VoicePortController')->middleware('cors');
 
 });
 
