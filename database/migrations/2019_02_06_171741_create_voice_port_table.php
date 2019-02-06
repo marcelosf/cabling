@@ -13,12 +13,11 @@ class CreateVoicePortTable extends Migration
      */
     public function up()
     {
-        Schema::create('voice_port', function (Blueprint $table) {
+        Schema::create('voice_ports', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('voiceport_number');
-            $table->string('central');
-            $table->string('distribution');
-            $table->string('voicepanel_number');
+            $table->integer('voiceport_number');
+            $table->integer('central');
+            $table->integer('distribution');
             $table->unsignedInteger('rack_id');
             $table->foreign('rack_id')->references('id')->on('racks')->onDelete('cascade');
             $table->timestamps();
@@ -32,6 +31,6 @@ class CreateVoicePortTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('voice_port');
+        Schema::dropIfExists('voice_ports');
     }
 }
