@@ -205,6 +205,6 @@ class SwitchPortsController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message', 'SwitchPort deleted.');
+        return redirect()->route('switch-port.index')->with('message', 'Porta do switch removida');
     }
 }
