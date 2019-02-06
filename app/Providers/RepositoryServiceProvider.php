@@ -26,6 +26,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\LocalRepository::class, \App\Repositories\LocalRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\RackRepository::class, \App\Repositories\RackRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\PatchRepository::class, \App\Repositories\PatchRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\SwitchPortRepository::class, \App\Repositories\SwitchPortRepositoryEloquent::class);
         //:end-bindings:
     }
 }

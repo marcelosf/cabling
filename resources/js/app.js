@@ -8,6 +8,9 @@ import RackFormComponent from './components/Forms/RackFormComponent';
 import RackTableComponent from './components/Rack/RackTableComponent';
 import PatchTableComponent from './components/Patches/PatchTableComponent';
 import PatchFormComponent from './components/Forms/PatchFormComponent';
+import SwitchPortTableComponent from './components/SwitchPort/SwitchPortTableComponent';
+import SwitchPortFormComponent  from './components/Forms/SwitchPortFormComponent';
+import SwitchPortFilterComponent from './components/Filter/SwitchPortFilterComponent';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -42,7 +45,9 @@ Vue.component('rackform-component', RackFormComponent);
 Vue.component('racktable-component', RackTableComponent);
 Vue.component('patchtable-component', PatchTableComponent);
 Vue.component('patchform-component', PatchFormComponent);
-    
+Vue.component('switchporttable-component', SwitchPortTableComponent);
+Vue.component('switchportform-component', SwitchPortFormComponent);
+Vue.component('switchportfilter-component', SwitchPortFilterComponent);
 const app = new Vue({
     el: '#app',
     store
