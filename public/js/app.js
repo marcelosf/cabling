@@ -1897,6 +1897,136 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Filter/SwitchPortFilterComponent.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resources_SwitchPortResource__ = __webpack_require__("./resources/js/components/resources/SwitchPortResource.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_SearchFilter_mixin__ = __webpack_require__("./resources/js/components/mixins/SearchFilter.mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_SearchFilter_mixin__["a" /* SearchFilter */]],
+
+    mounted: function mounted() {
+
+        this.initialize();
+    },
+    data: function data() {
+
+        return {
+
+            switchDataSearch: {
+
+                port_number: '',
+                switch_name: '',
+                stack_name: ''
+
+            }
+
+        };
+    },
+
+
+    methods: {
+        searchFor: function searchFor() {
+            var _this = this;
+
+            this.list(function (response) {
+                _this.commit(response.data);
+                _this.commitFilter(_this.switchDataSearch);
+            }, this.switchDataSearch);
+        },
+        list: function list(action, search) {
+
+            __WEBPACK_IMPORTED_MODULE_0__resources_SwitchPortResource__["a" /* SwitchPortResource */].index(action, 1, search);
+        },
+        clear: function clear() {
+            var _this2 = this;
+
+            this.clearSwitchDataSearch();
+            this.list(function (response) {
+                _this2.commit(response.data);
+                _this2.commitFilter(_this2.rackDataSearch);
+            });
+        },
+        clearSwitchDataSearch: function clearSwitchDataSearch() {
+
+            this.switchDataSearch.port = '';
+            this.switchDataSearch.switch = '';
+            this.switchDataSearch.stack = '';
+        }
+    }
+
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/LocalComboComponent.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -50685,6 +50815,193 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3fff81c4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Filter/SwitchPortFilterComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "dropdown-content", attrs: { id: "dropdown-search" } },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "input-field col s4" }, [
+              _c("label", { attrs: { for: "search-port" } }, [_vm._v("Porta")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.switchDataSearch.port_number,
+                    expression: "switchDataSearch.port_number"
+                  }
+                ],
+                attrs: { type: "text", name: "search-port", id: "search-port" },
+                domProps: { value: _vm.switchDataSearch.port_number },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.switchDataSearch,
+                      "port_number",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-field col s4" }, [
+              _c("label", { attrs: { for: "search-switch" } }, [
+                _vm._v("Switch")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.switchDataSearch.switch_name,
+                    expression: "switchDataSearch.switch_name"
+                  }
+                ],
+                attrs: {
+                  type: "text",
+                  name: "search-switch",
+                  id: "search-switch"
+                },
+                domProps: { value: _vm.switchDataSearch.switch_name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.switchDataSearch,
+                      "switch_name",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-field col s4" }, [
+              _c("label", { attrs: { for: "search-stack" } }, [
+                _vm._v("Pilha")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.switchDataSearch.stack_name,
+                    expression: "switchDataSearch.stack_name"
+                  }
+                ],
+                attrs: {
+                  type: "text",
+                  name: "search-stack",
+                  id: "search-stack"
+                },
+                domProps: { value: _vm.switchDataSearch.stack_name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.switchDataSearch,
+                      "stack_name",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn waves-effect col s3 left",
+                on: {
+                  click: function($event) {
+                    _vm.searchFor()
+                  }
+                }
+              },
+              [
+                _vm._v("\n\n                   Buscar "),
+                _c("i", { staticClass: "material-icons right" }, [
+                  _vm._v("search")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn waves-effect col s3 white black-text right",
+                on: { click: _vm.clear }
+              },
+              [
+                _vm._v("\n\n                   Limpar "),
+                _c("i", { staticClass: "material-icons right" }, [
+                  _vm._v("clear")
+                ])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown-trigger btn-flat btn-large",
+        attrs: {
+          href: "#",
+          "data-target": "dropdown-search",
+          id: "dropdown-search-button"
+        }
+      },
+      [
+        _vm._v("\n        Busca "),
+        _c("i", { staticClass: "material-icons right" }, [_vm._v("search")])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3fff81c4", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-47d3d203\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/SwitchPort/SwitchPortTableComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63915,6 +64232,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_SwitchPort_SwitchPortTableComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_SwitchPort_SwitchPortTableComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Forms_SwitchPortFormComponent__ = __webpack_require__("./resources/js/components/Forms/SwitchPortFormComponent.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Forms_SwitchPortFormComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_Forms_SwitchPortFormComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Filter_SwitchPortFilterComponent__ = __webpack_require__("./resources/js/components/Filter/SwitchPortFilterComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Filter_SwitchPortFilterComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_Filter_SwitchPortFilterComponent__);
+
 
 
 
@@ -63963,6 +64283,7 @@ Vue.component('patchtable-component', __WEBPACK_IMPORTED_MODULE_8__components_Pa
 Vue.component('patchform-component', __WEBPACK_IMPORTED_MODULE_9__components_Forms_PatchFormComponent___default.a);
 Vue.component('switchporttable-component', __WEBPACK_IMPORTED_MODULE_10__components_SwitchPort_SwitchPortTableComponent___default.a);
 Vue.component('switchportform-component', __WEBPACK_IMPORTED_MODULE_11__components_Forms_SwitchPortFormComponent___default.a);
+Vue.component('switchportfilter-component', __WEBPACK_IMPORTED_MODULE_12__components_Filter_SwitchPortFilterComponent___default.a);
 var app = new Vue({
   el: '#app',
   store: store
@@ -64117,6 +64438,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-e17cfafc", Component.options)
   } else {
     hotAPI.reload("data-v-e17cfafc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Filter/SwitchPortFilterComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Filter/SwitchPortFilterComponent.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3fff81c4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Filter/SwitchPortFilterComponent.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Filter/SwitchPortFilterComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3fff81c4", Component.options)
+  } else {
+    hotAPI.reload("data-v-3fff81c4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -65079,6 +65448,20 @@ var Resource = function () {
 
       return element;
     }
+  }, {
+    key: 'extractMetaPagination',
+    value: function extractMetaPagination(data) {
+      return {
+        data: {
+          data: data.data.data,
+          count: data.data.meta.pagination.count,
+          current_page: data.data.meta.pagination.current_page,
+          per_page: data.data.meta.pagination.per_page,
+          total: data.data.meta.pagination.total,
+          last_page: data.data.meta.pagination.total_pages - 1
+        }
+      };
+    }
   }]);
 
   return Resource;
@@ -65116,6 +65499,7 @@ var SwitchPortResource = function (_Resource) {
     _createClass(SwitchPortResource, null, [{
         key: 'index',
         value: function index(action, page, search, errors) {
+            var _this2 = this;
 
             var query = this.generateQuery(search);
 
@@ -65123,7 +65507,9 @@ var SwitchPortResource = function (_Resource) {
 
             this._getApi().get(url).then(function (response) {
 
-                action(response.data);
+                var extracted = _this2.extractMetaPagination(response.data);
+
+                action(extracted);
             }).catch(errors);
         }
     }, {
