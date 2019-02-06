@@ -70,6 +70,17 @@ class SwitchPortTest extends TestCase
         $response->assertSeeText('cacilds');
     }
 
+    /** @test */
+    public function delete_switch_port()
+    {
+        $s = factory(SwitchPort::class)->create($this->getSwitchPortData());
+        $uri = '/switch-port/' . $s->id;
+
+        $response = $this->actingAs($this->user)->delete($uri);
+        $switch = SwitchPort::find($s->id);
+        $this->assertEquals(null, $switch);
+    }
+
     protected function getSwitchPortData()
     {
         return [
