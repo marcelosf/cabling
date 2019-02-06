@@ -11,7 +11,7 @@
 
                 <span class="btn-large">Lista de Switches</span>
 
-                <rackfilter-component class="right"></rackfilter-component>
+                <switchportfilter-component class="right"></switchportfilter-component>
     
                 <a href="{{ route('switch-port.create') }}" class="btn btn-large btn-flat right">
                     Novo <i class="material-icons right">add</i>
