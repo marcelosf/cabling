@@ -15,6 +15,13 @@ use App\Validators\SwitchPortValidator;
  */
 class SwitchPortRepositoryEloquent extends BaseRepository implements SwitchPortRepository
 {
+   
+    protected $fieldSearchable = [
+        'port_number',
+        'switch_name',
+        'stack_name',
+    ];
+   
     /**
      * Specify Model class name
      *
