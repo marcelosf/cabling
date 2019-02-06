@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             RacksTableSeeder::class,
             PatchesTableSeeder::class,
             SwitchPortTableSeeder::class,
+            VoicePortTableSeeder::class,
         ]);
     }
 }
