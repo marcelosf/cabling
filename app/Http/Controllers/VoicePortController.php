@@ -170,4 +170,26 @@ class VoicePortController extends Controller
         return view('voice_ports.show', compact('voiceport'));
     }
 
+    /**
+     * Delete a VoicePort
+     *
+     * @param  string $id
+     * @return void
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $deleted = $this->repository->delete($id);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'message' => 'Porta removida',
+                'deleted' => $deleted,
+            ]);
+        }
+
+        return redirect()->route('voice-port.index')->with('message', 'Porta removida');
+    }
+
 }
