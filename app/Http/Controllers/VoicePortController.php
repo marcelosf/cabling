@@ -9,6 +9,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Http\Requests\VoicePortUpdateRequest;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
+use App\Http\Requests\VoicePortCreateRequest;
 
 
 class VoicePortController extends Controller
@@ -54,6 +55,36 @@ class VoicePortController extends Controller
         }
 
         return view('voice_ports.index', compact('voice_ports'));
+    }
+    
+    /**
+     * Store new Voice Port
+     *
+     * @param  VoicePortCreateRequest $request
+     * @return void
+     * @return \Illuminate\Http\Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function store(VoicePortCreateRequest $request)
+    {
+        try {
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $voiceport = $this->repository->create($request->all());
+            $response = [
+                'message' => 'Porta criada com sucesso',
+                'data' => $voiceport,
+            ];
+
+            return response()->json($response);
+
+        } catch (ValidatorException $e) {
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => $e->getMessageBag(),
+                ]);
+            }
+        }
     }
 
     /**
