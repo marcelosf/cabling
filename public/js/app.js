@@ -2884,6 +2884,162 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/VoicePortFormComponent.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resources_VoicePortResource__ = __webpack_require__("./resources/js/components/resources/VoicePortResource.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_Messages_mixin__ = __webpack_require__("./resources/js/components/mixins/Messages.mixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RackComboComponent__ = __webpack_require__("./resources/js/components/Forms/RackComboComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RackComboComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RackComboComponent__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['resource', 'id'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_Messages_mixin__["a" /* Messages */]],
+
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.resource === 'update') {
+
+            this.getVoicePort(function (response) {
+
+                _this.form.voiceport_number = response.voiceport_number;
+                _this.form.central = response.central;
+                _this.form.distribution = response.distribution;
+                _this.form.rack_id = response.rack_id;
+            }, this.id);
+        }
+    },
+    data: function data() {
+
+        return {
+
+            form: {
+                voiceport_number: '',
+                central: '',
+                distribution: '',
+                rack_id: ''
+            }
+
+        };
+    },
+
+
+    computed: {
+        activated: function activated() {
+
+            if (this.resource === 'update') {
+                return 'active';
+            }
+
+            return '';
+        }
+    },
+
+    methods: {
+        processData: function processData() {
+
+            if (this.resource === 'update') {
+                this.update(this.id);
+                return 'updated';
+            }
+
+            this.store();
+        },
+        store: function store() {
+            var _this2 = this;
+
+            this.getResource().create(function (response) {
+
+                _this2.showMessage(response.message);
+            }, this.form);
+        },
+        update: function update(id) {
+            var _this3 = this;
+
+            this.getResource().update(function (response) {
+
+                _this3.showMessage(response.message);
+            }, this.form, id);
+        },
+        getVoicePort: function getVoicePort(actions, id) {
+
+            this.getResource().show(function (response) {
+                actions(response.data.data);
+            }, id);
+        },
+        getResource: function getResource() {
+
+            return __WEBPACK_IMPORTED_MODULE_0__resources_VoicePortResource__["a" /* VoicePortResource */];
+        }
+    },
+
+    components: {
+        'rackcombo-component': __WEBPACK_IMPORTED_MODULE_2__RackComboComponent___default.a
+    }
+
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Locals/LocalTableComponent.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3450,6 +3606,109 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getResource: function getResource() {
 
             return __WEBPACK_IMPORTED_MODULE_0__resources_SwitchPortResource__["a" /* SwitchPortResource */];
+        }
+    },
+
+    components: {
+        'pagination': __WEBPACK_IMPORTED_MODULE_1__Pagination_PaginationComponent___default.a
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/VoicePort/VoicePortTableComponent.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resources_VoicePortResource__ = __webpack_require__("./resources/js/components/resources/VoicePortResource.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Pagination_PaginationComponent__ = __webpack_require__("./resources/js/components/Pagination/PaginationComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Pagination_PaginationComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Pagination_PaginationComponent__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        var _this = this;
+
+        this.list(function (response) {
+
+            _this.commitTableData(response);
+        }, 1);
+    },
+    data: function data() {
+
+        return {
+
+            data: []
+
+        };
+    },
+
+
+    computed: {
+        ports: function ports() {
+
+            return this.$store.getters['table/tableData'];
+        }
+    },
+
+    methods: {
+        list: function list(action, page) {
+
+            this.getResource().index(function (response) {
+                console.log(response.data);
+                action(response.data);
+            }, page);
+        },
+        commitTableData: function commitTableData(data) {
+
+            this.$store.commit('table/tableData', data);
+        },
+        getResource: function getResource() {
+
+            return __WEBPACK_IMPORTED_MODULE_0__resources_VoicePortResource__["a" /* VoicePortResource */];
         }
     },
 
@@ -50815,6 +51074,150 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0ebbdf71\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Forms/VoicePortFormComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-content" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "form",
+          { staticClass: "col s12" },
+          [
+            _c("div", { staticClass: "input-field col s12 m12" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.voiceport_number,
+                    expression: "form.voiceport_number"
+                  }
+                ],
+                staticClass: "col s12",
+                attrs: { id: "voiceport_number", type: "text" },
+                domProps: { value: _vm.form.voiceport_number },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "voiceport_number", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { class: _vm.activated, attrs: { for: "voiceport_number" } },
+                [_vm._v("Número da Porta")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-field col s12 m12" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.central,
+                    expression: "form.central"
+                  }
+                ],
+                staticClass: "col s12",
+                attrs: { id: "central", type: "text" },
+                domProps: { value: _vm.form.central },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "central", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { class: _vm.activated, attrs: { for: "central" } }, [
+                _vm._v("Central")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-field col s12 m12" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.distribution,
+                    expression: "form.distribution"
+                  }
+                ],
+                staticClass: "col s12",
+                attrs: { id: "distribution", type: "text" },
+                domProps: { value: _vm.form.distribution },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "distribution", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { class: _vm.activated, attrs: { for: "distribution" } },
+                [_vm._v("Distribuição")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("rackcombo-component", {
+              model: {
+                value: _vm.form.rack_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "rack_id", $$v)
+                },
+                expression: "form.rack_id"
+              }
+            })
+          ],
+          1
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-action" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn-flat blue-text waves waves-effect",
+          on: { click: _vm.processData }
+        },
+        [
+          _vm._v("\n            Enviar "),
+          _c("i", { staticClass: "material-icons right" }, [_vm._v("send")])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0ebbdf71", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3fff81c4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Filter/SwitchPortFilterComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51447,6 +51850,89 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-481df669", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4c7a6b4b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/VoicePort/VoicePortTableComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("table", { staticClass: "highlight" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.ports, function(port) {
+            return _c("tr", { key: port.id }, [
+              _c("td", [_vm._v(_vm._s(port.voiceport_number))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(port.central))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(port.distribution))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(port.rack))]),
+              _vm._v(" "),
+              _c("td", [
+                _c("a", { attrs: { href: "/voice-port/" + port.id } }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("subject")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  { attrs: { href: "/voice-port/" + port.id + "/edit" } },
+                  [_c("i", { staticClass: "material-icons" }, [_vm._v("edit")])]
+                )
+              ])
+            ])
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c("pagination", { attrs: { resource: _vm.getResource } })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Porta")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Central")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Distribuição")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Rack")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Mais")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Editar")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4c7a6b4b", module.exports)
   }
 }
 
@@ -64234,6 +64720,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Forms_SwitchPortFormComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_Forms_SwitchPortFormComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Filter_SwitchPortFilterComponent__ = __webpack_require__("./resources/js/components/Filter/SwitchPortFilterComponent.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Filter_SwitchPortFilterComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_Filter_SwitchPortFilterComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_VoicePort_VoicePortTableComponent__ = __webpack_require__("./resources/js/components/VoicePort/VoicePortTableComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_VoicePort_VoicePortTableComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_VoicePort_VoicePortTableComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Forms_VoicePortFormComponent__ = __webpack_require__("./resources/js/components/Forms/VoicePortFormComponent.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Forms_VoicePortFormComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_Forms_VoicePortFormComponent__);
+
+
 
 
 
@@ -64284,6 +64776,9 @@ Vue.component('patchform-component', __WEBPACK_IMPORTED_MODULE_9__components_For
 Vue.component('switchporttable-component', __WEBPACK_IMPORTED_MODULE_10__components_SwitchPort_SwitchPortTableComponent___default.a);
 Vue.component('switchportform-component', __WEBPACK_IMPORTED_MODULE_11__components_Forms_SwitchPortFormComponent___default.a);
 Vue.component('switchportfilter-component', __WEBPACK_IMPORTED_MODULE_12__components_Filter_SwitchPortFilterComponent___default.a);
+Vue.component('voiceporttable-component', __WEBPACK_IMPORTED_MODULE_13__components_VoicePort_VoicePortTableComponent___default.a);
+Vue.component('voiceportform-component', __WEBPACK_IMPORTED_MODULE_14__components_Forms_VoicePortFormComponent___default.a);
+
 var app = new Vue({
   el: '#app',
   store: store
@@ -64785,6 +65280,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/js/components/Forms/VoicePortFormComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/Forms/VoicePortFormComponent.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0ebbdf71\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/Forms/VoicePortFormComponent.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Forms/VoicePortFormComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0ebbdf71", Component.options)
+  } else {
+    hotAPI.reload("data-v-0ebbdf71", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Locals/LocalTableComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -65014,6 +65557,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-47d3d203", Component.options)
   } else {
     hotAPI.reload("data-v-47d3d203", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/js/components/VoicePort/VoicePortTableComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/VoicePort/VoicePortTableComponent.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4c7a6b4b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/VoicePort/VoicePortTableComponent.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/VoicePort/VoicePortTableComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4c7a6b4b", Component.options)
+  } else {
+    hotAPI.reload("data-v-4c7a6b4b", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -65458,7 +66049,7 @@ var Resource = function () {
           current_page: data.data.meta.pagination.current_page,
           per_page: data.data.meta.pagination.per_page,
           total: data.data.meta.pagination.total,
-          last_page: data.data.meta.pagination.total_pages - 1
+          last_page: data.data.meta.pagination.total_pages
         }
       };
     }
@@ -65542,6 +66133,83 @@ var SwitchPortResource = function (_Resource) {
     }]);
 
     return SwitchPortResource;
+}(__WEBPACK_IMPORTED_MODULE_0__Resource__["a" /* Resource */]);
+
+/***/ }),
+
+/***/ "./resources/js/components/resources/VoicePortResource.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VoicePortResource; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Resource__ = __webpack_require__("./resources/js/components/resources/Resource.js");
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var ELEMENT = 'voice-port';
+
+var VoicePortResource = function (_Resource) {
+    _inherits(VoicePortResource, _Resource);
+
+    function VoicePortResource() {
+        _classCallCheck(this, VoicePortResource);
+
+        return _possibleConstructorReturn(this, (VoicePortResource.__proto__ || Object.getPrototypeOf(VoicePortResource)).apply(this, arguments));
+    }
+
+    _createClass(VoicePortResource, null, [{
+        key: 'index',
+        value: function index(action, page, search, errors) {
+            var _this2 = this;
+
+            var query = this.generateQuery(search);
+
+            var url = this.generateUrl(ELEMENT, page, query);
+
+            this._getApi().get(url).then(function (response) {
+
+                var extracted = _this2.extractMetaPagination(response.data);
+
+                action(extracted);
+            }).catch(errors);
+        }
+    }, {
+        key: 'create',
+        value: function create(action, form, errors) {
+
+            this._getApi().post(ELEMENT, form).then(function (response) {
+
+                action(response.data);
+            }).catch(errors);
+        }
+    }, {
+        key: 'update',
+        value: function update(actions, form, id, errors) {
+
+            this._getApi().put(ELEMENT + '/' + id, form).then(function (response) {
+
+                actions(response.data);
+            }).catch(errors);
+        }
+    }, {
+        key: 'show',
+        value: function show(actions, id, errors) {
+
+            this._getApi().get(ELEMENT + '/' + id).then(function (response) {
+
+                actions(response.data);
+            }).catch(errors);
+        }
+    }]);
+
+    return VoicePortResource;
 }(__WEBPACK_IMPORTED_MODULE_0__Resource__["a" /* Resource */]);
 
 /***/ }),
