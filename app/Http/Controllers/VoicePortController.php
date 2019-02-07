@@ -56,6 +56,16 @@ class VoicePortController extends Controller
 
         return view('voice_ports.index', compact('voice_ports'));
     }
+
+    /**
+     * Create view
+     *
+     * @return void
+     */
+    public function create()
+    {
+        return view('voice_ports.create');
+    }
     
     /**
      * Store new Voice Port
@@ -157,7 +167,7 @@ class VoicePortController extends Controller
             ]);
         }
 
-        return view('voice_ports.show', compact('port'));
+        return view('voice_ports.show', compact('voiceport'));
     }
 
 }
