@@ -58,10 +58,11 @@ class VoicePortTest extends TestCase
 
     public function testCreate()
     {
-        $uri = '/voice-port/create';
+        $uri = '/voice-port';
 
         $response = $this->actingAs($this->user)->json('POST', $uri, $this->getVoice());
         $response->assertOk();
+        $response->assertJson(['message' => 'Porta criada com sucesso']);
         $response->assertJsonFragment($this->getVoice());
     }
 
