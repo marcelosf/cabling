@@ -44,7 +44,7 @@ export class Resource {
           current_page: data.data.meta.pagination.current_page,
           per_page: data.data.meta.pagination.per_page,
           total: data.data.meta.pagination.total,
-          last_page: data.data.meta.pagination.total_pages -1
+          last_page: data.data.meta.pagination.total_pages
         }
       }
   }
