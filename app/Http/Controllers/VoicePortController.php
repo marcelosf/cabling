@@ -108,4 +108,25 @@ class VoicePortController extends Controller
         
     }
 
+    /**
+     * Show view
+     *
+     * @param string $id
+     * @return void
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $voiceport = $this->repository->find($id);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' => $voiceport,
+            ]);
+        }
+
+        return view('voice_ports.show', compact('port'));
+    }
+
 }
