@@ -20,12 +20,12 @@
                     <td>{{ port.distribution }}</td>
                     <td>{{ port.rack }}</td>
                     <td>
-                        <a :href="'/switch-port/' + port.id">
+                        <a :href="'/voice-port/' + port.id">
                             <i class="material-icons">subject</i>
                         </a>
                     </td>
                     <td>
-                        <a :href="'/switch-port/' + port.id + '/edit'">
+                        <a :href="'/voice-port/' + port.id + '/edit'">
                             <i class="material-icons">edit</i>
                         </a>
                     </td>
