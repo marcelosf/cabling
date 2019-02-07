@@ -12,6 +12,7 @@ import SwitchPortTableComponent from './components/SwitchPort/SwitchPortTableCom
 import SwitchPortFormComponent  from './components/Forms/SwitchPortFormComponent';
 import SwitchPortFilterComponent from './components/Filter/SwitchPortFilterComponent';
 import VoicePortTableComponent from './components/VoicePort/VoicePortTableComponent';
+import VoicePortFormComponent from './components/Forms/VoicePortFormComponent';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -50,6 +51,8 @@ Vue.component('switchporttable-component', SwitchPortTableComponent);
 Vue.component('switchportform-component', SwitchPortFormComponent);
 Vue.component('switchportfilter-component', SwitchPortFilterComponent);
 Vue.component('voiceporttable-component', VoicePortTableComponent);
+Vue.component('voiceportform-component', VoicePortFormComponent);
+
 const app = new Vue({
     el: '#app',
     store
