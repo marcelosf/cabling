@@ -66,6 +66,15 @@ class VoicePortTest extends TestCase
         $response->assertJsonFragment($this->getVoice());
     }
 
+    public function testDestroy()
+    {
+        $uri = '/voice-port/' . $this->voiceport->id;
+
+        $response = $this->actingAs($this->user)->delete($uri);
+        $v = VoicePort::find($this->voiceport->id);
+        $this->assertEquals(null, $v);
+    }
+
     protected function getVoice()
     {
         return [
