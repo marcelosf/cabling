@@ -47,6 +47,15 @@ class VoicePortTest extends TestCase
         $response->assertOk();
     }
 
+    public function testShow()
+    {
+        $uri = '/voice-port/' . $this->voiceport->id;
+
+        $response = $this->actingAs($this->user)->json('GET', $uri);
+        $response->assertOk();
+        $response->assertJson(['data' => ['data' => []]]);
+    }
+
     protected function getVoice()
     {
         return [
