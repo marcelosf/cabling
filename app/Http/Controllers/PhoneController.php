@@ -4,9 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Entities\Phone;
 use Illuminate\Http\Request;
+use App\Repositories\PhoneRepositoryEloquent;
+use App\Validators\PhoneValidator;
+use Prettus\Repository\Criteria\RequestCriteria;
 
 class PhoneController extends Controller
 {
+    
+    /**
+     * @var PhoneRepository
+     */
+    protected $repository;
+
+    /**
+     * @var PhoneValidator
+     */
+    protected $validator;
+    
+    /**
+     * Phone Controller constructor
+     *
+     * @param PhoneRepositoryEloquent $repository
+     * @param PhoneValidator $validator
+     */
+    public function __construct(PhoneRepositoryEloquent $repository, PhoneValidator $validator)
+    {
+        $this->repository = $repository;
+        $this->validator = $validator;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +40,16 @@ class PhoneController extends Controller
      */
     public function index()
     {
-        //
+        $this->repository->pushCriteria(app(RequestCriteria::class));
+        $phones = $this->repository->paginate(10);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' => $phones,
+            ]);
+        }
+
+        return view('phones.index', compact('phones'));
     }
 
     /**
