@@ -14,17 +14,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="patch in patches" :key="patch.id">
-                    <td>{{ patch.label }}</td>
-                    <td>{{ patch.local_id }}</td>
-                    <td>{{ patch.switch_port }}</td>
+                <tr v-for="phone in phones" :key="phone.id">
+                    <td>{{ phone.number }}</td>
+                    <td>{{ phone.category }}</td>
+                    <td>{{ phone.voicepanel }}</td>
+                    <td>{{ phone.switchport }}</td>
                     <td>
-                        <a :href="'/phones/' + patch.id">
+                        <a :href="'/phones/' + phone.id">
                             <i class="material-icons">subject</i>
                         </a>
                     </td>
                     <td>
-                        <a :href="'/phones/' + patch.id + '/edit'">
+                        <a :href="'/phones/' + phone.id + '/edit'">
                             <i class="material-icons">edit</i>
                         </a>
                     </td>
@@ -67,7 +68,7 @@
 
         computed: {
 
-            patches () {
+            phones () {
                 
                 return this.$store.getters['table/tableData'];
 
@@ -80,7 +81,7 @@
             list (action, page) {
 
                 this.getResource().index(response => {
-                    console.log(response);
+                    
                     action(response.data);
 
                 }, page);

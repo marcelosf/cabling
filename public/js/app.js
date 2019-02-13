@@ -3415,6 +3415,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3431,14 +3432,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    patches: function patches() {
+    phones: function phones() {
       return this.$store.getters['table/tableData'];
     }
   },
   methods: {
     list: function list(action, page) {
       this.getResource().index(function (response) {
-        console.log(response);
         action(response.data);
       }, page);
     },
@@ -52873,16 +52873,18 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.patches, function(patch) {
-            return _c("tr", { key: patch.id }, [
-              _c("td", [_vm._v(_vm._s(patch.label))]),
+          _vm._l(_vm.phones, function(phone) {
+            return _c("tr", { key: phone.id }, [
+              _c("td", [_vm._v(_vm._s(phone.number))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(patch.local_id))]),
+              _c("td", [_vm._v(_vm._s(phone.category))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(patch.switch_port))]),
+              _c("td", [_vm._v(_vm._s(phone.voicepanel))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(phone.switchport))]),
               _vm._v(" "),
               _c("td", [
-                _c("a", { attrs: { href: "/phones/" + patch.id } }, [
+                _c("a", { attrs: { href: "/phones/" + phone.id } }, [
                   _c("i", { staticClass: "material-icons" }, [
                     _vm._v("subject")
                   ])
@@ -52890,7 +52892,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", [
-                _c("a", { attrs: { href: "/phones/" + patch.id + "/edit" } }, [
+                _c("a", { attrs: { href: "/phones/" + phone.id + "/edit" } }, [
                   _c("i", { staticClass: "material-icons" }, [_vm._v("edit")])
                 ])
               ])
