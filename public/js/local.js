@@ -36,12 +36,32 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -59,6 +79,7 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
@@ -66,97 +87,99 @@
 /******/ ({
 
 /***/ "./resources/js/TableFilter.js":
+/*!*************************************!*\
+  !*** ./resources/js/TableFilter.js ***!
+  \*************************************/
+/*! exports provided: TableFilter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TableFilter; });
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TableFilter", function() { return TableFilter; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TableFilter = function () {
-    function TableFilter() {
-        _classCallCheck(this, TableFilter);
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var TableFilter =
+/*#__PURE__*/
+function () {
+  function TableFilter() {
+    _classCallCheck(this, TableFilter);
+  }
+
+  _createClass(TableFilter, [{
+    key: "serializeFormValuesFrom",
+    value: function serializeFormValuesFrom(formId) {
+      if (formId) {
+        return $(formId).serializeArray();
+      }
+
+      return null;
     }
+  }, {
+    key: "getSearchUrlFrom",
+    value: function getSearchUrlFrom(serializedValues, path) {
+      if (serializedValues) {
+        return this._extractQueriesFrom(serializedValues);
+      }
 
-    _createClass(TableFilter, [{
-        key: 'serializeFormValuesFrom',
-        value: function serializeFormValuesFrom(formId) {
+      return null;
+    }
+  }, {
+    key: "_extractQueriesFrom",
+    value: function _extractQueriesFrom(serializedValues) {
+      var query = '?search=';
 
-            if (formId) {
+      if (serializedValues) {
+        serializedValues.forEach(function (element) {
+          if (element.value) {
+            query = query + element.name + ':' + element.value + ';';
+          }
+        });
+      }
 
-                return $(formId).serializeArray();
-            }
+      return query;
+    }
+  }]);
 
-            return null;
-        }
-    }, {
-        key: 'getSearchUrlFrom',
-        value: function getSearchUrlFrom(serializedValues, path) {
-
-            if (serializedValues) {
-
-                return this._extractQueriesFrom(serializedValues);
-            }
-
-            return null;
-        }
-    }, {
-        key: '_extractQueriesFrom',
-        value: function _extractQueriesFrom(serializedValues) {
-
-            var query = '?search=';
-
-            if (serializedValues) {
-
-                serializedValues.forEach(function (element) {
-
-                    if (element.value) {
-
-                        query = query + element.name + ':' + element.value + ';';
-                    }
-                });
-            }
-
-            return query;
-        }
-    }]);
-
-    return TableFilter;
+  return TableFilter;
 }();
 
 /***/ }),
 
 /***/ "./resources/js/locals/local.js":
+/*!**************************************!*\
+  !*** ./resources/js/locals/local.js ***!
+  \**************************************/
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TableFilter__ = __webpack_require__("./resources/js/TableFilter.js");
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TableFilter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TableFilter */ "./resources/js/TableFilter.js");
 
 $(document).ready(function () {
-
-    $('#search-form').on('submit', function (event) {
-
-        var tableFilter = new __WEBPACK_IMPORTED_MODULE_0__TableFilter__["a" /* TableFilter */]();
-
-        var serializedForm = tableFilter.serializeFormValuesFrom(this);
-
-        var searchUrl = tableFilter.getSearchUrlFrom(serializedForm);
-
-        window.location.href = searchUrl;
-
-        event.preventDefault();
-    });
+  $('#search-form').on('submit', function (event) {
+    var tableFilter = new _TableFilter__WEBPACK_IMPORTED_MODULE_0__["TableFilter"]();
+    var serializedForm = tableFilter.serializeFormValuesFrom(this);
+    var searchUrl = tableFilter.getSearchUrlFrom(serializedForm);
+    window.location.href = searchUrl;
+    event.preventDefault();
+  });
 });
 
 /***/ }),
 
 /***/ 1:
+/*!********************************************!*\
+  !*** multi ./resources/js/locals/local.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/js/locals/local.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/locals/local.js */"./resources/js/locals/local.js");
 
 
 /***/ })

@@ -11,21 +11,25 @@
     },
     "devDependencies": {
         "axios": "^0.18",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.3.0",
         "browser-sync": "^2.26.3",
-        "browser-sync-webpack-plugin": "^2.0.1",
+        "browser-sync-webpack-plugin": "^2.2.2",
         "cross-env": "^5.2.0",
-        "expect": "^24.0.0",
+        "expect": "^24.1.0",
         "jquery": "^3.2",
         "jsdom-global": "^3.0.2",
-        "laravel-mix": "^2.0",
+        "laravel-mix": "^4.0.14",
         "lodash": "^4.17.5",
         "moxios": "^0.4.0",
-        "popper.js": "^1.12",
-        "vue": "^2.5.7"
+        "popper.js": "^1.14.7",
+        "resolve-url-loader": "2.3.1",
+        "sass": "^1.17.0",
+        "sass-loader": "7.*",
+        "vue": "^2.6.6",
+        "vue-template-compiler": "^2.6.6"
     },
     "dependencies": {
-        "materialize-css": "^1.0.0-rc.2",
-        "vuex": "^3.0.1"
+        "materialize-css": "^1.0.0",
+        "vuex": "^3.1.0"
     }
 }
