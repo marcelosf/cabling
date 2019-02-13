@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
+use App\Entities\Phone;
 
 class PhoneTest extends TestCase
 {
@@ -20,6 +21,12 @@ class PhoneTest extends TestCase
     public function testIndex()
     {
         $response = $this->actingAs($this->user)->get('/phones');
+        $response->assertOk();
+    }
+
+    public function createEdit()
+    {
+        $response = $this->actingAs($this->user)->get('/phones/create');
         $response->assertOk();
     }
 }
