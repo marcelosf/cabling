@@ -62,7 +62,7 @@ class PhoneController extends Controller
      */
     public function create()
     {
-        //
+        return view('phones.create');
     }
 
     /**
