@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Repositories\PhoneRepositoryEloquent;
 use App\Validators\PhoneValidator;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
+use App\Http\Requests\PhoneCreateRequest;
 
 class PhoneController extends Controller
 {
@@ -68,9 +71,29 @@ class PhoneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PhoneCreateRequest $request)
     {
-        //
+        try {
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $phone = $this->repository->create($request->all());
+
+            $response = [
+                'message' => 'Ramal criado com sucesso',
+                'data' => $phone,
+            ];
+
+            if (request()->wantsJson()) {
+                return response()->json($response);
+            }
+
+        } catch (ValidatorException $e) {
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => $e->getMessageBag(),
+                ]);
+            }
+        }
     }
 
     /**
