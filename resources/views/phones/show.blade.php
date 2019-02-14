@@ -52,7 +52,7 @@
                 <form action="{{ route('phones.destroy', ['id' => $phone['data']['id']]) }}" method="POST">
                     @csrf    
                     @method('DELETE')
-                    <button class="btn-flat red-text waves-effect" type="submit">
+                    <button class="btn-flat red-text waves-effect" type="submit" dusk="delete">
                         <i class="material-icons right">clear</i>Remover
                     </button>
                 </form>
