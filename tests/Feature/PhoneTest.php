@@ -12,10 +12,13 @@ class PhoneTest extends TestCase
 {
     protected $user;
 
+    protected $phone;
+
     protected function setUp()
     {
         parent::setUp();
         $this->user = factory(User::class)->create();
+        $this->phone = factory(Phone::class)->create();
     }
 
     public function testIndex()
@@ -32,10 +35,17 @@ class PhoneTest extends TestCase
 
     public function testEdit()
     {
-        $phone = factory(Phone::class)->create();
-        $uri = '/phones/' . $phone->id . '/edit';
+        $uri = '/phones/' . $this->phone->id . '/edit';
 
         $response = $this->actingAs($this->user)->get($uri);
         $response->assertOk();
+    }
+
+    public function testShow()
+    {
+        $uri = '/phones/' . $this->phone->id;
+
+        $response = $this->actingAs($this->user)->get($uri);
+        $response->assertSee('Detalhes do Ramal');
     }
 }

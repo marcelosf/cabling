@@ -14,10 +14,13 @@ class PhoneTest extends TestCase
 {
     protected $user;
 
+    protected $phone;
+
     protected function setUp()
     {
         parent::setUp();
         $this->user = factory(User::class)->create();
+        $this->phone = $this->dummyPhone();
     }
 
     public function testIndex()
@@ -29,7 +32,7 @@ class PhoneTest extends TestCase
 
     public function testStore()
     {
-        $data = $this->dummyPhone();
+        $data = $this->phone;
 
         $response = $this->actingAs($this->user)->json('POST', '/phones', $data);
         $response->assertOk();
@@ -38,11 +41,32 @@ class PhoneTest extends TestCase
 
     public function testUpdate()
     {
-        $data = $this->dummyPhone();
+        $data = $this->phone;
         
         $response = $this->actingAs($this->user)->json('PUT', '/phones/1', $data);
         $response->assertOk();
         $response->assertJsonFragment($data);
+    }
+
+    public function testShow()
+    {
+        $phone = factory(Phone::class)->create($this->phone);
+        $uri = '/phones/' . $phone->id;
+
+        $response = $this->actingAs($this->user)->json('GET', $uri);
+        $response->assertOk();
+        $response->assertJsonFragment($this->phone);
+    }
+
+    public function testDestroy()
+    {
+        $phone = factory(Phone::class)->create();
+        $uri = '/phones/' . $phone->id;
+
+        $response = $this->actingAs($this->user)->delete($uri);
+        $response->assertStatus(302);
+        $p = Phone::find($phone->id);
+        $this->assertEquals(null, $p);
     }
 
     private function dummyPhone()
