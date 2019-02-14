@@ -112,6 +112,8 @@ class PhoneController extends Controller
                 'data' => $phone,
             ]);
         }
+
+        return view('phones.show', compact('phone'));
     }
 
     /**
@@ -164,8 +166,18 @@ class PhoneController extends Controller
      * @param  \App\Entities\Phone  $phone
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Phone $phone)
+    public function destroy($phone)
     {
-        //
+        $deleted = $this->repository->delete($phone);
+
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'message' => 'Ramal removido',
+                'deleted' => $deleted,
+            ]);
+        }
+
+        return redirect()->route('phones.index')->with('message', 'Ramal removido');
     }
 }
