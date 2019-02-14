@@ -36,6 +36,15 @@ class PhoneTest extends TestCase
         $response->assertJsonFragment($data);
     }
 
+    public function testUpdate()
+    {
+        $data = $this->dummyPhone();
+        
+        $response = $this->actingAs($this->user)->json('PUT', '/phones/1', $data);
+        $response->assertOk();
+        $response->assertJsonFragment($data);
+    }
+
     private function dummyPhone()
     {
         $voicepanel = factory(VoicePort::class)->create();

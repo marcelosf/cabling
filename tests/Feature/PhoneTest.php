@@ -24,9 +24,18 @@ class PhoneTest extends TestCase
         $response->assertOk();
     }
 
-    public function createEdit()
+    public function testCreate()
     {
         $response = $this->actingAs($this->user)->get('/phones/create');
+        $response->assertOk();
+    }
+
+    public function testEdit()
+    {
+        $phone = factory(Phone::class)->create();
+        $uri = '/phones/' . $phone->id . '/edit';
+
+        $response = $this->actingAs($this->user)->get($uri);
         $response->assertOk();
     }
 }
