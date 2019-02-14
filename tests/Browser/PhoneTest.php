@@ -40,11 +40,13 @@ class PhoneTest extends DuskTestCase
 
     public function testEdit() 
     {
+        $p = factory(Phone::class)->create();
+        $uri = '/phones/' . $p->id . '/edit';
         $phone = $this->dummyPhone();
 
-        $this->browse(function ($first) use($phone) {
+        $this->browse(function ($first) use($phone, $uri) {
             $first->loginAs(User::find(1))
-                ->visit('/phones/1/edit')
+                ->visit($uri)
                 ->type('number', $phone['number'])
                 ->type('category', $phone['category'])
                 ->type('voicepanel_id', $phone['voicepanel_id'])
@@ -53,6 +55,20 @@ class PhoneTest extends DuskTestCase
                 ->waitForText('Ramal atualizado com sucesso')
 
                 ->assertSee('Ramal atualizado com sucesso');
+        });
+    }
+
+    public function testDelete()
+    {
+
+        $phone = factory(Phone::class)->create($this->dummyPhone());
+        $uri = '/phones/' . $phone->id;
+
+        $this->browse(function ($first) use($uri, $phone) {
+            $first->loginAs(User::find(1))
+                ->visit($uri)
+                ->press('@delete')
+                ->assertDontSee($phone->number);
         });
     }
 
