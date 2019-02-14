@@ -10,6 +10,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\PhoneCreateRequest;
+use App\Http\Requests\PhoneUpdateRequest;
 
 class PhoneController extends Controller
 {
@@ -102,9 +103,15 @@ class PhoneController extends Controller
      * @param  \App\Entities\Phone  $phone
      * @return \Illuminate\Http\Response
      */
-    public function show(Phone $phone)
+    public function show($phone)
     {
-        //
+        $phone = $this->repository->find($phone);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' => $phone,
+            ]);
+        }
     }
 
     /**
@@ -115,7 +122,9 @@ class PhoneController extends Controller
      */
     public function edit(Phone $phone)
     {
-        //
+        $phone = $this->repository->find($phone);
+
+        return view('phones.edit', compact('phone'));
     }
 
     /**
@@ -125,9 +134,28 @@ class PhoneController extends Controller
      * @param  \App\Entities\Phone  $phone
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Phone $phone)
+    public function update(PhoneUpdateRequest $request, $id)
     {
-        //
+        try {
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $phone = $this->repository->update($request->all(), $id);
+
+            $response = [
+                'message' => 'Ramal atualizado com sucesso',
+                'data' => $phone,
+            ];
+
+            if (request()->wantsJson()) {
+                return response()->json($response);
+            }
+        } catch (ValidatorException $e) {
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => $e->getMessageBag(),
+                ]);
+            }
+        }
     }
 
     /**
