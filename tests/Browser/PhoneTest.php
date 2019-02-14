@@ -47,12 +47,12 @@ class PhoneTest extends DuskTestCase
                 ->visit('/phones/1/edit')
                 ->type('number', $phone['number'])
                 ->type('category', $phone['category'])
-                ->select('voicepanel_id', $phone['voicepanel_id'])
-                ->select('switchport_id', $phone['switchport_id'])
-                ->click('@send')
+                ->type('voicepanel_id', $phone['voicepanel_id'])
+                ->type('switchport_id', $phone['switchport_id'])
+                ->press('@send')
+                ->waitForText('Ramal atualizado com sucesso')
 
-                ->assertVue('toast.html', 'Ramal atualizado com sucesso', '@phoneform-component');
-            
+                ->assertSee('Ramal atualizado com sucesso');
         });
     }
 
