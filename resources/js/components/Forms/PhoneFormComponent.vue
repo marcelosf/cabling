@@ -69,12 +69,10 @@
             if (this.resource === 'update') {
 
                 this.getPhone(response => {
-
-                    this.form.voiceport_number = response.voiceport_number;
-                    this.form.central = response.central;
-                    this.form.distribution = response.distribution;
-                    this.form.rack_id = response.rack_id;   
-
+                    this.form.number = response.number;
+                    this.form.category = response.category;
+                    this.form.voicepanel_id = response.voicepanel_id;
+                    this.form.switchport_id = response.switchport_id;
                 }, this.id);
             }
 
