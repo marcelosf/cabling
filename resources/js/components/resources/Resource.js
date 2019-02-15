@@ -37,9 +37,16 @@ export class Resource {
 
   static extractMetaPagination (data)
   {   
+      let all = null;
+      
+      if (data.all) {
+        all = data.all;
+      }
+
       return {
         data: {
           data: data.data.data,
+          all: all,
           count: data.data.meta.pagination.count,
           current_page: data.data.meta.pagination.current_page,
           per_page: data.data.meta.pagination.per_page,
