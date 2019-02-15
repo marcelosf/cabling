@@ -24,8 +24,10 @@
 
                    <div class="input-field col s12 m12">
 
-                       <input id="voicepanel_id" class="col s12" type="text" name="voicepanel_id" v-model="form.voicepanel_id">
-                       <label :class="activated" for="voicepanel_id">Voice Panel</label>
+                       <voicecombo-component 
+                            v-model="form.voicepanel_id"
+                            :rack_id="form.rack_id">
+                        </voicecombo-component>
 
                    </div>
 
@@ -58,7 +60,7 @@
     
     import {PhoneResource} from '../resources/PhoneResource';
     import {Messages} from '../mixins/Messages.mixin';
-
+    import VoicePortComboComponent from './VoicePortComboComponent';
     export default {
 
         props:  ['resource', 'id'],
@@ -68,11 +70,12 @@
             
             if (this.resource === 'update') {
 
-                this.getPhone(response => {
+                this.getPhone(response => { console.log(response)
                     this.form.number = response.number;
                     this.form.category = response.category;
                     this.form.voicepanel_id = response.voicepanel_id;
                     this.form.switchport_id = response.switchport_id;
+                    this.form.rack_id = response.rack_id;
                 }, this.id);
             }
 
@@ -86,7 +89,8 @@
                     number: '',
                     category: '',
                     voicepanel_id: '',
-                    switchport_id: ''
+                    switchport_id: '',
+                    rack_id: null
                 },
 
             }
@@ -154,6 +158,10 @@
 
             }
 
+        },
+
+        components: {
+            'voicecombo-component': VoicePortComboComponent
         }
         
     }
