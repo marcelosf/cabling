@@ -1,7 +1,7 @@
 <template> 
     <div>
         <div class="input-field col s12">
-            <select v-model="rack_id" @change="rackOnChange">
+            <select v-model="rack_id" @change="rackOnChange" id="rack" name="rack_id">
                 <option v-for="rack in rackList" :key="rack.id" :value="rack.id">
                     {{ rack.name }}
                 </option>
@@ -22,6 +22,9 @@ export default {
     mounted () {
         this.getRackList(response => {
             this.initialize(response);
+            setTimeout(() => {
+                this.selectInit();
+            }, 500)
         });
     },
 
@@ -56,6 +59,11 @@ export default {
 
         rackOnChange () {
             this.$emit('input', this.rack_id);
+        },
+
+        selectInit () {
+            let element = $('#rack');
+            let instance = M.FormSelect.init(element);
         }
 
     }
