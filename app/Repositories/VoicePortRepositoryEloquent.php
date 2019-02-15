@@ -15,6 +15,11 @@ use App\Validators\VoicePortValidator;
  */
 class VoicePortRepositoryEloquent extends BaseRepository implements VoicePortRepository
 {
+    
+    protected $fieldSearchable = [
+        'rack_id',
+    ];
+    
     /**
      * Specify Model class name
      *
