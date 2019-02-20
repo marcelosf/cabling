@@ -20,17 +20,19 @@ export default {
     props: ['value'],
     
     mounted () {
-        this.getRackList(response => {
-            this.initialize(response);
-            setTimeout(() => {
+        if (this.rackList.length === 0) {
+            this.getRackList(response => {
+                this.rackList = response;
                 this.selectInit();
-            }, 500)
-        });
+            });
+        }
     },
 
     watch: {
         value (value) {
-            this.rack_id = value;
+            if (value) {
+                this.rack_id = value; console.log('watch')
+            }
         }
     },
 
@@ -64,6 +66,8 @@ export default {
         selectInit () {
             let element = $('#rack');
             let instance = M.FormSelect.init(element);
+
+            return instance;
         }
 
     }
