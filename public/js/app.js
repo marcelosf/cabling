@@ -2489,6 +2489,165 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _resources_PhoneResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../resources/PhoneResource */ "./resources/js/components/resources/PhoneResource.js");
+/* harmony import */ var _mixins_Messages_mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/Messages.mixin */ "./resources/js/components/mixins/Messages.mixin.js");
+/* harmony import */ var _VoicePortComboComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VoicePortComboComponent */ "./resources/js/components/Forms/VoicePortComboComponent.vue");
+/* harmony import */ var _SwitchPortComboComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SwitchPortComboComponent */ "./resources/js/components/Forms/SwitchPortComboComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['resource', 'id'],
+  mixins: [_mixins_Messages_mixin__WEBPACK_IMPORTED_MODULE_1__["Messages"]],
+  mounted: function mounted() {
+    var _this = this;
+
+    if (this.resource === 'update') {
+      this.getPhone(function (response) {
+        _this.form.number = response.number;
+        _this.form.category = response.category;
+        _this.form.voicepanel_id = response.voicepanel_id;
+        _this.form.switchport_id = response.switchport_id;
+        _this.form.switchport_name = response.switchname;
+        _this.form.rack_id = response.rack_id;
+        _this.form.voip_rack_id = response.voip_rack_id;
+      }, this.id);
+    }
+  },
+  data: function data() {
+    return {
+      form: {
+        number: '',
+        category: '',
+        voicepanel_id: '',
+        switchport_id: '',
+        rack_id: null,
+        voip_rack_id: null
+      }
+    };
+  },
+  computed: {
+    activated: function activated() {
+      if (this.resource === 'update') {
+        return 'active';
+      }
+
+      return '';
+    }
+  },
+  methods: {
+    processData: function processData() {
+      if (this.resource === 'update') {
+        this.update(this.id);
+        return 'updated';
+      }
+
+      this.store();
+    },
+    store: function store() {
+      var _this2 = this;
+
+      this.getResource().create(function (response) {
+        _this2.showMessage(response.message);
+      }, this.form);
+    },
+    update: function update(id) {
+      var _this3 = this;
+
+      this.getResource().update(function (response) {
+        _this3.showMessage(response.message);
+      }, this.form, id);
+    },
+    getPhone: function getPhone(actions, id) {
+      this.getResource().show(function (response) {
+        actions(response.data.data);
+      }, id);
+    },
+    getResource: function getResource() {
+      return _resources_PhoneResource__WEBPACK_IMPORTED_MODULE_0__["PhoneResource"];
+    }
+  },
+  components: {
+    'voicecombo-component': _VoicePortComboComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
+    'switchportcombo-component': _SwitchPortComboComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/RackComboComponent.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Forms/RackComboComponent.vue?vue&type=script&lang=js& ***!
@@ -2518,13 +2677,20 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.getRackList(function (response) {
-      _this.initialize(response);
-    });
+    if (this.rackList.length === 0) {
+      this.getRackList(function (response) {
+        _this.rackList = response;
+
+        _this.selectInit();
+      });
+    }
   },
   watch: {
     value: function value(_value) {
-      this.rack_id = _value;
+      if (_value) {
+        this.rack_id = _value;
+        console.log('watch');
+      }
     }
   },
   data: function data() {
@@ -2547,6 +2713,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     rackOnChange: function rackOnChange() {
       this.$emit('input', this.rack_id);
+    },
+    selectInit: function selectInit() {
+      var element = $('#rack');
+      var instance = M.FormSelect.init(element);
+      return instance;
     }
   }
 });
@@ -2682,6 +2853,132 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     'localcombo-component': _LocalComboComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RackComboComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RackComboComponent */ "./resources/js/components/Forms/RackComboComponent.vue");
+/* harmony import */ var _resources_SwitchPortResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../resources/SwitchPortResource */ "./resources/js/components/resources/SwitchPortResource.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['rack_id', 'value', 'switch_name'],
+  data: function data() {
+    return {
+      rack: null,
+      switchName: '',
+      portId: '',
+      switchList: [],
+      portList: [],
+      switchPort: null
+    };
+  },
+  watch: {
+    rack_id: function rack_id(value) {
+      this.rack = value;
+    },
+    value: function value(_value) {
+      this.portId = _value;
+    },
+    switch_name: function switch_name(value) {
+      this.switchName = value;
+    },
+    rack: function rack(value) {
+      var _this = this;
+
+      this.getList(function (response) {
+        _this.switchList = response;
+        setTimeout(function () {
+          _this.selectInit('#switch');
+        }, 500);
+      }, {
+        rack_id: value
+      }, this.getResource());
+    },
+    switchName: function switchName(value) {
+      var _this2 = this;
+
+      setTimeout(function () {
+        _this2.portList = _this2.filterPorts(value);
+        setTimeout(function () {
+          _this2.selectInit('#switch-port-id');
+        }, 500);
+      }, 500);
+    }
+  },
+  methods: {
+    getList: function getList(actions, search, resource) {
+      resource.index(function (response) {
+        actions(response.data.all.data);
+      }, 1, search);
+    },
+    getSwitchPort: function getSwitchPort(actions, id, resource) {
+      resource.show(function (response) {
+        actions(response.data.data);
+      }, id);
+    },
+    filterPorts: function filterPorts(switchName) {
+      return _.filter(this.switchList, function (item) {
+        return item.switch_name === switchName;
+      });
+    },
+    getSwitchPortById: function getSwitchPortById(id) {
+      if (this.switchList) {
+        return _.filter(this.switchList, function (item) {
+          return item.id = id;
+        });
+      }
+    },
+    getResource: function getResource() {
+      return _resources_SwitchPortResource__WEBPACK_IMPORTED_MODULE_1__["SwitchPortResource"];
+    },
+    selectInit: function selectInit(id) {
+      var element = $(id);
+      var instance = M.FormSelect.init(element);
+    },
+    portOnChange: function portOnChange() {
+      this.$emit('input', this.portId);
+    }
+  },
+  components: {
+    'rackcombo-component': _RackComboComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -2890,6 +3187,91 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     'rackcombo-component': _RackComboComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RackComboComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RackComboComponent */ "./resources/js/components/Forms/RackComboComponent.vue");
+/* harmony import */ var _resources_VoicePortResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../resources/VoicePortResource */ "./resources/js/components/resources/VoicePortResource.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['value', 'rack_id'],
+  data: function data() {
+    return {
+      list: [],
+      rack: '',
+      voiceport: ''
+    };
+  },
+  watch: {
+    rack: function rack(value) {
+      var _this = this;
+
+      this.getList(function (response) {
+        _this.list = response;
+        setTimeout(function () {
+          _this.selectInit();
+        }, 500);
+      }, this.getResource(), value);
+    },
+    value: function value(_value) {
+      this.voiceport = _value;
+    },
+    rack_id: function rack_id(value) {
+      if (value) {
+        this.rack = value;
+      }
+    }
+  },
+  methods: {
+    getList: function getList(actions, resource, search) {
+      resource.index(function (response) {
+        actions(response.data.all.data);
+      }, 1, {
+        rack_id: search
+      });
+    },
+    getResource: function getResource() {
+      return _resources_VoicePortResource__WEBPACK_IMPORTED_MODULE_1__["VoicePortResource"];
+    },
+    selectInit: function selectInit() {
+      var element = $('#voiceport');
+      var instance = M.FormSelect.init(element);
+    },
+    voiceOnChange: function voiceOnChange() {
+      this.$emit('input', this.voiceport);
+    }
+  },
+  components: {
+    'rackcombo-component': _RackComboComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -51901,6 +52283,147 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=template&id=02679c94&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=template&id=02679c94& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-content" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("form", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "input-field col s12 m12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.number,
+                  expression: "form.number"
+                }
+              ],
+              staticClass: "col s12",
+              attrs: { id: "number", name: "number", type: "text" },
+              domProps: { value: _vm.form.number },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "number", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { class: _vm.activated, attrs: { for: "number" } }, [
+              _vm._v("Número")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-field col s12 m12" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.category,
+                  expression: "form.category"
+                }
+              ],
+              staticClass: "col s12",
+              attrs: { id: "category", name: "category", type: "text" },
+              domProps: { value: _vm.form.category },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "category", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { class: _vm.activated, attrs: { for: "central" } }, [
+              _vm._v("Categoria")
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "input-field col s12 m12" },
+            [
+              _c("voicecombo-component", {
+                attrs: { rack_id: _vm.form.rack_id },
+                model: {
+                  value: _vm.form.voicepanel_id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "voicepanel_id", $$v)
+                  },
+                  expression: "form.voicepanel_id"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "input-field col s12 m12" },
+            [
+              _c("switchportcombo-component", {
+                attrs: {
+                  id: _vm.form.switchport_id,
+                  rack_id: _vm.form.voip_rack_id,
+                  switch_name: _vm.form.switchport_name
+                },
+                model: {
+                  value: _vm.form.switchport_id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "switchport_id", $$v)
+                  },
+                  expression: "form.switchport_id"
+                }
+              })
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-action" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn-flat blue-text waves waves-effect",
+          attrs: { dusk: "send" },
+          on: { click: _vm.processData }
+        },
+        [
+          _vm._v("\n            Enviar "),
+          _c("i", { staticClass: "material-icons right" }, [_vm._v("send")])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/RackComboComponent.vue?vue&type=template&id=bc6d0f9e&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Forms/RackComboComponent.vue?vue&type=template&id=bc6d0f9e& ***!
@@ -51929,6 +52452,7 @@ var render = function() {
               expression: "rack_id"
             }
           ],
+          attrs: { id: "rack", name: "rack_id" },
           on: {
             change: [
               function($event) {
@@ -52074,6 +52598,140 @@ var render = function() {
           _c("i", { staticClass: "material-icons right" }, [_vm._v("send")])
         ]
       )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=template&id=ca5fed22&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=template&id=ca5fed22& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "col s4" },
+      [
+        _c("rackcombo-component", {
+          model: {
+            value: _vm.rack,
+            callback: function($$v) {
+              _vm.rack = $$v
+            },
+            expression: "rack"
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-field col s4" }, [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.switchName,
+              expression: "switchName"
+            }
+          ],
+          attrs: { name: "switch", id: "switch" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.switchName = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        _vm._l(_vm.switchList, function(s) {
+          return _c(
+            "option",
+            { key: s.id, domProps: { value: s.switch_name } },
+            [
+              _vm._v(
+                "\n                " + _vm._s(s.switch_name) + "\n            "
+              )
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "switch" } }, [_vm._v("Switch")])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-field col s4" }, [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.portId,
+              expression: "portId"
+            }
+          ],
+          attrs: { name: "switch-port-id", id: "switch-port-id" },
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.portId = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.portOnChange
+            ]
+          }
+        },
+        _vm._l(_vm.portList, function(p) {
+          return _c("option", { key: p.id, domProps: { value: p.id } }, [
+            _vm._v(
+              "\n                " + _vm._s(p.port_number) + "\n            "
+            )
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "switch-port-id" } }, [
+        _vm._v("Porta do switch")
+      ])
     ])
   ])
 }
@@ -52444,6 +53102,100 @@ var render = function() {
           _c("i", { staticClass: "material-icons right" }, [_vm._v("send")])
         ]
       )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=template&id=b0217d32&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=template&id=b0217d32& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "col s6" },
+      [
+        _c("rackcombo-component", {
+          model: {
+            value: _vm.rack,
+            callback: function($$v) {
+              _vm.rack = $$v
+            },
+            expression: "rack"
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-field col s6" }, [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.voiceport,
+              expression: "voiceport"
+            }
+          ],
+          attrs: { name: "voicepanel_id", id: "voiceport" },
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.voiceport = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.voiceOnChange
+            ]
+          }
+        },
+        _vm._l(_vm.list, function(option) {
+          return _c(
+            "option",
+            { key: option.id, domProps: { value: option.id } },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(option.voiceport_number) +
+                  "\n            "
+              )
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "voiceport" } }, [
+        _vm._v("Porta Voice Panel")
+      ])
     ])
   ])
 }
@@ -66278,9 +67030,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_SwitchPort_SwitchPortTableComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/SwitchPort/SwitchPortTableComponent */ "./resources/js/components/SwitchPort/SwitchPortTableComponent.vue");
 /* harmony import */ var _components_Forms_SwitchPortFormComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Forms/SwitchPortFormComponent */ "./resources/js/components/Forms/SwitchPortFormComponent.vue");
 /* harmony import */ var _components_Filter_SwitchPortFilterComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Filter/SwitchPortFilterComponent */ "./resources/js/components/Filter/SwitchPortFilterComponent.vue");
-/* harmony import */ var _components_VoicePort_VoicePortTableComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/VoicePort/VoicePortTableComponent */ "./resources/js/components/VoicePort/VoicePortTableComponent.vue");
-/* harmony import */ var _components_Forms_VoicePortFormComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Forms/VoicePortFormComponent */ "./resources/js/components/Forms/VoicePortFormComponent.vue");
-/* harmony import */ var _components_Phone_PhoneTableComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Phone/PhoneTableComponent */ "./resources/js/components/Phone/PhoneTableComponent.vue");
+/* harmony import */ var _components_Forms_SwitchPortComboComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Forms/SwitchPortComboComponent */ "./resources/js/components/Forms/SwitchPortComboComponent.vue");
+/* harmony import */ var _components_VoicePort_VoicePortTableComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/VoicePort/VoicePortTableComponent */ "./resources/js/components/VoicePort/VoicePortTableComponent.vue");
+/* harmony import */ var _components_Forms_VoicePortFormComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Forms/VoicePortFormComponent */ "./resources/js/components/Forms/VoicePortFormComponent.vue");
+/* harmony import */ var _components_Phone_PhoneTableComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Phone/PhoneTableComponent */ "./resources/js/components/Phone/PhoneTableComponent.vue");
+/* harmony import */ var _components_Forms_PhoneFormComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Forms/PhoneFormComponent */ "./resources/js/components/Forms/PhoneFormComponent.vue");
+
+
 
 
 
@@ -66333,9 +67089,11 @@ Vue.component('patchform-component', _components_Forms_PatchFormComponent__WEBPA
 Vue.component('switchporttable-component', _components_SwitchPort_SwitchPortTableComponent__WEBPACK_IMPORTED_MODULE_10__["default"]);
 Vue.component('switchportform-component', _components_Forms_SwitchPortFormComponent__WEBPACK_IMPORTED_MODULE_11__["default"]);
 Vue.component('switchportfilter-component', _components_Filter_SwitchPortFilterComponent__WEBPACK_IMPORTED_MODULE_12__["default"]);
-Vue.component('voiceporttable-component', _components_VoicePort_VoicePortTableComponent__WEBPACK_IMPORTED_MODULE_13__["default"]);
-Vue.component('voiceportform-component', _components_Forms_VoicePortFormComponent__WEBPACK_IMPORTED_MODULE_14__["default"]);
-Vue.component('phonetable-component', _components_Phone_PhoneTableComponent__WEBPACK_IMPORTED_MODULE_15__["default"]);
+Vue.component('voiceporttable-component', _components_VoicePort_VoicePortTableComponent__WEBPACK_IMPORTED_MODULE_14__["default"]);
+Vue.component('voiceportform-component', _components_Forms_VoicePortFormComponent__WEBPACK_IMPORTED_MODULE_15__["default"]);
+Vue.component('phonetable-component', _components_Phone_PhoneTableComponent__WEBPACK_IMPORTED_MODULE_16__["default"]);
+Vue.component('phoneform-component', _components_Forms_PhoneFormComponent__WEBPACK_IMPORTED_MODULE_17__["default"]);
+Vue.component('switchportcombo-component', _components_Forms_SwitchPortComboComponent__WEBPACK_IMPORTED_MODULE_13__["default"]);
 var app = new Vue({
   el: '#app',
   store: store
@@ -66815,6 +67573,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Forms/PhoneFormComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Forms/PhoneFormComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PhoneFormComponent_vue_vue_type_template_id_02679c94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PhoneFormComponent.vue?vue&type=template&id=02679c94& */ "./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=template&id=02679c94&");
+/* harmony import */ var _PhoneFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PhoneFormComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PhoneFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PhoneFormComponent_vue_vue_type_template_id_02679c94___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PhoneFormComponent_vue_vue_type_template_id_02679c94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Forms/PhoneFormComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PhoneFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PhoneFormComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PhoneFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=template&id=02679c94&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=template&id=02679c94& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PhoneFormComponent_vue_vue_type_template_id_02679c94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PhoneFormComponent.vue?vue&type=template&id=02679c94& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/PhoneFormComponent.vue?vue&type=template&id=02679c94&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PhoneFormComponent_vue_vue_type_template_id_02679c94___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PhoneFormComponent_vue_vue_type_template_id_02679c94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Forms/RackComboComponent.vue":
 /*!**************************************************************!*\
   !*** ./resources/js/components/Forms/RackComboComponent.vue ***!
@@ -66953,6 +67780,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Forms/SwitchPortComboComponent.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Forms/SwitchPortComboComponent.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SwitchPortComboComponent_vue_vue_type_template_id_ca5fed22___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SwitchPortComboComponent.vue?vue&type=template&id=ca5fed22& */ "./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=template&id=ca5fed22&");
+/* harmony import */ var _SwitchPortComboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SwitchPortComboComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SwitchPortComboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SwitchPortComboComponent_vue_vue_type_template_id_ca5fed22___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SwitchPortComboComponent_vue_vue_type_template_id_ca5fed22___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Forms/SwitchPortComboComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SwitchPortComboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SwitchPortComboComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SwitchPortComboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=template&id=ca5fed22&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=template&id=ca5fed22& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SwitchPortComboComponent_vue_vue_type_template_id_ca5fed22___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SwitchPortComboComponent.vue?vue&type=template&id=ca5fed22& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/SwitchPortComboComponent.vue?vue&type=template&id=ca5fed22&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SwitchPortComboComponent_vue_vue_type_template_id_ca5fed22___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SwitchPortComboComponent_vue_vue_type_template_id_ca5fed22___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Forms/SwitchPortFormComponent.vue":
 /*!*******************************************************************!*\
   !*** ./resources/js/components/Forms/SwitchPortFormComponent.vue ***!
@@ -67017,6 +67913,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SwitchPortFormComponent_vue_vue_type_template_id_481df669___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SwitchPortFormComponent_vue_vue_type_template_id_481df669___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/VoicePortComboComponent.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Forms/VoicePortComboComponent.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VoicePortComboComponent_vue_vue_type_template_id_b0217d32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VoicePortComboComponent.vue?vue&type=template&id=b0217d32& */ "./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=template&id=b0217d32&");
+/* harmony import */ var _VoicePortComboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VoicePortComboComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VoicePortComboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VoicePortComboComponent_vue_vue_type_template_id_b0217d32___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VoicePortComboComponent_vue_vue_type_template_id_b0217d32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Forms/VoicePortComboComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VoicePortComboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./VoicePortComboComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VoicePortComboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=template&id=b0217d32&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=template&id=b0217d32& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VoicePortComboComponent_vue_vue_type_template_id_b0217d32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./VoicePortComboComponent.vue?vue&type=template&id=b0217d32& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Forms/VoicePortComboComponent.vue?vue&type=template&id=b0217d32&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VoicePortComboComponent_vue_vue_type_template_id_b0217d32___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VoicePortComboComponent_vue_vue_type_template_id_b0217d32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -68105,9 +69070,16 @@ function () {
   }, {
     key: "extractMetaPagination",
     value: function extractMetaPagination(data) {
+      var all = null;
+
+      if (data.all) {
+        all = data.all;
+      }
+
       return {
         data: {
           data: data.data.data,
+          all: all,
           count: data.data.meta.pagination.count,
           current_page: data.data.meta.pagination.current_page,
           per_page: data.data.meta.pagination.per_page,
