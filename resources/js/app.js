@@ -11,6 +11,7 @@ import PatchFormComponent from './components/Forms/PatchFormComponent';
 import SwitchPortTableComponent from './components/SwitchPort/SwitchPortTableComponent';
 import SwitchPortFormComponent  from './components/Forms/SwitchPortFormComponent';
 import SwitchPortFilterComponent from './components/Filter/SwitchPortFilterComponent';
+import SwitchPortComboComponent from './components/Forms/SwitchPortComboComponent';
 import VoicePortTableComponent from './components/VoicePort/VoicePortTableComponent';
 import VoicePortFormComponent from './components/Forms/VoicePortFormComponent';
 import PhoneTableComponent from './components/Phone/PhoneTableComponent';
@@ -57,6 +58,7 @@ Vue.component('voiceporttable-component', VoicePortTableComponent);
 Vue.component('voiceportform-component', VoicePortFormComponent);
 Vue.component('phonetable-component', PhoneTableComponent);
 Vue.component('phoneform-component', PhoneFormComponent);
+Vue.component('switchportcombo-component', SwitchPortComboComponent);
 
 const app = new Vue({
     el: '#app',
