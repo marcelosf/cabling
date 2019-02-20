@@ -33,8 +33,12 @@
 
                    <div class="input-field col s12 m12">
 
-                       <input id="switchport_id" class="col s12" type="text" name="switchport_id" v-model="form.switchport_id">
-                       <label :class="activated" for="switchport_id">Porta do switch</label>
+                       <switchportcombo-component 
+                            v-model="form.switchport_id"
+                            :id="form.switchport_id"
+                            :rack_id="form.voip_rack_id"
+                            :switch_name="form.switchport_name"
+                        ></switchportcombo-component>
 
                    </div>
 
@@ -61,6 +65,9 @@
     import {PhoneResource} from '../resources/PhoneResource';
     import {Messages} from '../mixins/Messages.mixin';
     import VoicePortComboComponent from './VoicePortComboComponent';
+    import SwitchPortComboComponent from './SwitchPortComboComponent';
+    import SwitchPortComboComponentVue from './SwitchPortComboComponent.vue';
+
     export default {
 
         props:  ['resource', 'id'],
@@ -70,12 +77,14 @@
             
             if (this.resource === 'update') {
 
-                this.getPhone(response => { console.log(response)
+                this.getPhone(response => {
                     this.form.number = response.number;
                     this.form.category = response.category;
                     this.form.voicepanel_id = response.voicepanel_id;
                     this.form.switchport_id = response.switchport_id;
+                    this.form.switchport_name = response.switchname;
                     this.form.rack_id = response.rack_id;
+                    this.form.voip_rack_id = response.voip_rack_id;
                 }, this.id);
             }
 
@@ -90,7 +99,8 @@
                     category: '',
                     voicepanel_id: '',
                     switchport_id: '',
-                    rack_id: null
+                    rack_id: null,
+                    voip_rack_id: null
                 },
 
             }
@@ -161,7 +171,8 @@
         },
 
         components: {
-            'voicecombo-component': VoicePortComboComponent
+            'voicecombo-component': VoicePortComboComponent,
+            'switchportcombo-component': SwitchPortComboComponentVue
         }
         
     }
