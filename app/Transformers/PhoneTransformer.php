@@ -30,8 +30,10 @@ class PhoneTransformer extends TransformerAbstract
             'switchport_id' => $model->switchport_id,
             'voicepanel' => $model->voicepanel->voiceport_number,
             'switchport' => $model->switchport->port_number,
+            'switchname' => $model->switchport->switch_name,
             'rack' => $model->voicepanel->rack->name,
             'rack_id' => $model->voicepanel->rack->id,
+            'voip_rack_id' => $model->switchport->rack->id,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
