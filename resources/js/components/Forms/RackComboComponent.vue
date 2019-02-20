@@ -1,7 +1,7 @@
 <template> 
     <div>
         <div class="input-field col s12">
-            <select v-model="rack_id" @change="rackOnChange">
+            <select v-model="rack_id" @change="rackOnChange" id="rack" name="rack_id">
                 <option v-for="rack in rackList" :key="rack.id" :value="rack.id">
                     {{ rack.name }}
                 </option>
@@ -20,14 +20,19 @@ export default {
     props: ['value'],
     
     mounted () {
-        this.getRackList(response => {
-            this.initialize(response);
-        });
+        if (this.rackList.length === 0) {
+            this.getRackList(response => {
+                this.rackList = response;
+                this.selectInit();
+            });
+        }
     },
 
     watch: {
         value (value) {
-            this.rack_id = value;
+            if (value) {
+                this.rack_id = value; console.log('watch')
+            }
         }
     },
 
@@ -56,6 +61,13 @@ export default {
 
         rackOnChange () {
             this.$emit('input', this.rack_id);
+        },
+
+        selectInit () {
+            let element = $('#rack');
+            let instance = M.FormSelect.init(element);
+
+            return instance;
         }
 
     }

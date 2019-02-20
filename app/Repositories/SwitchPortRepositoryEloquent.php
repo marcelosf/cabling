@@ -20,6 +20,7 @@ class SwitchPortRepositoryEloquent extends BaseRepository implements SwitchPortR
         'port_number',
         'switch_name',
         'stack_name',
+        'rack_id',
     ];
    
     /**

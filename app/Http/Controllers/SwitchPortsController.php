@@ -50,11 +50,13 @@ class SwitchPortsController extends Controller
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $switch_ports = $this->repository->paginate(10);
+        $all = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
                 'data' => $switch_ports,
+                'all' => $all,
             ]);
         }
 

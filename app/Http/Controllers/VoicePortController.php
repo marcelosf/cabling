@@ -47,10 +47,12 @@ class VoicePortController extends Controller
         
         $this->repository->pushCriteria(app(RequestCriteria::class));
         $voice_ports = $this->repository->paginate(10);
+        $all = $this->repository->all();
 
         if (request()->wantsJson()) {
             return response()->json([
-                'data' => $voice_ports
+                'data' => $voice_ports,
+                'all' => $all,
             ]);
         }
 
