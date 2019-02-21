@@ -32,4 +32,9 @@ class VoicePort extends Model implements Transformable
         return $this->belongsTo('App\Entities\Rack');
     }
 
+    public function patch()
+    {
+        return $this->belongsTo('App\Entities\Patch');
+    }
+
 }
