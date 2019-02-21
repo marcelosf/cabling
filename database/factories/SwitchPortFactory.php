@@ -3,6 +3,7 @@
 use Faker\Generator as Faker;
 use App\Entities\SwitchPort as Model;
 use App\Entities\Rack;
+use App\Entities\Patch;
 
 $factory->define(Model::class, function (Faker $faker) {
     return [
@@ -16,5 +17,6 @@ $factory->define(Model::class, function (Faker $faker) {
         'stack_name' => $faker->regexify('[A-Z]_[A-Z]{3}_HP5120-G_[A-Z]\d'),
         'stack_ip' => $faker->ipv4,
         'rack_id' => $faker->randomElement(Rack::all()->pluck('id')),
+        'patch_id' => $faker->randomElement(Patch::all()->pluck('id'))
     ];
 });
