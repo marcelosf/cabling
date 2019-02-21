@@ -31,6 +31,7 @@ class SwitchPort extends Model implements Transformable
         'stack_name',
         'stack_ip',
         'rack_id',
+        'patch_id',
     ];
 
     protected $table = 'switch_port';
@@ -38,6 +39,11 @@ class SwitchPort extends Model implements Transformable
     public function rack()
     {
         return $this->belongsTo('App\Entities\Rack');
+    }
+
+    public function patch()
+    {
+        return $this->belongsTo('App\Entities\Patch');
     }
 
 }

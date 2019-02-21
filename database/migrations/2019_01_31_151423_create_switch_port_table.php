@@ -26,6 +26,8 @@ class CreateSwitchPortTable extends Migration
             $table->string('stack_ip');
             $table->integer('rack_id')->unsigned();
             $table->foreign('rack_id')->references('id')->on('racks')->onDelete('cascade');
+            $table->unsignedInteger('patch_id')->nullable();
+            $table->foreign('patch_id')->references('id')->on('patches')->onDelete('set null');
             $table->timestamps();
         });
     }

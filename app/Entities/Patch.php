@@ -37,4 +37,14 @@ class Patch extends Model implements Transformable
     {
         return $this->belongsTo('App\Entities\Rack');
     }
+
+    public function voice()
+    {
+        return $this->hasOne('App\Entities\VoicePort');
+    }
+
+    public function switch_port()
+    {
+        return $this->hasOne('App\Entities\SwitchPort');
+    }
 }
