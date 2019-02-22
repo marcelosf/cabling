@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('switch-port', 'SwitchPortsController')->middleware('cors');
     Route::resource('voice-port', 'VoicePortController')->middleware('cors');
     Route::resource('phones', 'PhoneController')->middleware('cors');
+    Route::get('main-search', 'SearchController@index')->middleware('cors');
 
 });
 
