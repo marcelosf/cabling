@@ -14,14 +14,14 @@ class MainSearchTest extends TestCase
     /**
      * @inheritDoc
      */
-    public function __construct()
+    public function setUp()
     {
         parent::setUp();
         $this->user = factory(User::class)->create();
     }
 
     /**
-     * Testing index controller function
+     * Testing index controller
      *
      * @return void
      */
