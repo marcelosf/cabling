@@ -25,10 +25,7 @@ import IndexSearchComponent from './components/MainSearch/IndexSearchComponent';
  */
 
 require('./bootstrap');
-
 require('materialize-css');
-
-require('./materialize-components');
 
 window.Vue = require('vue');
 Vue.use(Vuex);
