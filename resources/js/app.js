@@ -16,8 +16,6 @@ import VoicePortTableComponent from './components/VoicePort/VoicePortTableCompon
 import VoicePortFormComponent from './components/Forms/VoicePortFormComponent';
 import PhoneTableComponent from './components/Phone/PhoneTableComponent';
 import PhoneFormComponent  from './components/Forms/PhoneFormComponent';
-import LocalSearchComponent from './components/MainSearch/LocalSearchComponent';
-import RackSearchComponent from './components/MainSearch/RackSearchComponent';
 import IndexSearchComponent from './components/MainSearch/IndexSearchComponent';
 
 /**
@@ -62,9 +60,7 @@ Vue.component('voiceportform-component', VoicePortFormComponent);
 Vue.component('phonetable-component', PhoneTableComponent);
 Vue.component('phoneform-component', PhoneFormComponent);
 Vue.component('switchportcombo-component', SwitchPortComboComponent);
-Vue.component('localsearch-component', LocalSearchComponent);
 Vue.component('indexsearch-component', IndexSearchComponent);
-Vue.component('racksearch-component', RackSearchComponent);
 
 const app = new Vue({
     el: '#app',
