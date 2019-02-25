@@ -1,64 +1,77 @@
 <template>
+    
     <div>
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s2"><a href="#local">Local</a></li>
-                    <li class="tab col s2"><a href="#rack">Rack</a></li>
-                    <li class="tab col s2"><a href="#patch">Patch Panel</a></li>
-                    <li class="tab col s2"><a href="#switch">Switch</a></li>
-                    <li class="tab col s2"><a href="#voice">Voice Panel</a></li>
-                    <li class="tab col s2"><a href="#phone">Telefones</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="row">
-            <div id="local" class="col s12">
-                <localsearch-component></localsearch-component>
-            </div>
-            <div id="rack" class="col s12">
-                <racksearch-component></racksearch-component>
-            </div>
-            <div id="patch" class="col s12">
-                Patch Panel
-            </div>
-            <div id="switch" class="col s12">
-                Switch
-            </div>
-            <div id="voice" class="col s12">
-                Voice panel
-            </div>
-            <div id="phone" class="col s12">
-                Ramal
-            </div>
-        </div>
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>Local</th>
+                    <th>Ponto</th>
+                    <th>Hostname</th>
+                    <th>IP</th>
+                    <th>Switch</th>
+                    <th>Porta Switch</th>
+                    <th>Sala Rack</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="patch in patches" :key="patch.id">
+                    <td>{{ patch.local.build }}-{{ patch.local.local }}</td>
+                    <td>{{ patch.label }}</td>
+                    <td>{{ patch.switch_port.stack_name }}</td>
+                    <td>{{ patch.switch_port.stack_ip }}</td>
+                    <td>{{ patch.switch_port.switch_name }}</td>
+                    <td>{{ patch.switch_port.port_number }}</td>
+                    <td>{{ patch.rack_local.build }}-{{ patch.rack_local.local }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination :resource="getResource"></pagination>
     </div>
+
 </template>
 
 <script>
-import LocalSearchComponent from './LocalSearchComponent';
-import RackSearchComponent from './RackSearchComponent';
+    import {PatchResource} from '../resources/PatchResource';
+    import PaginationComponent from '../Pagination/PaginationComponent';
 
-export default {
-    
-    created () {
-        this.initialize();
-    },
+    export default {
 
-    methods: {
+        mounted () {
+            this.list(response => {
+                this.commitTableData(response);
+            }, 1);
+        },
 
-        initialize () {
-            let instance = $('.tabs');
-            return M.Tabs.init(instance);
+        data () {
+            return {
+                data: []
+            }
+        },
+
+        computed: {
+            patches () {
+                return this.$store.getters['table/tableData'];
+            }
+        },
+
+        methods: {
+            list (action, page) {
+                this.getResource().index(response => {console.log(response)
+                    action(response.data);
+                }, page);
+            },
+
+            commitTableData (data) {
+                this.$store.commit('table/tableData', data);
+            },
+
+            getResource () {
+                return PatchResource;
+            }
+        },
+
+        components: {
+            'pagination': PaginationComponent
         }
-
-    },
-
-    components: {
-        'localsearch-component': LocalSearchComponent,
-        'racksearch-component': RackSearchComponent
     }
-
-}
 </script>

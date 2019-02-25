@@ -25,8 +25,9 @@ class PatchTransformer extends TransformerAbstract
             'id' => (int) $model->id,
             'label' => $model->label,
             'number' => $model->number,
-            'switch_port' => $model->switch_port,
+            'switch_port' => $model->switchPort,
             'rack' => $model->rack,
+            'rack_local' => $model->rack->local,
             'local' => $model->local,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at

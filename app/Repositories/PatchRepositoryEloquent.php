@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\PatchRepository;
 use App\Entities\Patch;
 use App\Validators\PatchValidator;
+use App\Presenters\PatchPresenter;
 
 /**
  * Class PatchRepositoryEloquent.
@@ -25,6 +26,11 @@ class PatchRepositoryEloquent extends BaseRepository implements PatchRepository
         return Patch::class;
     }
 
+    public function presenter()
+    {
+        return PatchPresenter::class;
+    }
+
     /**
     * Specify Validator class name
     *
@@ -32,7 +38,6 @@ class PatchRepositoryEloquent extends BaseRepository implements PatchRepository
     */
     public function validator()
     {
-
         return PatchValidator::class;
     }
 

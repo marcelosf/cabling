@@ -43,8 +43,8 @@ class Patch extends Model implements Transformable
         return $this->hasOne('App\Entities\VoicePort');
     }
 
-    public function switch_port()
+    public function switchPort()
     {
-        return $this->hasOne('App\Entities\SwitchPort');
+        return $this->belongsTo('App\Entities\SwitchPort', 'switch_port');
     }
 }
