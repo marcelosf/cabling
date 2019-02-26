@@ -9,7 +9,9 @@
 @endsection
 
 @section('content')
-    
+
+   <searchform-component></searchform-component>
+
    <indexsearch-component></indexsearch-component>
 
 @endsection
