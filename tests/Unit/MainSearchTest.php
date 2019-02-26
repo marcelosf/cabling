@@ -7,11 +7,13 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Entities\Local;
+use App\Entities\Patch;
 
 class MainSearchTest extends TestCase
 {
     protected $user;
     protected $local;
+    protected $patch;
 
     /**
      * @inheritDoc
@@ -21,6 +23,7 @@ class MainSearchTest extends TestCase
         parent::setUp();
         $this->user = factory(User::class)->create();
         $this->local = factory(Local::class)->create();
+        $this->patch = factory(Patch::class)->create();
     }
 
     /**
@@ -39,5 +42,13 @@ class MainSearchTest extends TestCase
         $uri = '/main-search/' . $this->local->id;
         $response = $this->actingAs($this->user)->json('GET', $uri);
         $response->assertOk();
+    }
+
+    public function testSearch()
+    {
+        $uri = '/patches?search=id:' . $this->patch->id;
+        $response = $this->actingAs($this->user)->json('GET', $uri);
+        $response->assertOk();
+        $response->assertJsonFragment(['id' => $this->patch->id ]);
     }
 }

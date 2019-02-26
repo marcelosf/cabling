@@ -16,25 +16,30 @@ class MainSearchTest extends DuskTestCase
         $this->browse(function ($first) {
             $first->loginAs(User::find(1))
                 ->visit('/main-search')
-                ->assertSee('LOCAL')
-                ->assertSee('RACK')
-                ->assertSee('PATCH PANEL')
-                ->assertSee('SWITCH')
-                ->assertSee('VOICE PANEL')
-                ->assertSee('TELEFONE');
+                ->assertSee('Local')
+                ->assertSee('Ponto')
+                ->assertSee('Hostname')
+                ->assertSee('IP')
+                ->assertSee('Switch')
+                ->assertSee('Porta Switch')
+                ->assertSee('Sala Rack');
         });
     }
 
-    public function testLocalTabItem()
-    {
-        $local = factory(Local::class)->create();
-        $local_name = $local->build . '-' . $local->local;
-
-        $this->browse(function ($first) use($local_name) {
-            $first->loginAs(User::find(1))
+   public function testSearchFormFields()
+   {
+       $this->browse(function ($first) {
+           $first->loginAs(User::find(1))
                 ->visit('/main-search')
-                ->click('#local')
-                ->assertSee($local_name);
-        });
-    }
+                ->click('@search-button')
+                ->assertSee('Bloco')
+                ->assertSee('Sala')
+                ->assertSee('Ponto')
+                ->assertSee('Hostname')
+                ->assertSee('IP')
+                ->assertSee('Switch')
+                ->assertSee('Porta Switch')
+                ->assertSee('Sala Rack');
+       });
+   }
 }
