@@ -16,6 +16,16 @@ use App\Presenters\PatchPresenter;
  */
 class PatchRepositoryEloquent extends BaseRepository implements PatchRepository
 {
+    
+    protected $fieldSearchable = [
+        'id',
+        'label',
+        'number',
+        'switch_port',
+        'rack_id',
+        'local_id',
+    ];
+    
     /**
      * Specify Model class name
      *
