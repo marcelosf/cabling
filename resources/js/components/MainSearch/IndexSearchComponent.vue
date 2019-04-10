@@ -56,7 +56,7 @@
 
         methods: {
             list (action, page) {
-                this.getResource().index(response => {console.log(response)
+                this.getResource().index(response => {
                     action(response.data);
                 }, page);
             },
