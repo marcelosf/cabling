@@ -27,25 +27,25 @@
         <div class="card-content">
 
             <blockquote>
-                <div class="chip">Referência: {{ $patch->label }}</div>
-                <div class="chip">Número: {{ $patch->number }}</div>
-                <div class="chip">Local: {{ $patch->local->build }}-{{ $patch->local->local }}</div>
+                <div class="chip">Referência: {{ $patch['data']['label'] }}</div>
+                <div class="chip">Número: {{ $patch['data']['number'] }}</div>
+                <div class="chip">Local: {{ $patch['data']['local']->build }}-{{ $patch['data']['local']->local }}</div>
                 <div class="section"></div>
 
-                <p>Criado em: {{ $patch->created_at->format('d/m/Y') }}</p>
+                <p>Criado em: {{ $patch['data']['created_at']->format('d/m/Y') }}</p>
             </blockquote>
             
         </div>
 
         <div class="card-action">
 
-            <a href="{{ route('patches.edit', ['id' => $patch->id]) }}" class="btn-flat waves-effect">
+            <a href="{{ route('patches.edit', ['id' => $patch['data']['id']]) }}" class="btn-flat waves-effect">
                 <i class="material-icons right">edit</i>Editar
             </a>
 
             <div class="right">
 
-                <form action="{{ route('patches.destroy', ['id' => $patch->id]) }}" method="POST">
+                <form action="{{ route('patches.destroy', ['id' => $patch['data']['id']]) }}" method="POST">
 
                     @csrf    
                     @method('DELETE')
