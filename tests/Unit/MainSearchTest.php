@@ -37,13 +37,6 @@ class MainSearchTest extends TestCase
         $response->assertOk();
     }
 
-    public function testShow()
-    {
-        $uri = '/main-search/' . $this->local->id;
-        $response = $this->actingAs($this->user)->json('GET', $uri);
-        $response->assertOk();
-    }
-
     public function testSearch()
     {
         $uri = '/patches?search=id:' . $this->patch->id;
