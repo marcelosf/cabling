@@ -2,7 +2,7 @@
     <div>
 
         <div class="input-field col s6">
-            <select v-model="build">
+            <select v-model="build" id="build">
                 <option v-for="option in localList"  :key="option.id" :value="option.build">
                     {{ option.build }}
                 </option>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="input-field col s6">
-            <select  v-model="local" id="localSelect">
+            <select  v-model="local_id" id="local">
                 <option v-for="option in localOptions" :key="option.id" :value="option.id">{{ option.local }}</option>
             </select>
             <label>Local</label>
@@ -29,7 +29,10 @@ export default {
     mounted () {
 
         this.loadSelectOptions (options => {
-            this.initialize(options);
+            this.localList = options;
+            if (!this.value) {
+                this.loadSelect('#build');
+            }
         });
 
     },
@@ -40,6 +43,7 @@ export default {
             localList: [],
             build: '',
             local: '',
+            local_id: null,
             localElement: null
         }
 
@@ -49,9 +53,7 @@ export default {
 
         localOptions () {
             let filtered = this.getLocalByBuild(this.build, this.localList);
-            setTimeout(() => {
-                this.selectInit();
-            }, 500);
+            this.loadSelect('#local');
             
             return filtered;
         }
@@ -62,23 +64,18 @@ export default {
 
         value (value) {
             this.local_id = value;
+            let local = this.getLocalById(value);
+            this.build = local.build;
+            this.loadSelect('#build');
         },
 
-        local () {
+        local_id () {
             this.localOnChange();
         }
 
     },
     
     methods: {
-
-        initialize(options) {
-
-            this.localList = options;
-            this.setLocalElement();
-            this.setDefaultFormValues(this.localElement);
-
-        },
 
         loadSelectOptions (actions) {
             
@@ -113,32 +110,18 @@ export default {
             return filtered[0];
         },
 
-        selectInit () {
-
-            let element = $('#localSelect');
-            let instance = M.FormSelect.init(element);
-
+        loadSelect (el, timeout) {
+            let t = timeout ? timeout : 0;
+            let element = $(el);
+            setTimeout(() => {
+                M.FormSelect.init(element);
+            }, timeout);
         },
 
         localOnChange () {
 
-            this.$emit('input', this.local);
+            this.$emit('input', this.local_id);
 
-        },
-
-        setLocalElement () {
-
-            this.localElement = this.getLocalById(this.value);
-
-        },
-
-        setDefaultFormValues (values) {
-
-            if (typeof values !== 'undefined') {
-                this.build = values.build;
-                this.local = values.id;
-            }
-            
         }
     }
 
