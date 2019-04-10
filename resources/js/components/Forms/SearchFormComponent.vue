@@ -12,12 +12,10 @@
 
         <div id="search" class="modal">
             <div class="modal-content">
-                <h5>Title</h5>
+                <h5>Buscar</h5>
                 <div class="divider"></div>
                 <div class="row">
                     <form class="col s12">
-                        
-                        <localcombo-component v-model="local"></localcombo-component>
                         
                         <div class="input-field col s6">
                             <input type="text" id="patch-port">
@@ -38,6 +36,8 @@
                             <input type="text" id="rack">
                             <label for="rack">Sala do rack</label>
                         </div>
+
+                        <localcombo-component v-model="local"></localcombo-component>
 
                     </form>
                 </div>
