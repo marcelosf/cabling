@@ -15,8 +15,8 @@
             <tbody>
                 <tr v-for="patch in patches" :key="patch.id">
                     <td>{{ patch.label }}</td>
-                    <td>{{ patch.local_id }}</td>
-                    <td>{{ patch.switch_port }}</td>
+                    <td>{{ patch.local.build }}-{{ patch.local.local }}</td>
+                    <td>{{ patch.switch_port.port_number }}</td>
                     <td>
                         <a :href="'/patches/' + patch.id">
                             <i class="material-icons">subject</i>
@@ -79,7 +79,7 @@
             list (action, page) {
 
                 this.getResource().index(response => {
-                    
+                    console.log(response.data);
                     action(response.data);
 
                 }, page);
