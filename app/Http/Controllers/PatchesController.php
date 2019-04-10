@@ -87,7 +87,7 @@ class PatchesController extends Controller
 
             $response = [
                 'message' => 'Patch created.',
-                'data'    => $patch->toArray(),
+                'data'    => $patch,
             ];
 
             if ($request->wantsJson()) {
@@ -163,7 +163,7 @@ class PatchesController extends Controller
 
             $response = [
                 'message' => 'Patch updated.',
-                'data'    => $patch->toArray(),
+                'data'    => $patch,
             ];
 
             if ($request->wantsJson()) {
