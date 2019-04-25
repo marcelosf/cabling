@@ -2,7 +2,7 @@
 
 @section('scripts')
         <!-- Scripts -->
-        <script src="{{ mix('js/local.js') }}" defer></script>
+        <script src="{{ asset('js/local.js') }}" defer></script>
 @endsection
 
 @section('pageTitle')

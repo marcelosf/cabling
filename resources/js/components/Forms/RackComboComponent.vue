@@ -23,7 +23,9 @@ export default {
         if (this.rackList.length === 0) {
             this.getRackList(response => {
                 this.rackList = response;
-                this.selectInit();
+                setTimeout(() => {
+                    this.selectInit();
+                }, 500)
             });
         }
     },
@@ -31,7 +33,7 @@ export default {
     watch: {
         value (value) {
             if (value) {
-                this.rack_id = value; console.log('watch')
+                this.rack_id = value;
             }
         }
     },
@@ -44,10 +46,6 @@ export default {
     },
 
     methods: {
-
-        initialize (rackList) {
-            this.rackList = rackList;
-        },
 
         getRackList (actions) {
             this.getResource().index(response => {

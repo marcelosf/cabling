@@ -4,9 +4,9 @@ const ELEMENT = 'patches';
 
 export class PatchResource extends Resource {
 
-    static index (action, page, search, errors) {
+    static index (action, page, search, errors, searchJoin) {
 
-        let query = this.generateQuery(search);
+        let query = this.generateQuery(search, searchJoin);
 
         let url = this.generateUrl(ELEMENT, page, query);
 

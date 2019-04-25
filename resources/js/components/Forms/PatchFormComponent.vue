@@ -78,9 +78,9 @@
 
                     this.form.label = response.label;
                     this.form.number = response.number;
-                    this.form.switch_port = response.switch_port;
-                    this.form.rack_id = response.rack_id;
-                    this.form.local_id = response.local_id;
+                    this.form.switch_port = response.switch_port.port_number;
+                    this.form.rack_id = response.rack.id;
+                    this.form.local_id = response.local.id;
 
                 }, this.id);
             }
@@ -153,7 +153,7 @@
             getPatch (actions, id) {
 
                 this.getResource().show(response => {
-                    console.log(response);actions(response.data);
+                    console.log(response.data.data);actions(response.data.data);
                 }, id)
 
             },
