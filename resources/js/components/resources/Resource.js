@@ -8,14 +8,22 @@ export class Resource {
 
   }
 
-  static generateQuery (parameters) {
+  static generateQuery (parameters, searchJoin) {
 
     if (parameters) {
 
       let search = '&search=';
 
       for (let property in parameters) {
-        search = search + property + ':' + parameters[property] + ';';
+        if (parameters[property]) {
+          search = search + property + ':' + parameters[property] + ';';
+        }
+      }
+
+      search = search.substring(0, search.length -1);
+
+      if (searchJoin === 'and') {
+        search = search + '&searchJoin=and';
       }
 
       return search;

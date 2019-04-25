@@ -10,7 +10,7 @@
 
 @section('content')
 
-   <searchform-component></searchform-component>
+   <searchform-component dusk="searchform-component"></searchform-component>
 
    <indexsearch-component></indexsearch-component>
 

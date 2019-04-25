@@ -71,7 +71,7 @@
         },
 
         components: {
-            'pagination': PaginationComponent
+            'pagination': PaginationComponent,
         }
     }
 </script>

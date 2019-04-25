@@ -24,6 +24,11 @@ class PatchRepositoryEloquent extends BaseRepository implements PatchRepository
         'switch_port',
         'rack_id',
         'local_id',
+        'local.build',
+        'local.local',
+        'switchPort.stack_name',
+        'switchPort.port_number',
+        'rack.local.local'
     ];
     
     /**

@@ -19,7 +19,7 @@ class SwitchPort extends Model implements Transformable
      * The attributes that are mass assignable.
      *
      * @var array
-     */
+     */ 
     protected $fillable = [
         'port_number',
         'poe',
