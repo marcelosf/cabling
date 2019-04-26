@@ -16,5 +16,8 @@ before_install:
 services:
   - mysql
 
+addons:
+  mariadb: '10.0'
+
 script:
   - vendor/bin/phpunit
