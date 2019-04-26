@@ -17,7 +17,7 @@ services:
   - mysql
 
 addons:
-  mariadb: '10.0'
+  mariadb: '10.3.14'
 
 script:
   - vendor/bin/phpunit
