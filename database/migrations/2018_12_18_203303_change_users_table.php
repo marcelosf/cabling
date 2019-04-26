@@ -19,7 +19,7 @@ class ChangeUsersTable extends Migration
             $table->string('email_usp')->nullable();
             $table->string('email_alternativo')->nullable();
             $table->string('telefone')->nullable();
-            $table->json('vinculo');
+            $table->text('vinculo');
         });
     }
 
