@@ -11,6 +11,7 @@ before_script:
 
 before_install:
   - mysql -e 'CREATE DATABASE cabling;'
+  - mysql -e 'grant all on cabling.* to cabling@127.0.0.1 identified by "cabling"'
 
 services:
   - mysql
