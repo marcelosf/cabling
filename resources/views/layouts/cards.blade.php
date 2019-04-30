@@ -1,4 +1,4 @@
-<div class="card hoverable">
+<div class="card hoverable small">
     <div class="card-image">
         <img src="{{ $image }}">
         <span class="card-title">{{ $title }}</span>
