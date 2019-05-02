@@ -15,11 +15,11 @@ class ChangeUsersTable extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->string('token_secret')->nullable();
-            $table->string('codpes');
+            $table->string('codpes')->nullable();
             $table->string('email_usp')->nullable();
             $table->string('email_alternativo')->nullable();
             $table->string('telefone')->nullable();
-            $table->text('vinculo');
+            $table->text('vinculo')->nullable();
         });
     }
 
