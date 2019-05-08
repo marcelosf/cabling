@@ -46,13 +46,7 @@
                     <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
                     <ul class="right">
                         @auth
-                            <li>
-                                <a class="dropdown-trigger" href="#!" data-target="dropdown-user">
-                                    {{ Auth::user()->name }}
-                                    <i class="material-icons right">arrow_drop_down</i>
-                                    <i class="material-icons left">account_circle</i>
-                                </a>
-                            </li>
+                            <login-component username="{{ Auth::user()->name }}"></login-component>
                         @endauth
                     </ul>        
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

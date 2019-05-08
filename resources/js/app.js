@@ -18,6 +18,7 @@ import PhoneTableComponent from './components/Phone/PhoneTableComponent';
 import PhoneFormComponent  from './components/Forms/PhoneFormComponent';
 import IndexSearchComponent from './components/MainSearch/IndexSearchComponent';
 import SearchFormComponent from './components/Forms/SearchFormComponent';
+import LoginFormComponent  from './components/Forms/LoginFormComponent';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -59,6 +60,8 @@ Vue.component('phoneform-component', PhoneFormComponent);
 Vue.component('switchportcombo-component', SwitchPortComboComponent);
 Vue.component('indexsearch-component', IndexSearchComponent);
 Vue.component('searchform-component', SearchFormComponent);
+Vue.component('login-component', LoginFormComponent);
+
 
 const app = new Vue({
     el: '#app',
