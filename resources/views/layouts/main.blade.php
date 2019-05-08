@@ -43,7 +43,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper container">
-                    <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
+                    <a href="{{ route('home') }}" class="brand-logo" dusk="title">{{ config('app.name', 'Laravel') }}</a>
                     <ul class="right">
                         @auth
                             <login-component username="{{ Auth::user()->name }}"></login-component>
