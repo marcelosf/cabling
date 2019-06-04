@@ -9,16 +9,23 @@ before_script:
   - php artisan key:generate
   - php artisan migrate
   - php artisan db:seed
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - php artisan serve &
 
 before_install:
   - mysql -e 'CREATE DATABASE cabling;'
-  - mysql -e 'grant all on cabling.* to cabling@127.0.0.1 identified by "cabling"' 
+  - mysql -e 'grant all on cabling.* to cabling@127.0.0.1 identified by "cabling
+
+install:
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
 
 services:
   - mysql
 
 addons:
   mysql: '5.7'
+  chrome: stable
 
 script:
   - vendor/bin/phpunit
+  - php artisan dusk
