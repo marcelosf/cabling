@@ -50,13 +50,11 @@ class PatchesController extends Controller
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $patches = $this->repository->paginate(10);
-        $allPatches = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
                 'data' => $patches,
-                'all' => $allPatches,
             ]);
         }
 
