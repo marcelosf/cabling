@@ -13,6 +13,7 @@
 </template>
 
 <script>
+    import {Pagination} from '@iagsti/materialize-pagination/src/Classes/Pagination';
     export default {
 
         props: ['resource'],
@@ -32,11 +33,10 @@
             },
 
             paginator () {
+                let total = this.pagination.last_page;
+                let pages = Pagination.getPageList(this.currentPage, 3, 15, total);
 
-                let pages = Array(this.pagination.last_page).fill(null);
-                let compressed = this.compress(pages, 8);
-
-                return compressed;
+                return pages;
 
             },
 
@@ -79,7 +79,6 @@
             },
 
             filter () {
-
                 return this.$store.getters['filter/searchParams'];
 
             }
