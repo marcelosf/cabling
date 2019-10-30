@@ -16,7 +16,6 @@ mix.sass('resources/sass/app.scss', 'public/css');
 mix.sass('resources/sass/welcome.scss', 'public/css');
 mix.version();
 mix.browserSync({
-    proxy: 'nginx',
-    port: '3000',
+    proxy: 'localhost',
     open: false
 });

@@ -17,10 +17,10 @@
                 <tr v-for="patch in patches" :key="patch.id">
                     <td>{{ patch.local.build }}-{{ patch.local.local }}</td>
                     <td>{{ patch.label }}</td>
-                    <td>{{ patch.switch_port.stack_name }}</td>
-                    <td>{{ patch.switch_port.stack_ip }}</td>
-                    <td>{{ patch.switch_port.switch_name }}</td>
-                    <td>{{ patch.switch_port.port_number }}</td>
+                    <td v-if="patch.switch_port">{{ patch.switch_port.stack_name }}</td>
+                    <td v-if="patch.switch_port">{{ patch.switch_port.stack_ip }}</td>
+                    <td v-if="patch.switch_port">{{ patch.switch_port.switch_name }}</td>
+                    <td v-if="patch.switch_port">{{ patch.switch_port.port_number }}</td>
                     <td>{{ patch.rack_local.build }}-{{ patch.rack_local.local }}</td>
                 </tr>
             </tbody>
@@ -50,6 +50,7 @@
 
         computed: {
             patches () {
+                console.log(this.$store.getters['table/tableData']);
                 return this.$store.getters['table/tableData'];
             }
         },
@@ -67,7 +68,9 @@
 
             getResource () {
                 return PatchResource;
-            }
+            },
+
+
         },
 
         components: {
