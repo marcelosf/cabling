@@ -14,7 +14,7 @@ class MainSearchTest extends DuskTestCase
 
     protected $patch;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->patch = Patch::find(1);
@@ -91,6 +91,16 @@ class MainSearchTest extends DuskTestCase
                 ->type('#rack', $this->patch->rack->local->local)
                 ->click('@send-button')
                 ->assertSee($this->patch->local->build);
+       });
+   }
+
+   public function testDetail()
+   {
+       $this->browse(function ($first) {
+           $first->loginAs(User::find(1))
+                ->visit('/main-search')
+                ->click('table > tbody > tr > td')
+                ->assertSee('Detalhamento');
        });
    }
 }

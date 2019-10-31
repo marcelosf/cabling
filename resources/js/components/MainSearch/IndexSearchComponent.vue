@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="patch in patches" :key="patch.id">
+                <tr v-for="patch in patches" :key="patch.id" @click="click(patch.id)">
                     <td>{{ patch.local.build }}-{{ patch.local.local }}</td>
                     <td>{{ patch.label }}</td>
                     <td v-if="patch.switch_port">{{ patch.switch_port.stack_name }}</td>
@@ -66,10 +66,14 @@
                 this.$store.commit('table/tableData', data);
             },
 
+            click (id) {
+                let url = 'main-search/' + id;
+                window.location.href = url;
+            },
+
             getResource () {
                 return PatchResource;
             },
-
 
         },
 

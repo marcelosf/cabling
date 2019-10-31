@@ -19,6 +19,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
+        static::useChromedriver('/var/www/vendor/laravel/dusk/bin/chromedriver-linux');
         static::startChromeDriver();
     }
 
@@ -30,9 +31,7 @@ abstract class DuskTestCase extends BaseTestCase
     protected function driver()
     {
         $options = (new ChromeOptions)->addArguments([
-            '--disable-gpu',
             '--headless',
-            '--window-size=1920,1080',
             '--no-sandbox',
         ]);
 
