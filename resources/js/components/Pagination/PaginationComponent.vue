@@ -34,7 +34,7 @@
 
             paginator () {
                 let total = this.pagination.last_page;
-                let pages = Pagination.getPageList(this.currentPage, 3, 15, total);
+                let pages = Pagination.getPageList(this.currentPage, 5, 15, total);
 
                 return pages;
 

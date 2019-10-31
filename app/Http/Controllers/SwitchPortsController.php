@@ -60,7 +60,7 @@ class SwitchPortsController extends Controller
             ]);
         }
 
-        return view('switch_ports.index', compact('switchPorts'));
+        return view('switch_ports.index', compact('switch_ports'));
     }
 
     public function create()
